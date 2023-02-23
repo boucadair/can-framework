@@ -1,0 +1,1829 @@
+<!DOCTYPE html>
+<html lang="en" class="Internet-Draft">
+<head>
+<meta charset="utf-8">
+<meta content="Common,Latin" name="scripts">
+<meta content="initial-scale=1.0" name="viewport">
+<title>A Framework for Computing-Aware Networking (CAN)</title>
+<meta content="XXX" name="author">
+<meta content="Mohamed Boucadair" name="author">
+<meta content="
+       This document describes a framework for Computing-Aware Networking (CAN). Particularly, the document identifies a set of CAN components, describes their interactions, and exemplifies the workflow of the control plane and data plane. 
+    " name="description">
+<meta content="xml2rfc 3.16.0" name="generator">
+<meta content="User Experience" name="keyword">
+<meta content="Collaborative Networking" name="keyword">
+<meta content="Service optimization" name="keyword">
+<meta content="draft-xxx-can-framework-latest" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.16.0
+    Python 3.10.10
+    appdirs 1.4.4
+    ConfigArgParse 1.5.3
+    google-i18n-address 2.5.2
+    html5lib 1.1
+    intervaltree 3.1.0
+    Jinja2 3.1.2
+    lxml 4.9.2
+    MarkupSafe 2.1.1
+    pycountry 22.3.5
+    PyYAML 6.0
+    requests 2.28.1
+    setuptools 65.6.0
+    six 1.16.0
+    wcwidth 0.2.6
+-->
+<link href="draft-xxx-can-framework.xml" rel="alternate" type="application/rfc+xml">
+<link href="#copyright" rel="license">
+<style type="text/css">@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Lora SemiBold'), local('Lora-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: light dark;
+  --background-color: #fff;
+  --text-color: #222;
+  --title-color: #191919;
+  --link-color: #2a6496;
+  --highlight-color: #f9f9f9;
+  --line-color: #eee;
+  --pilcrow-weak: #ddd;
+  --pilcrow-strong: #bbb;
+  --small-font-size: 14.5px;
+  --font-mono: 'Oxygen Mono', monospace;
+  scrollbar-color: #bbb #eee;
+}
+body {
+  max-width: 600px;
+  margin: 75px auto;
+  padding: 0 5px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font: 16px/22px "Lora", serif;
+  scroll-behavior: smooth;
+}
+
+.ears {
+  display: none;
+}
+
+/* headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Cabin Condensed", sans-serif;
+  font-weight: 600;
+  margin: 0.8em 0 0.3em;
+  font-size-adjust: 0.5;
+  color: var(--title-color);
+}
+h1#title {
+  font-size: 32px;
+  line-height: 40px;
+  clear: both;
+}
+h1#title, h1#rfcnum {
+  margin: 1.5em 0 0.2em;
+}
+h1#rfcnum + h1#title {
+  margin: 0.2em 0;
+}
+
+h1, h2, h3 {
+  font-size: 22px;
+  line-height: 27px;
+}
+h4, h5, h6 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+/* general structure */
+.author {
+  padding-bottom: 0.3em;
+}
+#abstract+p {
+  font-size: 18px;
+  line-height: 24px;
+}
+#abstract+p code, #abstract+p samp, #abstract+p tt {
+  font-size: 16px;
+  line-height: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0.5em 0;
+  text-align: left;
+}
+div {
+  margin: 0;
+}
+.alignRight.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignRight.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignRight {
+  margin: 1em 0;
+}
+.alignRight > *:first-child {
+  border: none;
+  margin: 0;
+  float: right;
+  clear: both;
+}
+.alignRight > *:nth-child(2) {
+  clear: both;
+  display: block;
+  border: none;
+}
+svg {
+  display: block;
+}
+/* font-family isn't space-separated, but =~ will have to do */
+svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
+  font-family: var(--font-mono);
+}
+.alignCenter.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignCenter.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignCenter {
+  margin: 1em 0;
+}
+.alignCenter > *:first-child {
+  border: none;
+  /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
+     support flexbox yet.
+  */
+  display: table;
+  margin: 0 auto;
+}
+
+/* lists */
+ol, ul {
+  padding: 0;
+  margin: 0 0 0.5em 2em;
+}
+:is(ol, ul) :is(ol, ul) {
+  margin-left: 1em;
+}
+li {
+  margin: 0 0 0.25em 0;
+}
+.ulCompact li {
+  margin: 0;
+}
+ul.empty, .ulEmpty {
+  list-style-type: none;
+}
+ul.empty li, .ulEmpty li {
+  margin-top: 0.5em;
+}
+:is(ul, ol).compact, .ulCompact, .olCompact {
+  line-height: 1;
+  margin: 0 0 0 2em;
+}
+
+/* definition lists */
+dl {
+  clear: left;
+  --indent: 3ch;
+  /* --indent: attr(indent ch); not supported in any browser, but we can dream */
+}
+dl.olPercent {
+  --indent: 5ch;
+}
+dl > dt {
+  float: left;
+  margin-right: 2ch;
+  min-width: 8ch;
+}
+dl.dlNewline > dt {
+  float: none;
+}
+dl > dd {
+  margin-bottom: .8em;
+  margin-left: var(--indent) !important; /* stupid element overrides */
+  min-height: 2ex;
+}
+dl.olPercent > dt {
+  min-width: calc(var(--indent) - 2ch);
+}
+:is(dl.compact, .dlCompact) > dd {
+  margin-bottom: 0;
+}
+:is(dl.compact, .dlCompact) > dd > :is(:first-child, .break:first-child + *) {
+  margin-top: 0;
+}
+:is(dl.compact, .dlCompact) > dd > :is(:last-child) {
+  margin-bottom: 0;
+}
+dl > dd > dl {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
+:is(dd, span).break {
+  display: none;
+}
+
+/* links */
+a, a[href].selfRef:hover {
+  text-decoration: none;
+}
+a[href] {
+  color: var(--link-color);
+}
+a[href].selfRef, .iref + a[href].internal {
+  color: var(--text-color);
+}
+a[href]:hover {
+  text-decoration: underline;
+}
+a[href].selfRef:hover {
+  background-color: var(--highlight-color);
+}
+a.xref:is(.cite, .auto), :is(#status-of-memo, #copyright) a {
+  white-space: nowrap;
+}
+
+/* Figures */
+tt, code, pre {
+  background-color: var(--highlight-color);
+  font: 14px/22px var(--font-mono);
+}
+tt, code {
+  /* changing the font for inline elements leads to different ascender
+     and descender heights; as we want to retain baseline alignment,
+     remove leading to avoid altering the final height of lines
+     note: this fails if these blocks take an entire line,
+     a different solution would be great */
+  line-height: 0;
+}
+:is(h1, h2, h3, h4, h5, h6) :is(tt, code) {
+  font-size: 84%;
+}
+pre {
+  border: 1px solid var(--line-color);
+  font-size: 13.5px;
+  line-height: 16px;
+  letter-spacing: -0.2px;
+  margin: 5px;
+  padding: 5px;
+}
+img {
+  max-width: 100%;
+}
+figure {
+  margin: 0.5em 0;
+  padding: 0;
+}
+figure blockquote {
+  margin: 0.8em 0.4em 0.4em;
+}
+figcaption, caption {
+  font-style: italic;
+  margin: 0.5em 1.5em;
+  text-align: left;
+}
+@media screen {
+  /* Auto-collapse boilerplate. */
+  :is(#status-of-memo, #copyright) p {
+    margin: -2px 0;
+    max-height: 0;
+    transition: max-height 2s ease, margin 0.5s ease 0.5s;
+    overflow: hidden;
+  }
+  :is(#status-of-memo, #copyright):hover p,
+  :is(#status-of-memo, #copyright) h2:target ~ p {
+    margin: 0.5em 0;
+    max-height: 500px;
+    overflow: auto;
+  }
+  pre, svg {
+    display: inline-block;
+    overflow-x: auto;
+  }
+  pre {
+    max-width: 100%;
+    width: calc(100% - 22px - 1em);
+  }
+  svg {
+    max-width: calc(100% - 22px - 1em);
+  }
+  figure pre {
+    display: block;
+    width: calc(100% - 25px);
+  }
+  :is(pre, svg) + .pilcrow {
+    display: inline-block;
+    vertical-align: text-bottom;
+    padding-bottom: 8px;
+  }
+}
+
+/* aside, blockquote */
+aside, blockquote {
+  margin-left: 0;
+  padding: 0 2em;
+  font-style: italic;
+}
+blockquote {
+  margin: 1em 0;
+}
+cite {
+  display: block;
+  text-align: right;
+  font-style: italic;
+}
+
+/* tables */
+table {
+  max-width: 100%;
+  margin: 0 0 1em;
+  border-collapse: collapse;
+}
+table.right {
+  margin-left: auto;
+}
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+table.left {
+  margin-right: auto;
+}
+thead, tbody {
+  border: 1px solid var(--line-color);
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 5px 10px;
+}
+th {
+  background-color: var(--line-color);
+}
+:is(tr:nth-child(2n), thead+tbody > tr:nth-child(2n+1)) > td {
+  background-color: var(--background-color);
+}
+:is(tr:nth-child(2n+1), thead+tbody > tr:nth-child(2n)) > td {
+  background-color: var(--highlight-color);
+}
+table caption {
+  margin: 0;
+  padding: 3px 0 3px 1em;
+}
+table p {
+  margin: 0;
+}
+
+/* pilcrow */
+a.pilcrow {
+  margin-left: 3px;
+  opacity: 0.2;
+  user-select: none;
+}
+a.pilcrow[href] { color: var(--pilcrow-weak); }
+a.pilcrow[href]:hover { text-decoration: none; }
+@media not print {
+  :hover > a.pilcrow {
+    opacity: 1;
+  }
+  a.pilcrow[href]:hover {
+    color: var(--pilcrow-strong);
+    background-color: transparent;
+  }
+}
+@media print {
+  a.pilcrow {
+    display: none;
+  }
+}
+
+/* misc */
+hr {
+  border: 0;
+  border-top: 1px solid var(--line-color);
+}
+.bcp14 {
+  font-variant: small-caps;
+  font-weight: 600;
+  font-size: var(--small-font-size);
+}
+.role {
+  font-variant: all-small-caps;
+}
+sub, sup {
+  line-height: 1;
+  font-size: 80%;
+}
+
+/* info block */
+#identifiers {
+  margin: 0;
+  font-size: var(--small-font-size);
+  line-height: 18px;
+  --identifier-width: 15ch;
+}
+#identifiers dt {
+  width: var(--identifier-width);
+  min-width: var(--identifier-width);
+  clear: left;
+  float: left;
+  text-align: right;
+}
+#identifiers dd {
+  margin: 0;
+  margin-left: calc(1em + var(--identifier-width)) !important;
+  min-width: 5em;
+}
+#identifiers .authors .author {
+  display: inline-block;
+  margin-right: 1.5em;
+}
+#identifiers .authors .org {
+  font-style: italic;
+}
+
+/* The prepared/rendered info at the very bottom of the page */
+.docInfo {
+  color: #999;
+  font-size: 0.9em;
+  font-style: italic;
+  margin-top: 2em;
+}
+.docInfo .prepared {
+  float: left;
+}
+.docInfo .prepared {
+  float: right;
+}
+
+/* table of contents */
+#toc {
+  padding: 0.75em 0 2em 0;
+  margin-bottom: 1em;
+}
+#toc nav ul {
+  margin: 0 0.5em 0 0;
+  padding: 0;
+  list-style: none;
+}
+#toc nav li {
+  line-height: 1.3em;
+  margin: 0.75em 0;
+  padding-left: 1.2em;
+  text-indent: -1.2em;
+}
+#toc a.xref {
+  white-space: normal;
+}
+/* references */
+.references dt {
+  text-align: right;
+  font-weight: bold;
+  min-width: 7em;
+}
+.references dt:target::before {
+  content: "⇒";
+  width: 15px;
+  margin: 0 10px 0 -25px;
+}
+.references dd {
+  margin-left: 8em !important;
+  overflow: auto;
+}
+
+.refInstance {
+  margin-bottom: 1.25em;
+}
+
+.references .ascii {
+  margin-bottom: 0.25em;
+}
+
+/* index */
+#rfc\.index\.index + ul {
+  margin-left: 0;
+}
+
+/* authors */
+address.vcard {
+  font-style: normal;
+  margin: 1em 0;
+}
+address.vcard .nameRole {
+  font-weight: 700;
+  margin-left: 0;
+}
+address.vcard .label {
+  margin: 0.5em 0;
+}
+address.vcard .type {
+  display: none;
+}
+.alternative-contact {
+  margin: 1.5em 0 1em;
+}
+hr.addr {
+  border-top: 1px dashed;
+  margin: 0;
+  color: #ddd;
+  max-width: calc(100% - 16px);
+}
+@media (min-width: 500px) {
+  #authors-addresses > section {
+    column-count: 2;
+    column-gap: 20px;
+  }
+  #authors-addresses > section > h2 {
+    column-span: all;
+  }
+  /* hack for break-inside: avoid-column */
+  #authors-addresses address {
+    display: inline-block;
+    break-inside: avoid-column;
+  }
+}
+
+.rfcEditorRemove p:first-of-type {
+  font-style: italic;
+}
+.cref {
+  background-color: rgba(249, 232, 105, 0.3);
+  padding: 2px 4px;
+}
+.crefSource {
+  font-style: italic;
+}
+/* alternative layout for smaller screens */
+@media screen and (max-width: 929px) {
+  #toc {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    opacity: 0.6;
+  }
+  #toc.active {
+      opacity: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 2px 0 2px 6px;
+    padding-right: 1em;
+    font-size: 18px;
+    line-height: 24px;
+    min-width: 190px;
+    text-align: right;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+  }
+  #toc h2::before { /* css hamburger */
+    float: right;
+    position: relative;
+    width: 1em;
+    height: 1px;
+    left: -164px;
+    margin: 8px 0 0 0;
+    background: white none repeat scroll 0 0;
+    box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+    content: "";
+  }
+  #toc nav {
+    display: none;
+    background-color: var(--background-color);
+    padding: 0.5em 1em 1em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    height: calc(100vh - 48px);
+    border-left: 1px solid #ddd;
+  }
+  #toc.active nav {
+    display: block;
+  }
+  /* Make the collapsed ToC header render white on gray also when it's a link */
+  #toc h2 a,
+  #toc h2 a:link,
+  #toc h2 a:focus,
+  #toc h2 a:hover,
+  #toc a.toplink,
+  #toc a.toplink:hover {
+    color: white;
+    background-color: #444;
+    text-decoration: none;
+  }
+  #toc a.toplink {
+    margin-top: 2px;
+  }
+}
+
+/* alternative layout for wide screens */
+@media screen and (min-width: 930px) {
+  body {
+    padding-right: 360px;
+    padding-right: calc(min(180px + 20%, 500px));
+  }
+  #toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 480px);
+    width: 312px;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 0.25em 1em 1em 0;
+  }
+  #toc nav {
+    display: block;
+    height: calc(90vh - 84px);
+    bottom: 0;
+    padding: 0.5em 0 2em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  #toc nav > ul  {
+    margin-bottom: 2em;
+  }
+  #toc ul {
+    margin: 0 0 0 4px;
+    font-size: var(--small-font-size);
+  }
+  #toc ul :is(p, li) {
+    margin: 2px 0;
+    line-height: 22px;
+  }
+  img { /* future proofing */
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* pagination */
+@media print {
+  body {
+    width: 100%;
+  }
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  #n-copyright-notice {
+    border-bottom: none;
+  }
+  #toc, #n-introduction {
+    page-break-before: always;
+  }
+  #toc {
+    border-top: none;
+    padding-top: 0;
+  }
+  figure, pre {
+    page-break-inside: avoid;
+  }
+  figure {
+    overflow: scroll;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  h2+*, h3+*, h4+*, h5+*, h6+* {
+    page-break-before: avoid;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 10pt;
+  }
+  table {
+    border: 1px solid #ddd;
+  }
+  td {
+    border-top: 1px solid #ddd;
+  }
+}
+
+@page :first {
+  padding-top: 0;
+  @top-left {
+    content: normal;
+    border: none;
+  }
+  @top-center {
+    content: normal;
+    border: none;
+  }
+  @top-right {
+    content: normal;
+    border: none;
+  }
+}
+
+@page {
+  size: A4;
+  margin-bottom: 45mm;
+  padding-top: 20px;
+}
+
+/* Changes introduced to fix issues found during implementation */
+
+/* Separate body from document info even without intervening H1 */
+section {
+  clear: both;
+}
+
+/* Top align author divs, to avoid names without organization dropping level with org names */
+.author {
+  vertical-align: top;
+}
+
+/* Style section numbers with more space between number and title */
+.section-number {
+  padding-right: 0.5em;
+}
+
+/* Add styling for a link in the ToC that points to the top of the document */
+a.toplink {
+  float: right;
+  margin: 8px 0.5em 0;
+}
+
+/* Provide styling for table cell text alignment */
+table .text-left {
+  text-align: left;
+}
+table .text-center {
+  text-align: center;
+}
+table .text-right {
+  text-align: right;
+}
+
+/* Make the alternative author contact information look less like just another
+   author, and group it closer with the primary author contact information */
+.alternative-contact {
+  margin: 0.5em 0 0.25em 0;
+}
+address .non-ascii {
+  margin: 0 0 0 2em;
+}
+
+/* With it being possible to set tables with alignment
+  left, center, and right, { width: 100%; } does not make sense */
+table {
+  width: auto;
+}
+
+/* Avoid reference text that sits in a block with very wide left margin,
+   because of a long floating dt label.*/
+.references dd {
+  overflow: visible;
+}
+
+/* Control caption placement */
+caption {
+  caption-side: bottom;
+}
+
+/* Limit the width of the author address vcard, so names in right-to-left
+   script don't end up on the other side of the page. */
+
+address.vcard {
+  max-width: 20em;
+  margin-right: auto;
+}
+
+/* For address alignment dependent on LTR or RTL scripts */
+address div.left {
+  text-align: left;
+}
+address div.right {
+  text-align: right;
+}
+
+/* Give the table caption label the same styling as the figcaption */
+
+@media print {
+  .toplink {
+    display: none;
+  }
+
+  /* avoid overwriting the top border line with the ToC header */
+  #toc {
+    padding-top: 1px;
+  }
+
+  /* Avoid page breaks inside dl and author address entries */
+  dd {
+    page-break-before: avoid;
+  }
+  .vcard {
+    page-break-inside: avoid;
+  }
+
+}
+
+/* Dark mode. */
+@media (prefers-color-scheme: dark) {
+:root {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --title-color: #fff;
+  --link-color: #4da4f0;
+  --highlight-color: #282828;
+  --line-color: #444;
+  --pilcrow-weak: #444;
+  --pilcrow-strong: #666;
+  scrollbar-color: #777 #333;
+}
+}
+
+/* SVG Trick: a prefix match works because only black and white are allowed */
+svg :is([stroke="black"], [stroke^="#000"]) {
+  stroke: var(--text-color);
+}
+svg :is([stroke="white"], [stroke^="#fff"]) {
+  stroke: var(--background-color);
+}
+svg :is([fill="black"], [fill^="#000"], :not([fill])) {
+  fill: var(--text-color);
+}
+svg :is([fill="white"], [fill^="#fff"]) {
+  fill: var(--background-color);
+}
+</style>
+
+</head>
+<body class="xml2rfc">
+<table class="ears">
+<thead><tr>
+<td class="left">Internet-Draft</td>
+<td class="center">CAN Framework</td>
+<td class="right">February 2023</td>
+</tr></thead>
+<tfoot><tr>
+<td class="left">XX &amp; Boucadair</td>
+<td class="center">Expires 27 August 2023</td>
+<td class="right">[Page]</td>
+</tr></tfoot>
+</table>
+<div id="external-metadata" class="document-information"></div>
+<div id="internal-metadata" class="document-information">
+<dl id="identifiers">
+<dt class="label-workgroup">Workgroup:</dt>
+<dd class="workgroup">can</dd>
+<dt class="label-internet-draft">Internet-Draft:</dt>
+<dd class="internet-draft">draft-xxx-can-framework-latest</dd>
+<dt class="label-published">Published:</dt>
+<dd class="published">
+<time datetime="2023-02-23" class="published">23 February 2023</time>
+    </dd>
+<dt class="label-intended-status">Intended Status:</dt>
+<dd class="intended-status">Informational</dd>
+<dt class="label-expires">Expires:</dt>
+<dd class="expires"><time datetime="2023-08-27">27 August 2023</time></dd>
+<dt class="label-authors">Authors:</dt>
+<dd class="authors">
+<div class="author">
+      <div class="author-name">X. XX</div>
+<div class="org">XXX</div>
+</div>
+<div class="author">
+      <div class="author-name">M. Boucadair</div>
+<div class="org">Orange</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1 id="title">A Framework for Computing-Aware Networking (CAN)</h1>
+<section id="section-abstract">
+      <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
+<p id="section-abstract-1">This document describes a framework for Computing-Aware Networking (CAN). Particularly, the document identifies a set of CAN components, describes their interactions, and exemplifies the workflow of the control plane and data plane.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+</section>
+<div id="status-of-memo">
+<section id="section-boilerplate.1">
+        <h2 id="name-status-of-this-memo">
+<a href="#name-status-of-this-memo" class="section-name selfRef">Status of This Memo</a>
+        </h2>
+<p id="section-boilerplate.1-1">
+        This Internet-Draft is submitted in full conformance with the
+        provisions of BCP 78 and BCP 79.<a href="#section-boilerplate.1-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-2">
+        Internet-Drafts are working documents of the Internet Engineering Task
+        Force (IETF). Note that other groups may also distribute working
+        documents as Internet-Drafts. The list of current Internet-Drafts is
+        at <span><a href="https://datatracker.ietf.org/drafts/current/">https://datatracker.ietf.org/drafts/current/</a></span>.<a href="#section-boilerplate.1-2" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-3">
+        Internet-Drafts are draft documents valid for a maximum of six months
+        and may be updated, replaced, or obsoleted by other documents at any
+        time. It is inappropriate to use Internet-Drafts as reference
+        material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-4">
+        This Internet-Draft will expire on 27 August 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="copyright">
+<section id="section-boilerplate.2">
+        <h2 id="name-copyright-notice">
+<a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
+        </h2>
+<p id="section-boilerplate.2-1">
+            Copyright (c) 2023 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.2-2">
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a href="https://trustee.ietf.org/license-info">https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Revised BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="toc">
+<section id="section-toc.1">
+        <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
+<a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
+        </h2>
+<nav class="toc"><ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-terminology" class="internal xref">Terminology</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-framework-and-components" class="internal xref">Framework and Components</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
+                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-assumptions" class="internal xref">Assumptions</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-can-identifiers" class="internal xref">CAN Identifiers</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-can-componenets" class="internal xref">CAN Componenets</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-can-framework-workflow" class="internal xref">CAN Framework Workflow</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-service-announcements" class="internal xref">Service Announcements</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-metric-distributions" class="internal xref">Metric Distributions</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-service-demand-handling" class="internal xref">Service Demand Handling</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4">
+                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="auto internal xref">4.4</a>.  <a href="#name-instance-affinity" class="internal xref">Instance Affinity</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-privacy-considerations" class="internal xref">Privacy Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-manageability-consideration" class="internal xref">Manageability Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div id="introduction">
+<section id="section-1">
+      <h2 id="name-introduction">
+<a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
+      </h2>
+<p id="section-1-1">Edge computing architectures have been expanding from single edge nodes to multiple interconnected collaborating edge nodes to address issues, such as long response times, suboptimal service resource utilization, and inefficient network utilization.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">The underlying networking architectures for edge computing usually provide relatively static service dispatching. In such architectures, the service traffic is often directed to the closest edge from a routing perspective or to the server with the most computing resources without considering the network status, and even sometimes simply based on static configurations.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">As described in <span>[<a href="#I-D.liu-can-ps-usecases" class="cite xref">I-D.liu-can-ps-usecases</a>]</span>, traffic steering that takes into account computing resource metrics would benefit several services, such as augmented reality or virtual reality (AR/VR). This document provides an architectural framework, which will enable compute- and network-aware traffic steering decisions in edge computing.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">The Computing-Aware Networking (CAN) framework assumes that there may be multiple service instances running on different edge nodes, globally providing one single service. A single edge may have limited computing resources (such as CPU or GPU) available, and different edges likely have different resources available. A single edge may host multiple instances of a service, or just one.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">The CAN framework is an ingress-based overlay framework for the selection of the suitable service instance(s) from a set of instance candidates. The exact characterization of 'suitable' will be determined by a combination of networking and computing related metrics. To that aim, the CAN framework assumes that edge nodes collaborate with each other to achieve a global objective of dispatching service demands, by taking into account both service instances status and network state (e.g., forwarding path length, cost, and congestion).<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-6">Also, this document describes a workflows of the main CAN procedures in both the control and data planes.<a href="#section-1-6" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="terminology">
+<section id="section-2">
+      <h2 id="name-terminology">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-terminology" class="section-name selfRef">Terminology</a>
+      </h2>
+<p id="section-2-1">This document makes use of the following terms:<a href="#section-2-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2-2">
+        <dt id="section-2-2.1">Client:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.2">
+          <p id="section-2-2.2.1">An endpoint that is connected to a service provider network.<a href="#section-2-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.3">Computing-Aware Networking (CAN):</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.4">
+          <p id="section-2-2.4.1">An architecture that takes into account the dynamic nature of computing resources and network state to steer service traffic to a service instance. This dynamicity is expressed by means of relevant metrics.<a href="#section-2-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.5">Service:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.6">
+          <p id="section-2-2.6.1">A monolithic function that is provided by a network operator according to a specification. A composite service can be built by orchestrating multiple monolithic services.<a href="#section-2-2.6.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.7">Service instance:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.8">
+          <p id="section-2-2.8.1">A run-time environment (e.g., a server or a process on a server) that makes the functionality of a service available. One service can be exposed by multiple instances running at the same or different network locations.<a href="#section-2-2.8.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.9">Service demand:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.10">
+          <p id="section-2-2.10.1">The demand for a service identified by a CS-ID.<a href="#section-2-2.10.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.11">Service request:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.12">
+          <p id="section-2-2.12.1">The request for a specific service instance.<a href="#section-2-2.12.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.13">CAN-Router:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.14">
+          <p id="section-2-2.14.1">A network device (usually at the edge of the network) that makes forwarding decisions based on CAN information to steer traffic belonging to the same service demand to the same selected service instance.<a href="#section-2-2.14.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.15">Ingress CAN-Router:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.16">
+          <p id="section-2-2.16.1">A network edge router that serves as a service access point for CAN clients. It steers the service packets onto an overlay path to an Egress CAN-Router linked to the most suitable edge site to access a service instance.<a href="#section-2-2.16.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.17">Egress CAN-Router:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.18">
+          <p id="section-2-2.18.1">An egress endpoint of an overlay path and which connected a CAN-serviced site.<a href="#section-2-2.18.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.19">CAN Service Metric Agent (C-SMA):</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.20">
+          <p id="section-2-2.20.1">Responsible for collecting service capabilities and status, and reporting them to a CAN Path Selector (C-PS).<a href="#section-2-2.20.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.21">CAN Network Metric Agent (C-NMA):</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.22">
+          <p id="section-2-2.22.1">Responsible for collecting network capabilities and status, and reporting them to a C-PS.<a href="#section-2-2.22.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.23">CAN Path Selector (C-PS):</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.24">
+          <p id="section-2-2.24.1">An entity that determines the path toward the appropriate service location and service instances to meet a service demand given the service status and network status information.<a href="#section-2-2.24.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.25">CAN Traffic Classifier (C-TC):</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.26">
+          <p id="section-2-2.26.1">Responsible for determining which packets belong to a traffic flow for a particular service demand, and for steering them on the path to the service instance as determined by a C-PS.<a href="#section-2-2.26.1" class="pilcrow">¶</a></p>
+</dd>
+      <dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="Framework-and-concepts">
+<section id="section-3">
+      <h2 id="name-framework-and-components">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-framework-and-components" class="section-name selfRef">Framework and Components</a>
+      </h2>
+<div id="assumptions">
+<section id="section-3.1">
+        <h3 id="name-assumptions">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-assumptions" class="section-name selfRef">Assumptions</a>
+        </h3>
+<p id="section-3.1-1">CAN assumes that there are multiple service instances running on different edge sites, providing one single service which is represented by the same service identifier (see <a href="#can-ids" class="auto internal xref">Section 3.2</a>.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="can-ids">
+<section id="section-3.2">
+        <h3 id="name-can-identifiers">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-can-identifiers" class="section-name selfRef">CAN Identifiers</a>
+        </h3>
+<p id="section-3.2-1">CAN introduces the following identifiers:<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-3.2-2">
+          <dt id="section-3.2-2.1">CAN Service ID (CS-ID):</dt>
+          <dd style="margin-left: 1.5em" id="section-3.2-2.2">
+            <p id="section-3.2-2.2.1">An identifier representing a service, which the clients use to access said service. Such an ID identifies all of the instances of the same service, no matter on where they are actually running. The CS-ID is independent of which service instance serves the service demand. Usually multiple instances provide a (logically) single service, and service demands are dispatched to the different instance by choosing one instance among all available instances.<a href="#section-3.2-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-3.2-2.3">CAN Binding ID (CB-ID):</dt>
+          <dd style="margin-left: 1.5em" id="section-3.2-2.4">
+            <p id="section-3.2-2.4.1">An identifier of a single service instance or site of a given service instance (CS-ID).<a href="#section-3.2-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="can-componenets">
+<section id="section-3.3">
+        <h3 id="name-can-componenets">
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-can-componenets" class="section-name selfRef">CAN Componenets</a>
+        </h3>
+<p id="section-3.3-1">The network takes the forwarding decision for a service demand received from a client according to both service instances status as well as network status. The framework is shown in <a href="#fig-can-fw" class="auto internal xref">Figure 1</a>.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<span id="name-can-framework"></span><div id="fig-can-fw">
+<figure id="figure-1">
+          <div id="section-3.3-2.1">
+            <div class="alignLeft art-svg artwork" id="section-3.3-2.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="576" width="464" viewBox="0 0 464 576" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
+                <path d="M 8,48 L 8,80" fill="none" stroke="black"></path>
+                <path d="M 40,88 L 40,128" fill="none" stroke="black"></path>
+                <path d="M 40,320 L 40,368" fill="none" stroke="black"></path>
+                <path d="M 64,48 L 64,80" fill="none" stroke="black"></path>
+                <path d="M 72,32 L 72,64" fill="none" stroke="black"></path>
+                <path d="M 72,112 L 72,208" fill="none" stroke="black"></path>
+                <path d="M 72,464 L 72,512" fill="none" stroke="black"></path>
+                <path d="M 104,376 L 104,440" fill="none" stroke="black"></path>
+                <path d="M 120,152 L 120,176" fill="none" stroke="black"></path>
+                <path d="M 144,320 L 144,368" fill="none" stroke="black"></path>
+                <path d="M 168,336 L 168,368" fill="none" stroke="black"></path>
+                <path d="M 176,48 L 176,80" fill="none" stroke="black"></path>
+                <path d="M 176,112 L 176,208" fill="none" stroke="black"></path>
+                <path d="M 176,464 L 176,512" fill="none" stroke="black"></path>
+                <path d="M 184,376 L 184,440" fill="none" stroke="black"></path>
+                <path d="M 192,448 L 192,496" fill="none" stroke="black"></path>
+                <path d="M 208,88 L 208,128" fill="none" stroke="black"></path>
+                <path d="M 224,160 L 224,208" fill="none" stroke="black"></path>
+                <path d="M 232,48 L 232,80" fill="none" stroke="black"></path>
+                <path d="M 232,336 L 232,368" fill="none" stroke="black"></path>
+                <path d="M 248,32 L 248,64" fill="none" stroke="black"></path>
+                <path d="M 256,128 L 256,152" fill="none" stroke="black"></path>
+                <path d="M 280,160 L 280,208" fill="none" stroke="black"></path>
+                <path d="M 296,320 L 296,400" fill="none" stroke="black"></path>
+                <path d="M 304,464 L 304,512" fill="none" stroke="black"></path>
+                <path d="M 312,112 L 312,208" fill="none" stroke="black"></path>
+                <path d="M 336,48 L 336,80" fill="none" stroke="black"></path>
+                <path d="M 360,408 L 360,440" fill="none" stroke="black"></path>
+                <path d="M 368,240 L 368,272" fill="none" stroke="black"></path>
+                <path d="M 392,48 L 392,80" fill="none" stroke="black"></path>
+                <path d="M 400,320 L 400,400" fill="none" stroke="black"></path>
+                <path d="M 408,32 L 408,64" fill="none" stroke="black"></path>
+                <path d="M 408,464 L 408,512" fill="none" stroke="black"></path>
+                <path d="M 416,112 L 416,208" fill="none" stroke="black"></path>
+                <path d="M 424,448 L 424,496" fill="none" stroke="black"></path>
+                <path d="M 432,240 L 432,272" fill="none" stroke="black"></path>
+                <path d="M 24,32 L 72,32" fill="none" stroke="black"></path>
+                <path d="M 192,32 L 248,32" fill="none" stroke="black"></path>
+                <path d="M 352,32 L 408,32" fill="none" stroke="black"></path>
+                <path d="M 8,48 L 56,48" fill="none" stroke="black"></path>
+                <path d="M 176,48 L 232,48" fill="none" stroke="black"></path>
+                <path d="M 336,48 L 392,48" fill="none" stroke="black"></path>
+                <path d="M 8,80 L 56,80" fill="none" stroke="black"></path>
+                <path d="M 176,80 L 232,80" fill="none" stroke="black"></path>
+                <path d="M 336,80 L 392,80" fill="none" stroke="black"></path>
+                <path d="M 72,112 L 176,112" fill="none" stroke="black"></path>
+                <path d="M 312,112 L 416,112" fill="none" stroke="black"></path>
+                <path d="M 40,128 L 64,128" fill="none" stroke="black"></path>
+                <path d="M 184,128 L 208,128" fill="none" stroke="black"></path>
+                <path d="M 256,128 L 304,128" fill="none" stroke="black"></path>
+                <path d="M 80,144 L 168,144" fill="none" stroke="black"></path>
+                <path d="M 320,144 L 408,144" fill="none" stroke="black"></path>
+                <path d="M 224,160 L 280,160" fill="none" stroke="black"></path>
+                <path d="M 120,176 L 168,176" fill="none" stroke="black"></path>
+                <path d="M 72,208 L 176,208" fill="none" stroke="black"></path>
+                <path d="M 224,208 L 280,208" fill="none" stroke="black"></path>
+                <path d="M 312,208 L 416,208" fill="none" stroke="black"></path>
+                <path d="M 368,240 L 432,240" fill="none" stroke="black"></path>
+                <path d="M 368,272 L 432,272" fill="none" stroke="black"></path>
+                <path d="M 40,320 L 144,320" fill="none" stroke="black"></path>
+                <path d="M 296,320 L 400,320" fill="none" stroke="black"></path>
+                <path d="M 168,336 L 232,336" fill="none" stroke="black"></path>
+                <path d="M 40,368 L 144,368" fill="none" stroke="black"></path>
+                <path d="M 168,368 L 232,368" fill="none" stroke="black"></path>
+                <path d="M 296,368 L 400,368" fill="none" stroke="black"></path>
+                <path d="M 296,400 L 400,400" fill="none" stroke="black"></path>
+                <path d="M 88,448 L 192,448" fill="none" stroke="black"></path>
+                <path d="M 320,448 L 424,448" fill="none" stroke="black"></path>
+                <path d="M 72,464 L 176,464" fill="none" stroke="black"></path>
+                <path d="M 304,464 L 408,464" fill="none" stroke="black"></path>
+                <path d="M 72,512 L 176,512" fill="none" stroke="black"></path>
+                <path d="M 304,512 L 408,512" fill="none" stroke="black"></path>
+                <path d="M 56,48 C 64.83064,48 72,55.16936 72,64" fill="none" stroke="black"></path>
+                <path d="M 56,48 C 64.83064,48 72,40.83064 72,32" fill="none" stroke="black"></path>
+                <path d="M 56,80 C 64.83064,80 72,72.83064 72,64" fill="none" stroke="black"></path>
+                <g class="text">
+                  <text x="36" y="68">client</text>
+                  <text x="204" y="68">client</text>
+                  <text x="240" y="68">-</text>
+                  <text x="364" y="68">client</text>
+                  <text x="400" y="68">-</text>
+                  <text x="368" y="100">|</text>
+                  <text x="124" y="132">C-TC</text>
+                  <text x="364" y="132">C-TC</text>
+                  <text x="148" y="164">C-PS</text>
+                  <text x="356" y="164">CAN-Router</text>
+                  <text x="408" y="164">4</text>
+                  <text x="36" y="180">........</text>
+                  <text x="200" y="180">.....</text>
+                  <text x="252" y="180">C-PS</text>
+                  <text x="296" y="180">...</text>
+                  <text x="440" y="180">.....</text>
+                  <text x="8" y="196">:</text>
+                  <text x="116" y="196">CAN-Router</text>
+                  <text x="168" y="196">2</text>
+                  <text x="456" y="196">.</text>
+                  <text x="8" y="212">:</text>
+                  <text x="456" y="212">:</text>
+                  <text x="8" y="228">:</text>
+                  <text x="456" y="228">:</text>
+                  <text x="8" y="244">:</text>
+                  <text x="456" y="244">:</text>
+                  <text x="8" y="260">:</text>
+                  <text x="244" y="260">Underlay</text>
+                  <text x="400" y="260">C-NMA</text>
+                  <text x="456" y="260">:</text>
+                  <text x="8" y="276">:</text>
+                  <text x="244" y="276">Infrastructure</text>
+                  <text x="456" y="276">:</text>
+                  <text x="8" y="292">:</text>
+                  <text x="456" y="292">:</text>
+                  <text x="8" y="308">:</text>
+                  <text x="456" y="308">:</text>
+                  <text x="8" y="324">:</text>
+                  <text x="456" y="324">:</text>
+                  <text x="8" y="340">:</text>
+                  <text x="84" y="340">CAN-Router</text>
+                  <text x="136" y="340">1</text>
+                  <text x="340" y="340">CAN-Router</text>
+                  <text x="392" y="340">3</text>
+                  <text x="456" y="340">:</text>
+                  <text x="20" y="356">:...</text>
+                  <text x="156" y="356">..</text>
+                  <text x="200" y="356">C-SMA</text>
+                  <text x="264" y="356">.......</text>
+                  <text x="432" y="356">......:</text>
+                  <text x="352" y="388">C-SMA</text>
+                  <text x="120" y="484">service</text>
+                  <text x="352" y="484">service</text>
+                  <text x="124" y="500">instance</text>
+                  <text x="184" y="500">-</text>
+                  <text x="356" y="500">instance</text>
+                  <text x="416" y="500">-</text>
+                  <text x="100" y="548">edge</text>
+                  <text x="140" y="548">site</text>
+                  <text x="168" y="548">1</text>
+                  <text x="340" y="548">edge</text>
+                  <text x="380" y="548">site</text>
+                  <text x="408" y="548">2</text>
+                </g>
+              </svg><a href="#section-3.3-2.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-can-framework" class="selfRef">CAN Framework.</a>
+          </figcaption></figure>
+</div>
+<p id="section-3.3-3">Edge sites (edges for short) are the sites that provide acess to edge computing resources. A compute service (e.g., a matrix computation for face recognition or a game server) is uniquely identified by a CAN Service ID (CS-ID).<a href="#section-3.3-3" class="pilcrow">¶</a></p>
+<p id="section-3.3-4">Service instances can be hosted on the edge nodes themselves or on servers or virtual machines accessed through the edge sites (such as in an edge data center). Service instances can be instantiated and access through different edge sites so that a single service can have a significant number of instances running at different places in the network.<a href="#section-3.3-4" class="pilcrow">¶</a></p>
+<p id="section-3.3-5"><a href="#fig-can-fw" class="auto internal xref">Figure 1</a> shows two edge sites (CAN-Router 1 and CAN-Router 3) that provide access to service instances. These are Egress CAN-Routers.<a href="#section-3.3-5" class="pilcrow">¶</a></p>
+<p id="section-3.3-6">The CAN Service Metric Agent (C-SMA) is a functional component that gathers information about edge site and server resources, as well as the status of the different service instances. The C-SMAs are located adjacent to the service instances in or next to the Egress CAN-Routers. <a href="#fig-can-fw" class="auto internal xref">Figure 1</a> shows one C-SMA collocated with CAN-Router 3, and another C-SMA adjacent to CAN-Router 1.<a href="#section-3.3-6" class="pilcrow">¶</a></p>
+<p id="section-3.3-7">The CAN Network Metric Agent (C-NMA) is a functional component that gathers information about the state of the network. The C-NMAs may be implemented as separate components or may form part of existing components such as CAN-Routers or CAN Path Selectors. <a href="#fig-can-fw" class="auto internal xref">Figure 1</a> shows a single C-NMA located independently within the underlay network. There may be one or more C-NMAs for an underlay network.<a href="#section-3.3-7" class="pilcrow">¶</a></p>
+<p id="section-3.3-8">The C-SMAs and C-NMAs share the information that they collect with CAN Path Selectors (C-PSs) that use the information to select the Egress CAN-Routers (and potentially the service instances) to which to forward traffic for a service demand. They also determine the best paths (possibly tunnels) to use to forward the traffic depending on the network behavior required for the service and the current network state. The information is presented as one or more metrics and associate with the CS-ID.<a href="#section-3.3-8" class="pilcrow">¶</a></p>
+<p id="section-3.3-9">There may be one or more C-PSs in the network. They can be integrated into the Ingress CAN-Routers (as with CAN-Router 2 in <a href="#fig-can-fw" class="auto internal xref">Figure 1</a>) or they may be separate components that communicate with the Ingress CAN-Routers (as with CAN-Router 4 in <a href="#fig-can-fw" class="auto internal xref">Figure 1</a>).<a href="#section-3.3-9" class="pilcrow">¶</a></p>
+<p id="section-3.3-10">The final functional component of a CAN system is the CAN Traffic Classifier (C-TC). This is responsible for selecting the incoming packets that belong to the same service demand and ensuring that they are steered onto the same path toward the same service instance as instructed by the C-PS component. There is a C-TC in each Ingress CAN Router.<a href="#section-3.3-10" class="pilcrow">¶</a></p>
+<p id="section-3.3-11">The Egress CAN-Routers are the egress endpoints of overlay paths. A site supporting service instances may be linked to one or more Egress CAN routers (that is, dual-homing is supported). If the C-PS has selected a specific service instance and the C-TC has marked the traffic with the CB-ID, the Egress CAN-Router simply forwards the traffic to the correct service instance. In some cases, the choice of service instance may be left open to the Egress CAN-Router (the traffic is marked only with the CS-ID) and in this case the Egress CAN-Router selects an appropriate service instance (using local knowledge of capabilities and current load), but must be sure to deliver all packets from the same service demand to the same service instance.<a href="#section-3.3-11" class="pilcrow">¶</a></p>
+<p id="section-3.3-12">Note that, depending on deployment and service requirements, per-instance computing-related metrics or aggregated per-site computing-related metrics can be used by the C-PS. Using aggregated per-site computing-related metrics offers a more scalable choice, but relies on the Egress CAN-Router to consistently select a service instance.<a href="#section-3.3-12" class="pilcrow">¶</a></p>
+<p id="section-3.3-13">In <a href="#fig-can-fw" class="auto internal xref">Figure 1</a>, the "underlay infrastructure" indicates the general IP/MPLS infrastructure that is not aware of CAN. The CAN routes will be distributed among the overlay CAN-Routers assisted by the C-PS, and will not affect the underlay nodes. An implementation may use a control plane or management plane solution to distribute the server metrics, network metrics, and underlay routes - this document dose not define a specific solution.<a href="#section-3.3-13" class="pilcrow">¶</a></p>
+<p id="section-3.3-14">The above text describes a functional architeture as a distributed framework for CAN. However, an implementation may collocate or combine many of the functional components. One possibility is a centralized implementation where the computing-related metrics from the C-SMAs are collected by a centralized controller/PCE that also collects the network metrics, and which acts on service requests to produce paths and service instance selections that it programs into the relevant C-TCs.<a href="#section-3.3-14" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="can-framework-workflow">
+<section id="section-4">
+      <h2 id="name-can-framework-workflow">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-can-framework-workflow" class="section-name selfRef">CAN Framework Workflow</a>
+      </h2>
+<p id="section-4-1">The following subsections provide an overview of how the CAN workflow operates in a distributed architecture.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<div id="service-announcements">
+<section id="section-4.1">
+        <h3 id="name-service-announcements">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-service-announcements" class="section-name selfRef">Service Announcements</a>
+        </h3>
+<p id="section-4.1-1">A service is associated with a unique identifier called a CS-ID. A CS-ID may be a network identifier, such as an IP address. The mapping of CS-ID to network identifier may learned through a name resolution service such as DNS.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="metric-distributions">
+<section id="section-4.2">
+        <h3 id="name-metric-distributions">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-metric-distributions" class="section-name selfRef">Metric Distributions</a>
+        </h3>
+<p id="section-4.2-1">As described above, a C-SMA collects service-related capabilities and metrics and associates them with a CS-ID that identifies the service. It may aggregate the metrics for multiple service instances, or maintain them separately. The C-SMA then sends (advertises) the CS-ID along with the metrics to be received by all C-PSs in the network. The service-related metrics include computing-related metrics and potentially other service metrics if needed.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.2-2">Computing metrics may change very frequently (see <span>[<a href="#I-D.liu-can-ps-usecases" class="cite xref">I-D.liu-can-ps-usecases</a>]</span> for a discussion). When and how frequently such information is distributed is to be determined as part of the specification of any distribution protocol. A spectrum of approaches can be employed, such as interval based updates, threshold triggered updates, policy based updates, etc.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+<p id="section-4.2-3">Additionally, the C-NMA collects network-related capabilities and metrics. These may be collected and distributed by existing network routing protocols, although enhancements may be needed to distribute additional information not previously available (such as link latency, etc.). The C-NMA distributes the network metrics to the C-PSs so that they can use the combination of service metrics and network metrics to determine the best Egress CAN-Router to provide access to a service instance to provide the compute function needed by a service demand.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
+<p id="section-4.2-4">Network metrics may also change very frequently. Routing protocols may apply elements of thresholding and policy to prevent the network being flooded with state change information. The C-NMA should apply similar processes to those used in the C-SMA to determine when and how often to distribute updates to the C-PSs.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
+<p id="section-4.2-5">The example in <a href="#fig-can-example-overlay" class="auto internal xref">Figure 2</a> shows how CAN metrics are distributed. There is a client attached via CAN-Router 1. There are three instances of the service with CS-ID 1: two are at Edge Site 2 attached via CAN-Router 2 and have CB-IDs 1 and 2; the third is at Edge Site 3 attached via CAN-Router 3 and with CB-ID 3. There is also a second service with CS-ID 2 with only one instance located at Edge Site 2.<a href="#section-4.2-5" class="pilcrow">¶</a></p>
+<p id="section-4.2-6">In the example, the C-SMA collocated with CAN-Router 2 distributes the service metrics for both service instances. Note that these could be aggregated into a single advertisement, but in this case the metrics for each instance are advertised. Similarly, the C-SMA at Edge Site 2 advertises the service metrics for the two services offered at Edge Site 2.<a href="#section-4.2-6" class="pilcrow">¶</a></p>
+<p id="section-4.2-7">The service metric advertisements are consumed by the C-PS at CAN-Router 1 that provides access for the client. The C-PS also consumes network metric advertisements from the C-NMA. All of the metrics are used by the C-PS to determine the best Egress CAN-Router to which to send traffic (and on what path) for the client's service demand given the service that is requested (CS-ID 1 or CS-ID 2), the state of the service instances reported by the metrics, and the state of the network.<a href="#section-4.2-7" class="pilcrow">¶</a></p>
+<span id="name-example-can-metric-distribu"></span><div id="fig-can-example-overlay">
+<figure id="figure-2">
+          <div id="section-4.2-8.1">
+            <div class="alignLeft art-svg artwork" id="section-4.2-8.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="576" width="544" viewBox="0 0 544 576" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
+                <path d="M 8,208 L 8,240" fill="none" stroke="black"></path>
+                <path d="M 8,288 L 8,320" fill="none" stroke="black"></path>
+                <path d="M 48,248 L 48,280" fill="none" stroke="black"></path>
+                <path d="M 80,208 L 80,240" fill="none" stroke="black"></path>
+                <path d="M 168,288 L 168,320" fill="none" stroke="black"></path>
+                <path d="M 224,224 L 224,248" fill="none" stroke="black"></path>
+                <path d="M 224,264 L 224,368" fill="none" stroke="black"></path>
+                <path d="M 240,240 L 240,272" fill="none" stroke="black"></path>
+                <path d="M 240,400 L 240,432" fill="none" stroke="black"></path>
+                <path d="M 272,128 L 272,192" fill="none" stroke="black"></path>
+                <path d="M 304,240 L 304,272" fill="none" stroke="black"></path>
+                <path d="M 344,400 L 344,432" fill="none" stroke="black"></path>
+                <path d="M 368,400 L 368,432" fill="none" stroke="black"></path>
+                <path d="M 376,128 L 376,192" fill="none" stroke="black"></path>
+                <path d="M 408,224 L 408,368" fill="none" stroke="black"></path>
+                <path d="M 416,112 L 416,176" fill="none" stroke="black"></path>
+                <path d="M 424,368 L 424,392" fill="none" stroke="black"></path>
+                <path d="M 424,440 L 424,464" fill="none" stroke="black"></path>
+                <path d="M 432,400 L 432,432" fill="none" stroke="black"></path>
+                <path d="M 440,80 L 440,128" fill="none" stroke="black"></path>
+                <path d="M 440,160 L 440,208" fill="none" stroke="black"></path>
+                <path d="M 456,336 L 456,384" fill="none" stroke="black"></path>
+                <path d="M 456,448 L 456,480" fill="none" stroke="black"></path>
+                <path d="M 504,80 L 504,128" fill="none" stroke="black"></path>
+                <path d="M 504,160 L 504,208" fill="none" stroke="black"></path>
+                <path d="M 520,336 L 520,384" fill="none" stroke="black"></path>
+                <path d="M 520,448 L 520,480" fill="none" stroke="black"></path>
+                <path d="M 144,64 L 320,64" fill="none" stroke="black"></path>
+                <path d="M 440,80 L 504,80" fill="none" stroke="black"></path>
+                <path d="M 416,112 L 432,112" fill="none" stroke="black"></path>
+                <path d="M 272,128 L 376,128" fill="none" stroke="black"></path>
+                <path d="M 440,128 L 504,128" fill="none" stroke="black"></path>
+                <path d="M 384,144 L 408,144" fill="none" stroke="black"></path>
+                <path d="M 272,160 L 376,160" fill="none" stroke="black"></path>
+                <path d="M 440,160 L 504,160" fill="none" stroke="black"></path>
+                <path d="M 416,176 L 432,176" fill="none" stroke="black"></path>
+                <path d="M 272,192 L 376,192" fill="none" stroke="black"></path>
+                <path d="M 8,208 L 80,208" fill="none" stroke="black"></path>
+                <path d="M 440,208 L 504,208" fill="none" stroke="black"></path>
+                <path d="M 224,224 L 408,224" fill="none" stroke="black"></path>
+                <path d="M 8,240 L 80,240" fill="none" stroke="black"></path>
+                <path d="M 240,240 L 304,240" fill="none" stroke="black"></path>
+                <path d="M 160,256 L 232,256" fill="none" stroke="black"></path>
+                <path d="M 240,272 L 304,272" fill="none" stroke="black"></path>
+                <path d="M 8,288 L 168,288" fill="none" stroke="black"></path>
+                <path d="M 176,304 L 216,304" fill="none" stroke="black"></path>
+                <path d="M 8,320 L 168,320" fill="none" stroke="black"></path>
+                <path d="M 456,336 L 520,336" fill="none" stroke="black"></path>
+                <path d="M 224,368 L 408,368" fill="none" stroke="black"></path>
+                <path d="M 424,368 L 448,368" fill="none" stroke="black"></path>
+                <path d="M 456,384 L 520,384" fill="none" stroke="black"></path>
+                <path d="M 240,400 L 344,400" fill="none" stroke="black"></path>
+                <path d="M 368,400 L 432,400" fill="none" stroke="black"></path>
+                <path d="M 240,432 L 344,432" fill="none" stroke="black"></path>
+                <path d="M 368,432 L 432,432" fill="none" stroke="black"></path>
+                <path d="M 456,448 L 520,448" fill="none" stroke="black"></path>
+                <path d="M 424,464 L 448,464" fill="none" stroke="black"></path>
+                <path d="M 456,480 L 520,480" fill="none" stroke="black"></path>
+                <path d="M 144,496 L 392,496" fill="none" stroke="black"></path>
+                <polygon class="arrowhead" points="168,256 156,250.4 156,261.6" fill="black" transform="rotate(180,160,256)"></polygon>
+                <polygon class="arrowhead" points="152,496 140,490.4 140,501.6" fill="black" transform="rotate(180,144,496)"></polygon>
+                <polygon class="arrowhead" points="152,64 140,58.4 140,69.6" fill="black" transform="rotate(180,144,64)"></polygon>
+                <g class="text">
+                  <text x="104" y="36">Service</text>
+                  <text x="160" y="36">CS-ID</text>
+                  <text x="196" y="36">1,</text>
+                  <text x="244" y="36">instance</text>
+                  <text x="304" y="36">CB-ID</text>
+                  <text x="336" y="36">1</text>
+                  <text x="384" y="36">&lt;metrics&gt;</text>
+                  <text x="104" y="52">Service</text>
+                  <text x="160" y="52">CS-ID</text>
+                  <text x="196" y="52">1,</text>
+                  <text x="244" y="52">instance</text>
+                  <text x="304" y="52">CB-ID</text>
+                  <text x="336" y="52">2</text>
+                  <text x="384" y="52">&lt;metrics&gt;</text>
+                  <text x="136" y="68">:</text>
+                  <text x="328" y="68">:</text>
+                  <text x="136" y="84">:</text>
+                  <text x="328" y="84">:</text>
+                  <text x="136" y="100">:</text>
+                  <text x="328" y="100">:</text>
+                  <text x="464" y="100">CS-ID</text>
+                  <text x="496" y="100">1</text>
+                  <text x="136" y="116">:</text>
+                  <text x="328" y="116">:</text>
+                  <text x="464" y="116">CB-ID</text>
+                  <text x="496" y="116">1</text>
+                  <text x="136" y="132">:</text>
+                  <text x="136" y="148">:</text>
+                  <text x="328" y="148">C-SMA</text>
+                  <text x="468" y="148">Edge</text>
+                  <text x="508" y="148">Site</text>
+                  <text x="536" y="148">2</text>
+                  <text x="136" y="164">:</text>
+                  <text x="136" y="180">:</text>
+                  <text x="316" y="180">CAN-Router</text>
+                  <text x="368" y="180">2</text>
+                  <text x="464" y="180">CS-ID</text>
+                  <text x="496" y="180">1</text>
+                  <text x="136" y="196">:</text>
+                  <text x="464" y="196">CB-ID</text>
+                  <text x="496" y="196">2</text>
+                  <text x="136" y="212">:</text>
+                  <text x="336" y="212">|</text>
+                  <text x="44" y="228">Client</text>
+                  <text x="136" y="228">:</text>
+                  <text x="184" y="228">Network</text>
+                  <text x="136" y="244">:</text>
+                  <text x="184" y="244">metrics</text>
+                  <text x="136" y="260">:</text>
+                  <text x="152" y="260">:</text>
+                  <text x="272" y="260">C-NMA</text>
+                  <text x="136" y="276">:</text>
+                  <text x="152" y="276">:</text>
+                  <text x="52" y="308">CAN-Router</text>
+                  <text x="108" y="308">1|</text>
+                  <text x="140" y="308">C-PS</text>
+                  <text x="316" y="324">Underlay</text>
+                  <text x="136" y="340">:</text>
+                  <text x="324" y="340">Infrastructure</text>
+                  <text x="136" y="356">:</text>
+                  <text x="480" y="356">CS-ID</text>
+                  <text x="512" y="356">1</text>
+                  <text x="136" y="372">:</text>
+                  <text x="480" y="372">CB-ID</text>
+                  <text x="512" y="372">3</text>
+                  <text x="136" y="388">:</text>
+                  <text x="304" y="388">|</text>
+                  <text x="136" y="404">:</text>
+                  <text x="136" y="420">:</text>
+                  <text x="284" y="420">CAN-Router</text>
+                  <text x="336" y="420">3</text>
+                  <text x="356" y="420">--</text>
+                  <text x="400" y="420">C-SMA</text>
+                  <text x="460" y="420">Edge</text>
+                  <text x="500" y="420">Site</text>
+                  <text x="528" y="420">3</text>
+                  <text x="136" y="436">:</text>
+                  <text x="136" y="452">:</text>
+                  <text x="400" y="452">:</text>
+                  <text x="136" y="468">:</text>
+                  <text x="400" y="468">:</text>
+                  <text x="480" y="468">CS-ID</text>
+                  <text x="512" y="468">2</text>
+                  <text x="136" y="484">:</text>
+                  <text x="400" y="484">:</text>
+                  <text x="136" y="500">:</text>
+                  <text x="400" y="500">:</text>
+                  <text x="104" y="516">Service</text>
+                  <text x="160" y="516">CS-ID</text>
+                  <text x="196" y="516">1,</text>
+                  <text x="244" y="516">instance</text>
+                  <text x="304" y="516">CB-ID</text>
+                  <text x="336" y="516">3</text>
+                  <text x="384" y="516">&lt;metrics&gt;</text>
+                  <text x="104" y="532">Service</text>
+                  <text x="160" y="532">CS-ID</text>
+                  <text x="196" y="532">2,</text>
+                  <text x="248" y="532">&lt;metrics&gt;</text>
+                </g>
+              </svg><a href="#section-4.2-8.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<a href="#name-example-can-metric-distribu" class="selfRef">Example CAN Metric Distribution</a>
+          </figcaption></figure>
+</div>
+<p id="section-4.2-9">The above example mainly describes a per-instance computing-related metrics distribution. In the case of distributing aggregated per-site computing-related metrics, the per-instance CB-ID will not be included in the distribution. Instead, a per-site CB-ID may be used in the case of multiple sites are attached to the Egress CAN router to indicate from which site the aggregated metrics come.<a href="#section-4.2-9" class="pilcrow">¶</a></p>
+<p id="section-4.2-10">However, CB-ID is not needed in the distribution (in above example) if the edge site can support consistently service instance selection. For easy deployment, aggregated per-site computing-related metrics distribution is recommeded.<a href="#section-4.2-10" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="service-demand-handling">
+<section id="section-4.3">
+        <h3 id="name-service-demand-handling">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-service-demand-handling" class="section-name selfRef">Service Demand Handling</a>
+        </h3>
+<p id="section-4.3-1">The C-PS determines the best choice of Egress CAN-Router and path to that router given the service and network metrics distributed as described in the previous section. The C-PS may be collocated with the Ingress CAN-Router (as shown in <a href="#fig-can-example-overlay" class="auto internal xref">Figure 2</a>) or the selection function may be offloaded to a dedicated server.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-2">This document does not describe any algorithms for path selection, but it is expected that a service demand or local policy may give directions to the C-PS in terms of "objective functions" that describe the desired behavior from the network and the chosen service instance.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
+<p id="section-4.3-3">In the example in <a href="#fig-can-example-overlay" class="auto internal xref">Figure 2</a>, when the client sends a service demand to CAN-Router 1, the router consults the C-PS to select a service instance at a remote edge site accessed through a particular Egress CAN-Router. The C-PS also determines a path to the Egress CAN-Router. This information is provided to the Ingress CAN-Router (CAN-Router 1) so that it can correctly encapsulate and route packets.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
+<p id="section-4.3-4">A service transaction consists of one or more service packets sent by the client to its Ingress CAN-Router. The Ingress CAN-Router classifies the packets using the C-TC functionality, and forwards the packets to the chosen Egress CAN-Router using an overlay path with appropriate encapsulation. When the packets reach the Egress CAN-Router, the outer header of the overlay encapsulation is removed and the inner packets are sent to the service instance.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="instance-affinity">
+<section id="section-4.4">
+        <h3 id="name-instance-affinity">
+<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-instance-affinity" class="section-name selfRef">Instance Affinity</a>
+        </h3>
+<p id="section-4.4-1">Instance affinity is a key feature of CAN. It means that packets from the same 'flow' for a service should always be sent to the same Egress CAN-Router to be processed by the same service instance. Furthermore, in the general case, packets from the same service flow should be sent on the same path to avoid them becoming mis-ordered and to prevent the introduciton of unpredictable latency variations.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
+<p id="section-4.4-2">The affinity is determined at the time of newly formulated service demand.<a href="#section-4.4-2" class="pilcrow">¶</a></p>
+<p id="section-4.4-3">Note that different services may have different notions of what constitutes a 'flow' and may thus identify a flow differently. Typically a flow is identified by the 5-tuple value (source and destination addresses, source and destination ports, and next protocol type). However, for instance, an RTP video streaming may use different port numbers for video and audio, and so affinity may be identified as the combination of two 5-tuple flow identifiers so that both flows are sent to the same service instance.<a href="#section-4.4-3" class="pilcrow">¶</a></p>
+<p id="section-4.4-4">Hence, when specifying a protocol solution for service instance affinity, a certain level of flexibility in identifying flows should be provided. Or, from a more general perspective, there should be a flexible mechanism to specify and identify the set of packets that are subject to a service instance affinity.<a href="#section-4.4-4" class="pilcrow">¶</a></p>
+<p id="section-4.4-5">More importantly, the means for identifying a flow for the purpose of ensuring instance affinity must be application-independent to avoid the need for service-specific instance affinity methods.<a href="#section-4.4-5" class="pilcrow">¶</a></p>
+<p id="section-4.4-6">Specifically, Instance affinity information should be configurable on a per-service basis. For each service, the information can include the flow/packets identification type and means, affinity timeout value, and etc.<a href="#section-4.4-6" class="pilcrow">¶</a></p>
+<p id="section-4.4-7">This document does not define the specific mechanisms for defining or applying service instance affinity.<a href="#section-4.4-7" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="security-considerations">
+<section id="section-5">
+      <h2 id="name-security-considerations">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      </h2>
+<p id="section-5-1">The computing resource information changes over time very frequently and with the creation and termination of service instances. When such information is carried in routing protocol, too many updates can make the network fluctuate. This instability could be leveraged by an attacker (for example, by spawning and deleting service instances very rapidly). Protocols must, therefore, include aggregation techniques, dampening mechanisms, and threshold to update distriution.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-2">The information distributed by the C-SMA and C-NMA may reveal important facts about the network and the location of compute resources at edge sites. This information could be used by an attacker to understand the weak spots in the operator's network. Furthermore, such information could be modified by an attacker resulting in disrupted service deliver for the clients, up to and including misdirection of traffic to an attacker's service implementation at an edge site. Therefore, solutions to this architecture must include authentication and security of information exchanges between C-SMAs/C-NMAs and C-PCs, and between C-PCs and Ingress CAN-Routers. Furthermore, C-SMAs need to consider ways to authenticate the services provided at the edge sites that they serve.<a href="#section-5-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="privacy-considerations">
+<section id="section-6">
+      <h2 id="name-privacy-considerations">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-privacy-considerations" class="section-name selfRef">Privacy Considerations</a>
+      </h2>
+<p id="section-6-1">It is important that a party that inspects traffic on the wire in the underlay infrastructure should not be able to determine which client is accessing which service. In particular, the user's identities must not be revealed. Since the service will, in some cases, need to know about application, client, and even user identities, it is liekly that the overlay path from Ingress CAN-Router to Egress CAN-Router will need to be encrypted is the client/service communication is not already encrypted.<a href="#section-6-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="manageability-considerations">
+<section id="section-7">
+      <h2 id="name-manageability-consideration">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-manageability-consideration" class="section-name selfRef">Manageability Considerations</a>
+      </h2>
+<p id="section-7-1">A network operator will want to be able to determine the causes of "hot spots" within their network. To do this, they will want OAM mechanisms that allow them to trace traffic flows for services, and to identify the esge sites responsible for particular flows.<a href="#section-7-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="iana-considerations">
+<section id="section-8">
+      <h2 id="name-iana-considerations">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+      </h2>
+<p id="section-8-1">This document makes no requests for IANA action.<a href="#section-8-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<section id="section-9">
+      <h2 id="name-informative-references">
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+      </h2>
+<dl class="references">
+<dt id="I-D.liu-can-ps-usecases">[I-D.liu-can-ps-usecases]</dt>
+    <dd>
+<span class="refAuthor">Liu, P.</span>, <span class="refAuthor">Eardley, P.</span>, <span class="refAuthor">Trossen, D.</span>, <span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Li, C.</span>, and <span class="refAuthor">Y. Li</span>, <span class="refTitle">"Computing-Aware Networking (CAN) Problem Statement and Use Cases"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-liu-can-ps-usecases-00</span>, <time datetime="2022-10-23" class="refDate">23 October 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-liu-can-ps-usecases-00">https://datatracker.ietf.org/doc/html/draft-liu-can-ps-usecases-00</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+<div id="contributors">
+<section id="appendix-A">
+      <h2 id="name-contributors">
+<a href="#name-contributors" class="section-name selfRef">Contributors</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Huijuan Yao</span></div>
+<div dir="auto" class="left"><span class="org">China Mobile</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:yaohuijuan@chinamobile.com" class="email">yaohuijuan@chinamobile.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Hang Shi</span></div>
+<div dir="auto" class="left"><span class="org">Huawei</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:shihang9@huawei.com" class="email">shihang9@huawei.com</a>
+</div>
+</address>
+</section>
+</div>
+<div id="authors-addresses">
+<section id="appendix-B">
+      <h2 id="name-authors-addresses">
+<a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">XXX</span></div>
+<div dir="auto" class="left"><span class="org">XXX</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:XX@XX.COM" class="email">XX@XX.COM</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Mohamed Boucadair</span></div>
+<div dir="auto" class="left"><span class="org">Orange</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:mohamed.boucadair@orange.com" class="email">mohamed.boucadair@orange.com</a>
+</div>
+</address>
+</section>
+</div>
+<script>const toc = document.getElementById("toc");
+toc.querySelector("h2").addEventListener("click", e => {
+  toc.classList.toggle("active");
+});
+toc.querySelector("nav").addEventListener("click", e => {
+  toc.classList.remove("active");
+});
+</script>
+</body>
+</html>
