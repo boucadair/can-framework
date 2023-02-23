@@ -1155,7 +1155,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-can-identifiers" class="internal xref">CAN Identifiers</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
-                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-can-componenets" class="internal xref">CAN Componenets</a></p>
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-can-components" class="internal xref">CAN Components</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
+                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-deployment-considerations" class="internal xref">Deployment Considerations</a></p>
 </li>
             </ul>
 </li>
@@ -1166,7 +1169,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-service-announcements" class="internal xref">Service Announcements</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
-                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-metric-distributions" class="internal xref">Metric Distributions</a></p>
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-metrics-distribution" class="internal xref">Metrics Distribution</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
                 <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-service-demand-handling" class="internal xref">Service Demand Handling</a></p>
@@ -1322,13 +1325,13 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </dl>
 </section>
 </div>
-<div id="can-componenets">
+<div id="can-components">
 <section id="section-3.3">
-        <h3 id="name-can-componenets">
-<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-can-componenets" class="section-name selfRef">CAN Componenets</a>
+        <h3 id="name-can-components">
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-can-components" class="section-name selfRef">CAN Components</a>
         </h3>
-<p id="section-3.3-1">The network takes the forwarding decision for a service demand received from a client according to both service instances status as well as network status. The framework is shown in <a href="#fig-can-fw" class="auto internal xref">Figure 1</a>.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
-<span id="name-can-framework"></span><div id="fig-can-fw">
+<p id="section-3.3-1">The network takes forwarding decisions for a service demand received from a client according to both service instances status as well as network status. The main CAN functional elements and their interactions are shown in <a href="#fig-can-fw" class="auto internal xref">Figure 1</a>.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<span id="name-can-functional-components"></span><div id="fig-can-fw">
 <figure id="figure-1">
           <div id="section-3.3-2.1">
             <div class="alignLeft art-svg artwork" id="section-3.3-2.1.1">
@@ -1477,21 +1480,28 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </div>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
-<a href="#name-can-framework" class="selfRef">CAN Framework.</a>
+<a href="#name-can-functional-components" class="selfRef">CAN Functional Components</a>
           </figcaption></figure>
 </div>
-<p id="section-3.3-3">Edge sites (edges for short) are the sites that provide acess to edge computing resources. A compute service (e.g., a matrix computation for face recognition or a game server) is uniquely identified by a CAN Service ID (CS-ID).<a href="#section-3.3-3" class="pilcrow">¶</a></p>
+<p id="section-3.3-3">Edge sites (edges for short) are the sites that provide access to edge computing resources. A compute service (e.g., a matrix computation for face recognition or a game server) is uniquely identified by a CAN Service ID (CS-ID).<a href="#section-3.3-3" class="pilcrow">¶</a></p>
 <p id="section-3.3-4">Service instances can be hosted on the edge nodes themselves or on servers or virtual machines accessed through the edge sites (such as in an edge data center). Service instances can be instantiated and access through different edge sites so that a single service can have a significant number of instances running at different places in the network.<a href="#section-3.3-4" class="pilcrow">¶</a></p>
-<p id="section-3.3-5"><a href="#fig-can-fw" class="auto internal xref">Figure 1</a> shows two edge sites (CAN-Router 1 and CAN-Router 3) that provide access to service instances. These are Egress CAN-Routers.<a href="#section-3.3-5" class="pilcrow">¶</a></p>
-<p id="section-3.3-6">The CAN Service Metric Agent (C-SMA) is a functional component that gathers information about edge site and server resources, as well as the status of the different service instances. The C-SMAs are located adjacent to the service instances in or next to the Egress CAN-Routers. <a href="#fig-can-fw" class="auto internal xref">Figure 1</a> shows one C-SMA collocated with CAN-Router 3, and another C-SMA adjacent to CAN-Router 1.<a href="#section-3.3-6" class="pilcrow">¶</a></p>
-<p id="section-3.3-7">The CAN Network Metric Agent (C-NMA) is a functional component that gathers information about the state of the network. The C-NMAs may be implemented as separate components or may form part of existing components such as CAN-Routers or CAN Path Selectors. <a href="#fig-can-fw" class="auto internal xref">Figure 1</a> shows a single C-NMA located independently within the underlay network. There may be one or more C-NMAs for an underlay network.<a href="#section-3.3-7" class="pilcrow">¶</a></p>
-<p id="section-3.3-8">The C-SMAs and C-NMAs share the information that they collect with CAN Path Selectors (C-PSs) that use the information to select the Egress CAN-Routers (and potentially the service instances) to which to forward traffic for a service demand. They also determine the best paths (possibly tunnels) to use to forward the traffic depending on the network behavior required for the service and the current network state. The information is presented as one or more metrics and associate with the CS-ID.<a href="#section-3.3-8" class="pilcrow">¶</a></p>
-<p id="section-3.3-9">There may be one or more C-PSs in the network. They can be integrated into the Ingress CAN-Routers (as with CAN-Router 2 in <a href="#fig-can-fw" class="auto internal xref">Figure 1</a>) or they may be separate components that communicate with the Ingress CAN-Routers (as with CAN-Router 4 in <a href="#fig-can-fw" class="auto internal xref">Figure 1</a>).<a href="#section-3.3-9" class="pilcrow">¶</a></p>
-<p id="section-3.3-10">The final functional component of a CAN system is the CAN Traffic Classifier (C-TC). This is responsible for selecting the incoming packets that belong to the same service demand and ensuring that they are steered onto the same path toward the same service instance as instructed by the C-PS component. There is a C-TC in each Ingress CAN Router.<a href="#section-3.3-10" class="pilcrow">¶</a></p>
+<p id="section-3.3-5"><a href="#fig-can-fw" class="auto internal xref">Figure 1</a> shows two edge nodes (CAN-Router 1 and CAN-Router 3) that provide access to service instances. These nodes behaves as Egress CAN-Routers.<a href="#section-3.3-5" class="pilcrow">¶</a></p>
+<p id="section-3.3-6">The CAN Service Metric Agent (C-SMA) is a functional component that gathers information about edge sites and server resources, as well as the status of the different service instances. The C-SMAs are located adjacent to the service instances in or next to the Egress CAN-Routers. <a href="#fig-can-fw" class="auto internal xref">Figure 1</a> shows one C-SMA collocated with CAN-Router 3, and another C-SMA adjacent to CAN-Router 1.<a href="#section-3.3-6" class="pilcrow">¶</a></p>
+<p id="section-3.3-7">The CAN Network Metric Agent (C-NMA) is a functional component that gathers information about the state of the network. The C-NMAs may be implemented as separate components or may form part of existing components such as CAN-Routers or CAN Path Selectors (C-PS). <a href="#fig-can-fw" class="auto internal xref">Figure 1</a> shows a single C-NMA located independently within the underlay network. There may be one or more C-NMAs for an underlay network.<a href="#section-3.3-7" class="pilcrow">¶</a></p>
+<p id="section-3.3-8">The C-SMAs and C-NMAs share the collected information with CAN Path Selectors (C-PSes) that use the information to select the Egress CAN-Routers (and potentially the service instances) to which to forward traffic for a service demand. They also determine the best paths (possibly tunnels) to use to forward the traffic depending on the network behavior required for the service and the current network state. The information is presented as one or more metrics and associate with the CS-ID.<a href="#section-3.3-8" class="pilcrow">¶</a></p>
+<p id="section-3.3-9">There may be one or more C-PSes in the network. They can be integrated into the Ingress CAN-Routers (as with CAN-Router 2 in <a href="#fig-can-fw" class="auto internal xref">Figure 1</a>) or they may be separate components that communicate with the Ingress CAN-Routers (as with CAN-Router 4 in <a href="#fig-can-fw" class="auto internal xref">Figure 1</a>).<a href="#section-3.3-9" class="pilcrow">¶</a></p>
+<p id="section-3.3-10">Last, CAN Traffic Classifier (C-TC) is a functional component that is responsible for selecting incoming packets that belong to the same service demand and ensuring that they are steered onto the same path toward the same service instance as instructed by a C-PS component. There is a C-TC in each Ingress CAN Router.<a href="#section-3.3-10" class="pilcrow">¶</a></p>
 <p id="section-3.3-11">The Egress CAN-Routers are the egress endpoints of overlay paths. A site supporting service instances may be linked to one or more Egress CAN routers (that is, dual-homing is supported). If the C-PS has selected a specific service instance and the C-TC has marked the traffic with the CB-ID, the Egress CAN-Router simply forwards the traffic to the correct service instance. In some cases, the choice of service instance may be left open to the Egress CAN-Router (the traffic is marked only with the CS-ID) and in this case the Egress CAN-Router selects an appropriate service instance (using local knowledge of capabilities and current load), but must be sure to deliver all packets from the same service demand to the same service instance.<a href="#section-3.3-11" class="pilcrow">¶</a></p>
 <p id="section-3.3-12">Note that, depending on deployment and service requirements, per-instance computing-related metrics or aggregated per-site computing-related metrics can be used by the C-PS. Using aggregated per-site computing-related metrics offers a more scalable choice, but relies on the Egress CAN-Router to consistently select a service instance.<a href="#section-3.3-12" class="pilcrow">¶</a></p>
 <p id="section-3.3-13">In <a href="#fig-can-fw" class="auto internal xref">Figure 1</a>, the "underlay infrastructure" indicates the general IP/MPLS infrastructure that is not aware of CAN. The CAN routes will be distributed among the overlay CAN-Routers assisted by the C-PS, and will not affect the underlay nodes. An implementation may use a control plane or management plane solution to distribute the server metrics, network metrics, and underlay routes - this document dose not define a specific solution.<a href="#section-3.3-13" class="pilcrow">¶</a></p>
-<p id="section-3.3-14">The above text describes a functional architeture as a distributed framework for CAN. However, an implementation may collocate or combine many of the functional components. One possibility is a centralized implementation where the computing-related metrics from the C-SMAs are collected by a centralized controller/PCE that also collects the network metrics, and which acts on service requests to produce paths and service instance selections that it programs into the relevant C-TCs.<a href="#section-3.3-14" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="deployment-considerations">
+<section id="section-3.4">
+        <h3 id="name-deployment-considerations">
+<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-deployment-considerations" class="section-name selfRef">Deployment Considerations</a>
+        </h3>
+<p id="section-3.4-1">This document does not make an assumption about how the various CAN functional elements are implemented. Whether a CAN deployment follows a fully distributed or collocate or combine many of the functional components is deployment specific. One possibility is a centralized implementation where the computing-related metrics from the C-SMAs are collected by a centralized controller/PCE that also collects the network metrics, and which acts on service requests to produce paths and service instance selections that it programs into the relevant C-TCs.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1510,12 +1520,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-4.1-1">A service is associated with a unique identifier called a CS-ID. A CS-ID may be a network identifier, such as an IP address. The mapping of CS-ID to network identifier may learned through a name resolution service such as DNS.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="metric-distributions">
+<div id="metrics-distribution">
 <section id="section-4.2">
-        <h3 id="name-metric-distributions">
-<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-metric-distributions" class="section-name selfRef">Metric Distributions</a>
+        <h3 id="name-metrics-distribution">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-metrics-distribution" class="section-name selfRef">Metrics Distribution</a>
         </h3>
-<p id="section-4.2-1">As described above, a C-SMA collects service-related capabilities and metrics and associates them with a CS-ID that identifies the service. It may aggregate the metrics for multiple service instances, or maintain them separately. The C-SMA then sends (advertises) the CS-ID along with the metrics to be received by all C-PSs in the network. The service-related metrics include computing-related metrics and potentially other service metrics if needed.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.2-1">A C-SMA collects service-related capabilities and metrics and associates them with a CS-ID that identifies the service. It may aggregate the metrics for multiple service instances, or maintain them separately. The C-SMA then sends (advertises) the CS-ID along with the metrics to be received by all C-PSs in the network. The service-related metrics include computing-related metrics and potentially other service metrics if needed.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
 <p id="section-4.2-2">Computing metrics may change very frequently (see <span>[<a href="#I-D.liu-can-ps-usecases" class="cite xref">I-D.liu-can-ps-usecases</a>]</span> for a discussion). When and how frequently such information is distributed is to be determined as part of the specification of any distribution protocol. A spectrum of approaches can be employed, such as interval based updates, threshold triggered updates, policy based updates, etc.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
 <p id="section-4.2-3">Additionally, the C-NMA collects network-related capabilities and metrics. These may be collected and distributed by existing network routing protocols, although enhancements may be needed to distribute additional information not previously available (such as link latency, etc.). The C-NMA distributes the network metrics to the C-PSs so that they can use the combination of service metrics and network metrics to determine the best Egress CAN-Router to provide access to a service instance to provide the compute function needed by a service demand.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
 <p id="section-4.2-4">Network metrics may also change very frequently. Routing protocols may apply elements of thresholding and policy to prevent the network being flooded with state change information. The C-NMA should apply similar processes to those used in the C-SMA to determine when and how often to distribute updates to the C-PSs.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
