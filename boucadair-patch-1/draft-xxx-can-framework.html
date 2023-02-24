@@ -1054,7 +1054,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">XX &amp; Boucadair</td>
-<td class="center">Expires 27 August 2023</td>
+<td class="center">Expires 28 August 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1067,12 +1067,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-xxx-can-framework-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-02-23" class="published">23 February 2023</time>
+<time datetime="2023-02-24" class="published">24 February 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-08-27">27 August 2023</time></dd>
+<dd class="expires"><time datetime="2023-08-28">28 August 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1110,7 +1110,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 27 August 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 28 August 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1525,12 +1525,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-metrics-distribution">
 <a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-metrics-distribution" class="section-name selfRef">Metrics Distribution</a>
         </h3>
-<p id="section-4.2-1">A C-SMA collects service-related capabilities and metrics and associates them with a CS-ID that identifies the service. It may aggregate the metrics for multiple service instances, or maintain them separately. The C-SMA then sends (advertises) the CS-ID along with the metrics to be received by all C-PSs in the network. The service-related metrics include computing-related metrics and potentially other service metrics if needed.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.2-2">Computing metrics may change very frequently (see <span>[<a href="#I-D.liu-can-ps-usecases" class="cite xref">I-D.liu-can-ps-usecases</a>]</span> for a discussion). When and how frequently such information is distributed is to be determined as part of the specification of any distribution protocol. A spectrum of approaches can be employed, such as interval based updates, threshold triggered updates, policy based updates, etc.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
-<p id="section-4.2-3">Additionally, the C-NMA collects network-related capabilities and metrics. These may be collected and distributed by existing network routing protocols, although enhancements may be needed to distribute additional information not previously available (such as link latency, etc.). The C-NMA distributes the network metrics to the C-PSs so that they can use the combination of service metrics and network metrics to determine the best Egress CAN-Router to provide access to a service instance to provide the compute function needed by a service demand.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
-<p id="section-4.2-4">Network metrics may also change very frequently. Routing protocols may apply elements of thresholding and policy to prevent the network being flooded with state change information. The C-NMA should apply similar processes to those used in the C-SMA to determine when and how often to distribute updates to the C-PSs.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
-<p id="section-4.2-5">The example in <a href="#fig-can-example-overlay" class="auto internal xref">Figure 2</a> shows how CAN metrics are distributed. There is a client attached via CAN-Router 1. There are three instances of the service with CS-ID 1: two are at Edge Site 2 attached via CAN-Router 2 and have CB-IDs 1 and 2; the third is at Edge Site 3 attached via CAN-Router 3 and with CB-ID 3. There is also a second service with CS-ID 2 with only one instance located at Edge Site 2.<a href="#section-4.2-5" class="pilcrow">¶</a></p>
-<p id="section-4.2-6">In the example, the C-SMA collocated with CAN-Router 2 distributes the service metrics for both service instances. Note that these could be aggregated into a single advertisement, but in this case the metrics for each instance are advertised. Similarly, the C-SMA at Edge Site 2 advertises the service metrics for the two services offered at Edge Site 2.<a href="#section-4.2-6" class="pilcrow">¶</a></p>
+<p id="section-4.2-1">A C-SMA collects service-related capabilities and metrics and associates them with a CS-ID that identifies the service. It may aggregate the metrics for multiple service instances, or maintain them separately. The C-SMA then sends (advertises) the CS-ID along with the metrics to be received by all C-PSes in the network. The service-related metrics include computing-related metrics and potentially other service metrics, if needed.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.2-2">Computing metrics may change very frequently (see <span>[<a href="#I-D.liu-can-ps-usecases" class="cite xref">I-D.liu-can-ps-usecases</a>]</span> for a discussion). When and how frequent such information is distributed is to be determined as part of the specification of any distribution protocol. A spectrum of approaches can be considered, such as interval-based updates, threshold-triggered updates, policy-based updates, etc.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+<p id="section-4.2-3">Additionally, the C-NMA collects network-related capabilities and metrics. These may be collected and distributed by existing network routing protocols, although enhancements may be needed to distribute additional information not previously available (such as link latency). The C-NMA distributes the network metrics to the C-PSs so that they can use the combination of service metrics and network metrics to determine the best Egress CAN-Router to provide access to a service instance to provide the compute function needed by a service demand.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
+<p id="section-4.2-4">Network metrics may also change very frequently. Routing protocols may apply elements of thresholding and policy to prevent the network being flooded with state change information. The C-NMA should apply similar processes to those used in the C-SMA to determine when and how often to distribute updates to the C-PSes.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
+<p id="section-4.2-5"><a href="#fig-can-example-overlay" class="auto internal xref">Figure 2</a> shows an example to illustrate how CAN metrics can be distributed. There is a client attached to the netowrk via CAN-Router 1. There are three instances of the service with CS-ID 1: two are at Edge Site 2 attached via CAN-Router 2 and have CB-IDs 1 and 2; the third is at Edge Site 3 attached via CAN-Router 3 and with CB-ID 3. There is also a second service with CS-ID 2 with only one instance located at Edge Site 2.<a href="#section-4.2-5" class="pilcrow">¶</a></p>
+<p id="section-4.2-6">In this example, the C-SMA collocated with CAN-Router 2 distributes the service metrics for both service instances. Note that these could be aggregated into a single advertisement, but in this case the metrics for each instance are advertised. Similarly, the C-SMA at Edge Site 2 advertises the service metrics for the two services offered at Edge Site 2.<a href="#section-4.2-6" class="pilcrow">¶</a></p>
 <p id="section-4.2-7">The service metric advertisements are consumed by the C-PS at CAN-Router 1 that provides access for the client. The C-PS also consumes network metric advertisements from the C-NMA. All of the metrics are used by the C-PS to determine the best Egress CAN-Router to which to send traffic (and on what path) for the client's service demand given the service that is requested (CS-ID 1 or CS-ID 2), the state of the service instances reported by the metrics, and the state of the network.<a href="#section-4.2-7" class="pilcrow">¶</a></p>
 <span id="name-example-can-metric-distribu"></span><div id="fig-can-example-overlay">
 <figure id="figure-2">
@@ -1751,7 +1751,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-privacy-considerations">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-privacy-considerations" class="section-name selfRef">Privacy Considerations</a>
       </h2>
-<p id="section-6-1">It is important that a party that inspects traffic on the wire in the underlay infrastructure should not be able to determine which client is accessing which service. In particular, the user's identities must not be revealed. Since the service will, in some cases, need to know about application, client, and even user identities, it is liekly that the overlay path from Ingress CAN-Router to Egress CAN-Router will need to be encrypted is the client/service communication is not already encrypted.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-1">It is important that a party that inspects traffic on the wire in the underlay infrastructure should not be able to determine which client is accessing which service. In particular, the user's identities must not be revealed. Since the service will, in some cases, need to know about application, client, and even user identities, it is likely that the overlay path from Ingress CAN-Router to Egress CAN-Router will need to be encrypted is the client/service communication is not already encrypted.<a href="#section-6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="manageability-considerations">
