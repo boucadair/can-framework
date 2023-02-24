@@ -1169,13 +1169,16 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-service-announcements" class="internal xref">Service Announcements</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
-                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-metrics-distribution" class="internal xref">Metrics Distribution</a></p>
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-provisioning-can-elements" class="internal xref">Provisioning CAN Elements</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
-                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-service-demand-handling" class="internal xref">Service Demand Handling</a></p>
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-metrics-distribution" class="internal xref">Metrics Distribution</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4">
-                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="auto internal xref">4.4</a>.  <a href="#name-instance-affinity" class="internal xref">Instance Affinity</a></p>
+                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="auto internal xref">4.4</a>.  <a href="#name-service-demand-handling" class="internal xref">Service Demand Handling</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.5">
+                <p id="section-toc.1-1.4.2.5.1"><a href="#section-4.5" class="auto internal xref">4.5</a>.  <a href="#name-instance-affinity" class="internal xref">Instance Affinity</a></p>
 </li>
             </ul>
 </li>
@@ -1246,7 +1249,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <dd class="break"></dd>
 <dt id="section-2-2.9">Service demand:</dt>
         <dd style="margin-left: 1.5em" id="section-2-2.10">
-          <p id="section-2-2.10.1">The demand for a service identified by a CS-ID.<a href="#section-2-2.10.1" class="pilcrow">¶</a></p>
+          <p id="section-2-2.10.1">The demand for a service identified by a  CAN Service ID (CS-ID). See <a href="#can-ids" class="auto internal xref">Section 3.2</a> for more details.<a href="#section-2-2.10.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-2.11">Service request:</dt>
@@ -1520,22 +1523,31 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-4.1-1">A service is associated with a unique identifier called a CS-ID. A CS-ID may be a network identifier, such as an IP address. The mapping of CS-ID to network identifier may learned through a name resolution service such as DNS.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="metrics-distribution">
+<div id="provisioning-can-elements">
 <section id="section-4.2">
-        <h3 id="name-metrics-distribution">
-<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-metrics-distribution" class="section-name selfRef">Metrics Distribution</a>
+        <h3 id="name-provisioning-can-elements">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-provisioning-can-elements" class="section-name selfRef">Provisioning CAN Elements</a>
         </h3>
-<p id="section-4.2-1">A C-SMA collects service-related capabilities and metrics and associates them with a CS-ID that identifies the service. It may aggregate the metrics for multiple service instances, or maintain them separately. The C-SMA then sends (advertises) the CS-ID along with the metrics to be received by all C-PSes in the network. The service-related metrics include computing-related metrics and potentially other service metrics, if needed.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.2-2">Computing metrics may change very frequently (see <span>[<a href="#I-D.liu-can-ps-usecases" class="cite xref">I-D.liu-can-ps-usecases</a>]</span> for a discussion). When and how frequent such information is distributed is to be determined as part of the specification of any distribution protocol. A spectrum of approaches can be considered, such as interval-based updates, threshold-triggered updates, policy-based updates, etc.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
-<p id="section-4.2-3">Additionally, the C-NMA collects network-related capabilities and metrics. These may be collected and distributed by existing network routing protocols, although enhancements may be needed to distribute additional information not previously available (such as link latency). The C-NMA distributes the network metrics to the C-PSs so that they can use the combination of service metrics and network metrics to determine the best Egress CAN-Router to provide access to a service instance to provide the compute function needed by a service demand.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
-<p id="section-4.2-4">Network metrics may also change very frequently. Routing protocols may apply elements of thresholding and policy to prevent the network being flooded with state change information. The C-NMA should apply similar processes to those used in the C-SMA to determine when and how often to distribute updates to the C-PSes.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
-<p id="section-4.2-5"><a href="#fig-can-example-overlay" class="auto internal xref">Figure 2</a> shows an example to illustrate how CAN metrics can be distributed. There is a client attached to the netowrk via CAN-Router 1. There are three instances of the service with CS-ID 1: two are at Edge Site 2 attached via CAN-Router 2 and have CB-IDs 1 and 2; the third is at Edge Site 3 attached via CAN-Router 3 and with CB-ID 3. There is also a second service with CS-ID 2 with only one instance located at Edge Site 2.<a href="#section-4.2-5" class="pilcrow">¶</a></p>
-<p id="section-4.2-6">In this example, the C-SMA collocated with CAN-Router 2 distributes the service metrics for both service instances. Note that these could be aggregated into a single advertisement, but in this case the metrics for each instance are advertised. Similarly, the C-SMA at Edge Site 2 advertises the service metrics for the two services offered at Edge Site 2.<a href="#section-4.2-6" class="pilcrow">¶</a></p>
-<p id="section-4.2-7">The service metric advertisements are consumed by the C-PS at CAN-Router 1 that provides access for the client. The C-PS also consumes network metric advertisements from the C-NMA. All of the metrics are used by the C-PS to determine the best Egress CAN-Router to which to send traffic (and on what path) for the client's service demand given the service that is requested (CS-ID 1 or CS-ID 2), the state of the service instances reported by the metrics, and the state of the network.<a href="#section-4.2-7" class="pilcrow">¶</a></p>
+<p id="section-4.2-1">--detail any required provisioning at CAN elements (boptsrapping, credentials of peer CAN nodes, services, optimization metrics per service, etc.)--<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.2-2">TBC.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="metrics-distribution">
+<section id="section-4.3">
+        <h3 id="name-metrics-distribution">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-metrics-distribution" class="section-name selfRef">Metrics Distribution</a>
+        </h3>
+<p id="section-4.3-1">A C-SMA collects service-related capabilities and metrics and associates them with a CS-ID that identifies the service. It may aggregate the metrics for multiple service instances, or maintain them separately. The C-SMA then sends (advertises) the CS-ID along with the metrics to be received by all C-PSes in the network. The service-related metrics include computing-related metrics and potentially other service metrics, if needed.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-2">Computing metrics may change very frequently (see <span>[<a href="#I-D.liu-can-ps-usecases" class="cite xref">I-D.liu-can-ps-usecases</a>]</span> for a discussion). When and how frequent such information is distributed is to be determined as part of the specification of any distribution protocol. A spectrum of approaches can be considered, such as interval-based updates, threshold-triggered updates, policy-based updates, etc.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
+<p id="section-4.3-3">Additionally, the C-NMA collects network-related capabilities and metrics. These may be collected and distributed by existing network routing protocols, although enhancements may be needed to distribute additional information not previously available (such as link latency). The C-NMA distributes the network metrics to the C-PSs so that they can use the combination of service metrics and network metrics to determine the best Egress CAN-Router to provide access to a service instance to provide the compute function needed by a service demand.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
+<p id="section-4.3-4">Network metrics may also change very frequently. Routing protocols may apply elements of thresholding and policy to prevent the network being flooded with state change information. The C-NMA should apply similar processes to those used in the C-SMA to determine when and how often to distribute updates to the C-PSes.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
+<p id="section-4.3-5"><a href="#fig-can-example-overlay" class="auto internal xref">Figure 2</a> shows an example to illustrate how CAN metrics can be distributed. There is a client attached to the netowrk via CAN-Router 1. There are three instances of the service with CS-ID 1: two are at Edge Site 2 attached via CAN-Router 2 and have CB-IDs 1 and 2; the third is at Edge Site 3 attached via CAN-Router 3 and with CB-ID 3. There is also a second service with CS-ID 2 with only one instance located at Edge Site 2.<a href="#section-4.3-5" class="pilcrow">¶</a></p>
+<p id="section-4.3-6">In this example, the C-SMA collocated with CAN-Router 2 distributes the service metrics for both service instances. Note that these could be aggregated into a single advertisement, but in this case the metrics for each instance are advertised. Similarly, the C-SMA at Edge Site 2 advertises the service metrics for the two services offered at Edge Site 2.<a href="#section-4.3-6" class="pilcrow">¶</a></p>
+<p id="section-4.3-7">The service metric advertisements are consumed by the C-PS at CAN-Router 1 that provides access for the client. The C-PS also consumes network metric advertisements from the C-NMA. All of the metrics are used by the C-PS to determine the best Egress CAN-Router to which to send traffic (and on what path) for the client's service demand given the service that is requested (CS-ID 1 or CS-ID 2), the state of the service instances reported by the metrics, and the state of the network.<a href="#section-4.3-7" class="pilcrow">¶</a></p>
 <span id="name-example-can-metric-distribu"></span><div id="fig-can-example-overlay">
 <figure id="figure-2">
-          <div id="section-4.2-8.1">
-            <div class="alignLeft art-svg artwork" id="section-4.2-8.1.1">
+          <div id="section-4.3-8.1">
+            <div class="alignLeft art-svg artwork" id="section-4.3-8.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="576" width="544" viewBox="0 0 544 576" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
                 <path d="M 8,208 L 8,240" fill="none" stroke="black"></path>
                 <path d="M 8,288 L 8,320" fill="none" stroke="black"></path>
@@ -1699,40 +1711,40 @@ svg :is([fill="white"], [fill^="#fff"]) {
                   <text x="196" y="532">2,</text>
                   <text x="248" y="532">&lt;metrics&gt;</text>
                 </g>
-              </svg><a href="#section-4.2-8.1.1" class="pilcrow">¶</a>
+              </svg><a href="#section-4.3-8.1.1" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
 <a href="#name-example-can-metric-distribu" class="selfRef">Example CAN Metric Distribution</a>
           </figcaption></figure>
 </div>
-<p id="section-4.2-9">The above example mainly describes a per-instance computing-related metrics distribution. In the case of distributing aggregated per-site computing-related metrics, the per-instance CB-ID will not be included in the distribution. Instead, a per-site CB-ID may be used in the case of multiple sites are attached to the Egress CAN router to indicate from which site the aggregated metrics come.<a href="#section-4.2-9" class="pilcrow">¶</a></p>
-<p id="section-4.2-10">However, CB-ID is not needed in the distribution (in above example) if the edge site can support consistently service instance selection. For easy deployment, aggregated per-site computing-related metrics distribution is recommeded.<a href="#section-4.2-10" class="pilcrow">¶</a></p>
+<p id="section-4.3-9">The above example mainly describes a per-instance computing-related metrics distribution. In the case of distributing aggregated per-site computing-related metrics, the per-instance CB-ID will not be included in the distribution. Instead, a per-site CB-ID may be used in the case of multiple sites are attached to the Egress CAN router to indicate from which site the aggregated metrics come.<a href="#section-4.3-9" class="pilcrow">¶</a></p>
+<p id="section-4.3-10">However, CB-ID is not needed in the distribution (in above example) if the edge site can support consistently service instance selection. For easy deployment, aggregated per-site computing-related metrics distribution is recommeded.<a href="#section-4.3-10" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="service-demand-handling">
-<section id="section-4.3">
+<section id="section-4.4">
         <h3 id="name-service-demand-handling">
-<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-service-demand-handling" class="section-name selfRef">Service Demand Handling</a>
+<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-service-demand-handling" class="section-name selfRef">Service Demand Handling</a>
         </h3>
-<p id="section-4.3-1">The C-PS determines the best choice of Egress CAN-Router and path to that router given the service and network metrics distributed as described in the previous section. The C-PS may be collocated with the Ingress CAN-Router (as shown in <a href="#fig-can-example-overlay" class="auto internal xref">Figure 2</a>) or the selection function may be offloaded to a dedicated server.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
-<p id="section-4.3-2">This document does not describe any algorithms for path selection, but it is expected that a service demand or local policy may give directions to the C-PS in terms of "objective functions" that describe the desired behavior from the network and the chosen service instance.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
-<p id="section-4.3-3">In the example in <a href="#fig-can-example-overlay" class="auto internal xref">Figure 2</a>, when the client sends a service demand to CAN-Router 1, the router consults the C-PS to select a service instance at a remote edge site accessed through a particular Egress CAN-Router. The C-PS also determines a path to the Egress CAN-Router. This information is provided to the Ingress CAN-Router (CAN-Router 1) so that it can correctly encapsulate and route packets.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
-<p id="section-4.3-4">A service transaction consists of one or more service packets sent by the client to its Ingress CAN-Router. The Ingress CAN-Router classifies the packets using the C-TC functionality, and forwards the packets to the chosen Egress CAN-Router using an overlay path with appropriate encapsulation. When the packets reach the Egress CAN-Router, the outer header of the overlay encapsulation is removed and the inner packets are sent to the service instance.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
+<p id="section-4.4-1">The C-PS determines the best choice of Egress CAN-Router and path to that router given the service and network metrics distributed as described in the previous section. The C-PS may be collocated with the Ingress CAN-Router (as shown in <a href="#fig-can-example-overlay" class="auto internal xref">Figure 2</a>) or the selection function may be offloaded to a dedicated server.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
+<p id="section-4.4-2">This document does not describe any algorithms for path selection, but it is expected that a service demand or local policy may give directions to the C-PS in terms of "objective functions" that describe the desired behavior from the network and the chosen service instance.<a href="#section-4.4-2" class="pilcrow">¶</a></p>
+<p id="section-4.4-3">In the example in <a href="#fig-can-example-overlay" class="auto internal xref">Figure 2</a>, when the client sends a service demand to CAN-Router 1, the router consults the C-PS to select a service instance at a remote edge site accessed through a particular Egress CAN-Router. The C-PS also determines a path to the Egress CAN-Router. This information is provided to the Ingress CAN-Router (CAN-Router 1) so that it can correctly encapsulate and route packets.<a href="#section-4.4-3" class="pilcrow">¶</a></p>
+<p id="section-4.4-4">A service transaction consists of one or more service packets sent by the client to its Ingress CAN-Router. The Ingress CAN-Router classifies the packets using the C-TC functionality, and forwards the packets to the chosen Egress CAN-Router using an overlay path with appropriate encapsulation. When the packets reach the Egress CAN-Router, the outer header of the overlay encapsulation is removed and the inner packets are sent to the service instance.<a href="#section-4.4-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="instance-affinity">
-<section id="section-4.4">
+<section id="section-4.5">
         <h3 id="name-instance-affinity">
-<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-instance-affinity" class="section-name selfRef">Instance Affinity</a>
+<a href="#section-4.5" class="section-number selfRef">4.5. </a><a href="#name-instance-affinity" class="section-name selfRef">Instance Affinity</a>
         </h3>
-<p id="section-4.4-1">Instance affinity is a key feature of CAN. It means that packets from the same 'flow' for a service should always be sent to the same Egress CAN-Router to be processed by the same service instance. Furthermore, in the general case, packets from the same service flow should be sent on the same path to avoid them becoming mis-ordered and to prevent the introduciton of unpredictable latency variations.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
-<p id="section-4.4-2">The affinity is determined at the time of newly formulated service demand.<a href="#section-4.4-2" class="pilcrow">¶</a></p>
-<p id="section-4.4-3">Note that different services may have different notions of what constitutes a 'flow' and may thus identify a flow differently. Typically a flow is identified by the 5-tuple value (source and destination addresses, source and destination ports, and next protocol type). However, for instance, an RTP video streaming may use different port numbers for video and audio, and so affinity may be identified as the combination of two 5-tuple flow identifiers so that both flows are sent to the same service instance.<a href="#section-4.4-3" class="pilcrow">¶</a></p>
-<p id="section-4.4-4">Hence, when specifying a protocol solution for service instance affinity, a certain level of flexibility in identifying flows should be provided. Or, from a more general perspective, there should be a flexible mechanism to specify and identify the set of packets that are subject to a service instance affinity.<a href="#section-4.4-4" class="pilcrow">¶</a></p>
-<p id="section-4.4-5">More importantly, the means for identifying a flow for the purpose of ensuring instance affinity must be application-independent to avoid the need for service-specific instance affinity methods.<a href="#section-4.4-5" class="pilcrow">¶</a></p>
-<p id="section-4.4-6">Specifically, Instance affinity information should be configurable on a per-service basis. For each service, the information can include the flow/packets identification type and means, affinity timeout value, and etc.<a href="#section-4.4-6" class="pilcrow">¶</a></p>
-<p id="section-4.4-7">This document does not define the specific mechanisms for defining or applying service instance affinity.<a href="#section-4.4-7" class="pilcrow">¶</a></p>
+<p id="section-4.5-1">Instance affinity is a key feature of CAN. It means that packets from the same 'flow' for a service should always be sent to the same Egress CAN-Router to be processed by the same service instance. Furthermore, in the general case, packets from the same service flow should be sent on the same path to avoid them becoming mis-ordered and to prevent the introduciton of unpredictable latency variations.<a href="#section-4.5-1" class="pilcrow">¶</a></p>
+<p id="section-4.5-2">The affinity is determined at the time of newly formulated service demand.<a href="#section-4.5-2" class="pilcrow">¶</a></p>
+<p id="section-4.5-3">Note that different services may have different notions of what constitutes a 'flow' and may thus identify a flow differently. Typically a flow is identified by the 5-tuple value (source and destination addresses, source and destination ports, and next protocol type). However, for instance, an RTP video streaming may use different port numbers for video and audio, and so affinity may be identified as the combination of two 5-tuple flow identifiers so that both flows are sent to the same service instance.<a href="#section-4.5-3" class="pilcrow">¶</a></p>
+<p id="section-4.5-4">Hence, when specifying a protocol solution for service instance affinity, a certain level of flexibility in identifying flows should be provided. Or, from a more general perspective, there should be a flexible mechanism to specify and identify the set of packets that are subject to a service instance affinity.<a href="#section-4.5-4" class="pilcrow">¶</a></p>
+<p id="section-4.5-5">More importantly, the means for identifying a flow for the purpose of ensuring instance affinity must be application-independent to avoid the need for service-specific instance affinity methods.<a href="#section-4.5-5" class="pilcrow">¶</a></p>
+<p id="section-4.5-6">Specifically, Instance affinity information should be configurable on a per-service basis. For each service, the information can include the flow/packets identification type and means, affinity timeout value, and etc.<a href="#section-4.5-6" class="pilcrow">¶</a></p>
+<p id="section-4.5-7">This document does not define the specific mechanisms for defining or applying service instance affinity.<a href="#section-4.5-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1743,7 +1755,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
 <p id="section-5-1">The computing resource information changes over time very frequently and with the creation and termination of service instances. When such information is carried in routing protocol, too many updates can make the network fluctuate. This instability could be leveraged by an attacker (for example, by spawning and deleting service instances very rapidly). Protocols must, therefore, include aggregation techniques, dampening mechanisms, and threshold to update distriution.<a href="#section-5-1" class="pilcrow">¶</a></p>
-<p id="section-5-2">The information distributed by the C-SMA and C-NMA may reveal important facts about the network and the location of compute resources at edge sites. This information could be used by an attacker to understand the weak spots in the operator's network. Furthermore, such information could be modified by an attacker resulting in disrupted service deliver for the clients, up to and including misdirection of traffic to an attacker's service implementation at an edge site. Therefore, solutions to this architecture must include authentication and security of information exchanges between C-SMAs/C-NMAs and C-PCs, and between C-PCs and Ingress CAN-Routers. Furthermore, C-SMAs need to consider ways to authenticate the services provided at the edge sites that they serve.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-2">The information distributed by the C-SMA and C-NMA may reveal important information about the network and the location of compute resources at edge sites. This information could be used by an attacker to understand the weak spots in the operator's network. Furthermore, such information could be modified by an attacker resulting in disrupted service deliver for the clients, up to and including misdirection of traffic to an attacker's service implementation at an edge site. Therefore, solutions to this architecture must include authentication and security of information exchanges between C-SMAs/C-NMAs and C-PCs, and between C-PCs and Ingress CAN-Routers. Furthermore, C-SMAs need to consider ways to authenticate the services provided at the edge sites that they serve.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-3">--Discuss more threats: integrity-protection of advertized informaiton, origin authentication, prevent ddos, ...<a href="#section-5-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="privacy-considerations">

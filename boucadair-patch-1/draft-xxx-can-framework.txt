@@ -61,9 +61,10 @@ Table of Contents
      3.4.  Deployment Considerations
    4.  CAN Framework Workflow
      4.1.  Service Announcements
-     4.2.  Metrics Distribution
-     4.3.  Service Demand Handling
-     4.4.  Instance Affinity
+     4.2.  Provisioning CAN Elements
+     4.3.  Metrics Distribution
+     4.4.  Service Demand Handling
+     4.5.  Instance Affinity
    5.  Security Considerations
    6.  Privacy Considerations
    7.  Manageability Considerations
@@ -133,7 +134,8 @@ Table of Contents
       available.  One service can be exposed by multiple instances
       running at the same or different network locations.
 
-   Service demand:  The demand for a service identified by a CS-ID.
+   Service demand:  The demand for a service identified by a CAN Service
+      ID (CS-ID).  See Section 3.2 for more details.
 
    Service request:  The request for a specific service instance.
 
@@ -336,7 +338,15 @@ Table of Contents
    mapping of CS-ID to network identifier may learned through a name
    resolution service such as DNS.
 
-4.2.  Metrics Distribution
+4.2.  Provisioning CAN Elements
+
+   --detail any required provisioning at CAN elements (boptsrapping,
+   credentials of peer CAN nodes, services, optimization metrics per
+   service, etc.)--
+
+   TBC.
+
+4.3.  Metrics Distribution
 
    A C-SMA collects service-related capabilities and metrics and
    associates them with a CS-ID that identifies the service.  It may
@@ -440,7 +450,7 @@ Table of Contents
    For easy deployment, aggregated per-site computing-related metrics
    distribution is recommeded.
 
-4.3.  Service Demand Handling
+4.4.  Service Demand Handling
 
    The C-PS determines the best choice of Egress CAN-Router and path to
    that router given the service and network metrics distributed as
@@ -469,7 +479,7 @@ Table of Contents
    Router, the outer header of the overlay encapsulation is removed and
    the inner packets are sent to the service instance.
 
-4.4.  Instance Affinity
+4.5.  Instance Affinity
 
    Instance affinity is a key feature of CAN.  It means that packets
    from the same 'flow' for a service should always be sent to the same
@@ -520,7 +530,7 @@ Table of Contents
    distriution.
 
    The information distributed by the C-SMA and C-NMA may reveal
-   important facts about the network and the location of compute
+   important information about the network and the location of compute
    resources at edge sites.  This information could be used by an
    attacker to understand the weak spots in the operator's network.
    Furthermore, such information could be modified by an attacker
@@ -531,6 +541,9 @@ Table of Contents
    exchanges between C-SMAs/C-NMAs and C-PCs, and between C-PCs and
    Ingress CAN-Routers.  Furthermore, C-SMAs need to consider ways to
    authenticate the services provided at the edge sites that they serve.
+
+   --Discuss more threats: integrity-protection of advertized
+   informaiton, origin authentication, prevent ddos, ...
 
 6.  Privacy Considerations
 
