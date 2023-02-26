@@ -1,0 +1,107 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2023-02-26T01:22:22.810465+00:00",
+  "repo": "boucadair/can-framework",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [],
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOJBcdGs5Kl9C4",
+      "title": "Med's Changes",
+      "url": "https://github.com/boucadair/can-framework/pull/1",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-02-23T10:36:35Z",
+      "updatedAt": "2023-02-24T06:26:45Z",
+      "baseRepository": "boucadair/can-framework",
+      "baseRefName": "main",
+      "baseRefOid": "1e3849a018198b8d6bc7a16072be3a72105690f7",
+      "headRepository": "boucadair/can-framework",
+      "headRefName": "boucadair-patch-1",
+      "headRefOid": "759bd12bcd002441ec027e599a964bef5b2d7e8d",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDOJBcdGs5KwCar",
+      "title": "rev 00-10",
+      "url": "https://github.com/boucadair/can-framework/pull/2",
+      "state": "CLOSED",
+      "author": "muzixing",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-02-25T06:39:20Z",
+      "updatedAt": "2023-02-25T06:40:24Z",
+      "baseRepository": "boucadair/can-framework",
+      "baseRefName": "boucadair-patch-1",
+      "baseRefOid": "759bd12bcd002441ec027e599a964bef5b2d7e8d",
+      "headRepository": "boucadair/can-framework",
+      "headRefName": "Cheng",
+      "headRefOid": "846eeb3a1b4a73e9d553bf3b01bd0fcd548d6736",
+      "closedAt": "2023-02-25T06:40:24Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}
