@@ -6,11 +6,13 @@ cats                                                               X. XX
 Internet-Draft                                                       XXX
 Intended status: Informational                              M. Boucadair
 Expires: 4 September 2023                                         Orange
+                                                         L. M. Contreras
+                                                              Telefonica
                                                             3 March 2023
 
 
         A Framework for Computing-Aware Traffic Steering (CATS)
-                    draft-xxx-cats-framework-latest
+                    draft-lbc-cats-framework-latest
 
 Abstract
 
@@ -561,3 +563,9 @@ Authors' Addresses
    Mohamed Boucadair
    Orange
    Email: mohamed.boucadair@orange.com
+
+
+   Luis M. Contreras
+   Telefonica
+   Spain
+   Email: luismiguel.contrerasmurillo@telefonica.com
