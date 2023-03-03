@@ -2,12 +2,26 @@
 
 
 
-cats                                                               X. XX
-Internet-Draft                                                       XXX
-Intended status: Informational                              M. Boucadair
-Expires: 4 September 2023                                         Orange
+cats                                                          C. Li, Ed.
+Internet-Draft                                       Huawei Technologies
+Intended status: Informational                                   Z. Peng
+Expires: 4 September 2023                                   China Mobile
+                                                       M. Boucadair, Ed.
+                                                                  Orange
                                                          L. M. Contreras
                                                               Telefonica
+                                                                J. Drake
+                                                  Juniper Networks, Inc.
+                                                                G. Huang
+                                                                     ZTE
+                                                               G. Mishra
+                                                            Verizon Inc.
+                                                                  C. Lin
+                                                    New H3C Technologies
+                                                                 X. Wang
+                                                                    CICT
+                                                                 X. Wang
+                                                         Ruijie Networks
                                                             3 March 2023
 
 
@@ -211,25 +225,25 @@ Table of Contents
        |client|+            |client|-+          |client|-+
        +------+             +------+            +------+
            |                    |                   |
-           |   +-------------+  |            +------+-----+
-           +---|    C-TC     |--+     +------|    C-TC    |
-               |-------------|        |      |------------|
-               |      | C-PS |    +------+   |CATS-Router 4|
-       ........|      +------|....| C-PS |...|             |....
-       :       |CATS-Router 2|    |      |   |             |   .
-       :       +-------------+    +------+   +-------------+   :
+           |   +-------------+  |            +-------------+
+           +---|    C-TC     |---+     +------|    C-TC     |
+               |-------------|         |      |-------------|
+               |     | C-PS  |     +------+   |CATS-Router 4|
+       ........|     +-------|.....| C-PS |...|             |...
+       :       |CATS-Router 2|     |      |   |             |  .
+       :       +-------------+     +------+   +-------------+  :
        :                                                       :
        :                                            +-------+  :
        :                         Underlay           | C-NMA |  :
        :                      Infrastructure        +-------+  :
        :                                                       :
        :                                                       :
-       :  +-------------+                 +-------------+      :
-       :  |CATS-Router 1|  +-------+      |CATS-Router 3|      :
-       :..|             |..| C-SMA |.-....|             |......:
-          +-------------+  +-------+      +-------------+
-                   |         |            |    C-SMA    |
-                   |         |            +--------+----+
+       :   +-------------+                 +-------------+     :
+       :   |CATS-Router 1|  +-------+      |CATS-Router 3|     :
+       :...|             |..| C-SMA |.... .|             |.....:
+           +-------------+  +-------+      +-------------+
+                   |         |             |    C-SMA    |
+                   |         |             +-------------+
                    |         |                     |
                    |         |                     |
                  +------------+               +------------+
@@ -401,29 +415,29 @@ Table of Contents
               Service CS-ID 1, instance CB-ID 1 <metrics>
               Service CS-ID 1, instance CB-ID 2 <metrics>
                      :<----------------------:
-                     :                       :             +-------+
-                     :                       :             |CS-ID 1|
-                     :                       :          +--|CB-ID 1|
-                     :               +-------------+    |  +-------+
-                     :               |    C-SMA    |----|    Edge Site 2
-                     :               +-------------+    |  +-------+
-                     :               |CATS-Router 2|    +--|CS-ID 1|
-                     :               +-------------+       |CB-ID 2|
-     +--------+      :                        |            +-------+
-     | Client |      :  Network +-------------+--------+
+                     :                       :              +-------+
+                     :                       :              |CS-ID 1|
+                     :                       :           +--|CB-ID 1|
+                     :                +-------------+    |  +-------+
+                     :                |    C-SMA    |----|   Edge Site 2
+                     :                +-------------+    |  +-------+
+                     :                |CATS-Router 2|    +--|CS-ID 1|
+                     :                +-------------+       |CB-ID 2|
+     +--------+      :                        |             +-------+
+     | Client |      :  Network +----------------------+
      +--------+      :  metrics | +-------+            |
           |          : :<---------| C-NMA |            |
           |          : :        | +-------+            |
-     +--------------------+     |                      |
-     |CATS-Router 1| C-PS |-----|                      |
-     +--------------------+     |       Underlay       |
+     +-------------------+      |                      |
+     |CATS-Router 1|C-PS |------|                      |
+     +-------------------+      |       Underlay       |
                      :          |     Infrastructure   |     +-------+
                      :          |                      |     |CS-ID 1|
                      :          +----------------------+ +---|CB-ID 3|
                      :                    |              |   +-------+
-                     :           +-------------+  +-------+
-                     :           |CATS-Router 3|--| C-SMA | Edge Site 3
-                     :           +-------------+  +-------+
+                     :            +-------------+  +-------+
+                     :            |CATS-Router 3|--| C-SMA | Edge Site 3
+                     :            +-------------+  +-------+
                      :                                :  |   +-------+
                      :                                :  +---|CS-ID 2|
                      :                                :      +-------+
@@ -536,10 +550,10 @@ Appendix A.  Acknowledgements
 
    The authors would like to thank Joel Halpern, John Scudder, Dino
    Farinacci, Adrian Farrel, Cullen Jennings, Linda Dunbar, Jeffrey
-   Zhang, Fang Gao, Aijun Wang,Cong Li, Xinxin Yi, Dirk Trossen, Luigi
-   IANNONE, Yizhou Li, Jari Arkko, Mingyu Wu, Haibo Wang, Xia Chen,
-   Jianwei Mao, Guofeng Qian, Zhenbin Li, and Xinyue Zhang for their
-   comments and suggestions.
+   Zhang, Peng Liu, Fang Gao, Aijun Wang,Cong Li, Xinxin Yi, Dirk
+   Trossen, Luigi Iannone, Yizhou Li, Jari Arkko, Mingyu Wu, Haibo Wang,
+   Xia Chen, Jianwei Mao, Guofeng Qian, Zhenbin Li, and Xinyue Zhang for
+   their comments and suggestions.
 
 Contributors
 
@@ -548,19 +562,36 @@ Contributors
    Email: yaohuijuan@chinamobile.com
 
 
+   Yizhou Li
+   Huawei Technologies
+   Email: liyizhou@huawei.com
+
+
+   Dirk Trossen
+   Huawei Technologies
+   Email: dirk.trossen@huawei.com
+
+
    Hang Shi
-   Huawei
+   Huawei Technologies
    Email: shihang9@huawei.com
 
 
 Authors' Addresses
 
-   XXX
-   XXX
-   Email: XX@XX.COM
+   Cheng Li (editor)
+   Huawei Technologies
+   China
+   Email: c.l@huawei.com
 
 
-   Mohamed Boucadair
+   Zongpeng Du
+   China Mobile
+   China
+   Email: duzongpeng@chinamobile.com
+
+
+   Mohamed Boucadair (editor)
    Orange
    Email: mohamed.boucadair@orange.com
 
@@ -569,3 +600,36 @@ Authors' Addresses
    Telefonica
    Spain
    Email: luismiguel.contrerasmurillo@telefonica.com
+
+
+   John E Drake
+   Juniper Networks, Inc.
+   United States of America
+   Email: jdrake@juniper.net
+
+
+   Guangping Huang
+   ZTE
+   China
+   Email: huang.guangping@zte.com.cn
+
+
+   Gyan Mishra
+   Verizon Inc.
+   United States of America
+   Email: hayabusagsm@gmail.com
+
+
+   Changwang Lin
+   New H3C Technologies
+   Email: linchangwang.04414@h3c.com
+
+
+   Xueshun Wang
+   CICT
+   Email: xswang@fiberhome.com
+
+
+   Xuewei Wang
+   Ruijie Networks
+   Email: wangxuewei1@ruijie.com.cn
