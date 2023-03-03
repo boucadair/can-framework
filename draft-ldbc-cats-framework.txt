@@ -101,7 +101,7 @@ Table of Contents
    computing resources without considering the network status, and even
    sometimes simply based on static configurations.
 
-   As described in [I-D.liu-can-ps-usecases], traffic steering that
+   As described in [I-D.yao-cats-ps-usecases], traffic steering that
    takes into account computing resource metrics would benefit several
    services, such as augmented reality or augmented/virtual reality (AR/
    VR).  This document provides an architectural framework, which will
@@ -366,11 +366,11 @@ Table of Contents
    related metrics and potentially other service metrics, if needed.
 
    Computing metrics may change very frequently (see
-   [I-D.liu-can-ps-usecases] for a discussion).  When and how frequently
-   such information is distributed is to be determined as part of the
-   specification of any distribution protocol.  A spectrum of approaches
-   can be considered, such as interval-based updates, threshold-
-   triggered updates, policy-based updates, etc.
+   [I-D.yao-cats-ps-usecases] for a discussion).  When and how
+   frequently such information is distributed is to be determined as
+   part of the specification of any distribution protocol.  A spectrum
+   of approaches can be considered, such as interval-based updates,
+   threshold-triggered updates, policy-based updates, etc.
 
    Additionally, the C-NMA collects network-related capabilities and
    metrics.  These may be collected and distributed by existing network
@@ -538,13 +538,14 @@ Table of Contents
 
 7.  Informative References
 
-   [I-D.liu-can-ps-usecases]
-              Liu, P., Eardley, P., Trossen, D., Boucadair, M.,
-              Contreras, L. M., Li, C., and Y. Li, "Computing-Aware
-              Networking (CAN) Problem Statement and Use Cases", Work in
-              Progress, Internet-Draft, draft-liu-can-ps-usecases-00, 23
-              October 2022, <https://datatracker.ietf.org/doc/html/
-              draft-liu-can-ps-usecases-00>.
+   [I-D.yao-cats-ps-usecases]
+              Yao, K., Eardley, P., Trossen, D., Boucadair, M.,
+              Contreras, L. M., Li, C., Li, Y., and P. Liu, "Computing-
+              Aware Traffic Steering (CATS) Problem Statement and Use
+              Cases", Work in Progress, Internet-Draft, draft-yao-cats-
+              ps-usecases-00, 3 March 2023,
+              <https://datatracker.ietf.org/api/v1/doc/document/draft-
+              yao-cats-ps-usecases/>.
 
 Appendix A.  Acknowledgements
 
