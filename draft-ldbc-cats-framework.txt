@@ -4,7 +4,7 @@
 
 cats                                                          C. Li, Ed.
 Internet-Draft                                       Huawei Technologies
-Intended status: Informational                                   Z. Peng
+Intended status: Informational                                     Z. Du
 Expires: 4 September 2023                                   China Mobile
                                                        M. Boucadair, Ed.
                                                                   Orange
