@@ -1062,7 +1062,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Li, et al.</td>
-<td class="center">Expires 4 September 2023</td>
+<td class="center">Expires 7 September 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1075,12 +1075,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ldbc-cats-framework-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-03-03" class="published">3 March 2023</time>
+<time datetime="2023-03-06" class="published">6 March 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-09-04">4 September 2023</time></dd>
+<dd class="expires"><time datetime="2023-09-07">7 September 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1152,7 +1152,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 4 September 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 7 September 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1251,7 +1251,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-1-1">Edge computing architectures have been expanding from single edge nodes to multiple interconnected collaborating edge nodes to address issues, such as long response time reduction, suboptimal service resource utilization, and inefficient network utilization.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">The underlying networking architectures for edge computing usually provide relatively static service dispatching. In such architectures, the service traffic is often directed to the closest edge from a routing perspective or to the server with the most computing resources without considering the network status, and even sometimes simply based on static configurations.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">As described in <span>[<a href="#I-D.yao-cats-ps-usecases" class="cite xref">I-D.yao-cats-ps-usecases</a>]</span>, traffic steering that takes into account computing resource metrics would benefit several services, such as augmented reality or augmented/virtual reality (AR/VR). This document provides an architectural framework, which will enable compute- and network-aware traffic steering decisions in edge computing.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">The Computing-Aware Traffic Steering (CATS) framework assumes that there may be multiple service instances running on different edge nodes, globally providing one single service. A single edge may have limited computing resources (such as CPU or GPU) available, and different edges likely have different resources available. A single edge may host multiple instances of a service, or just one.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-4">The Computing-Aware Traffic Steering (CATS) framework assumes that there may be multiple service instances running on different edge nodes, globally providing one single service. A single edge may have limited computing resources (such as CPU or GPU) available, and different edges likely have different resources available. A single edge may host multiple instances of a service or just one service instance.<a href="#section-1-4" class="pilcrow">¶</a></p>
 <p id="section-1-5">The CATS framework is an ingress-based overlay framework for the selection of the suitable service instance(s) from a set of instance candidates. The exact characterization of 'suitable' will be determined by a combination of networking and computing related metrics. To that aim, the CATS framework assumes that edge nodes collaborate with each other under a single administrative domain to achieve a global objective of dispatching service demands, by taking into account both service instances status and network state (e.g., forwarding path length, cost, and congestion).<a href="#section-1-5" class="pilcrow">¶</a></p>
 <p id="section-1-6">Also, this document describes a workflows of the main CATS procedures in both the control and data planes.<a href="#section-1-6" class="pilcrow">¶</a></p>
 </section>
@@ -1534,8 +1534,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#name-cats-functional-components" class="selfRef">CATS Functional Components</a>
           </figcaption></figure>
 </div>
-<p id="section-3.3-3">Edge sites (edges for short) are the sites that provide access to edge computing resources. A compute service (e.g., a matrix computation for face recognition or a game server) is uniquely identified by a CATS Service ID (CS-ID).<a href="#section-3.3-3" class="pilcrow">¶</a></p>
-<p id="section-3.3-4">Service instances can be instantiated and access through different edge sites so that a single service can have a significant number of instances running at different places in the network.<a href="#section-3.3-4" class="pilcrow">¶</a></p>
+<p id="section-3.3-3">Edge sites (edges for short) are the sites that provide access to edge computing resources. A compute service (e.g., a matrix computation for face recognition or a game server) is uniquely identified by a CATS Service IDentifier (CS-ID).<a href="#section-3.3-3" class="pilcrow">¶</a></p>
+<p id="section-3.3-4">Service instances can be instantiated and accessed through different edge sites so that a single service can have a (significant) number of instances running at different places in the network.<a href="#section-3.3-4" class="pilcrow">¶</a></p>
 <p id="section-3.3-5"><a href="#fig-cats-fw" class="auto internal xref">Figure 1</a> shows two edge nodes (CATS-Router 1 and CATS-Router 3) that provide access to service instances. These nodes behaves as Egress CATS-Routers.<a href="#section-3.3-5" class="pilcrow">¶</a></p>
 <p id="section-3.3-6">The CATS Service Metric Agent (C-SMA) is a functional component that gathers information about edge sites and server resources, as well as the status of the different service instances. The C-SMAs are located adjacent to the service instances in or next to the Egress CATS-Routers. <a href="#fig-cats-fw" class="auto internal xref">Figure 1</a> shows one C-SMA collocated with CATS-Router 3, and another C-SMA adjacent to CATS-Router 1.<a href="#section-3.3-6" class="pilcrow">¶</a></p>
 <p id="section-3.3-7">The CATS Network Metric Agent (C-NMA) is a functional component that gathers information about the state of the network. The C-NMAs may be implemented as separate components or may form part of existing components such as CATS-Routers or CATS Path Selectors(C-PS). <a href="#fig-cats-fw" class="auto internal xref">Figure 1</a> shows a single C-NMA located independently within the underlay network. There may be one or more C-NMAs for an underlay network.<a href="#section-3.3-7" class="pilcrow">¶</a></p>
@@ -1552,7 +1552,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-deployment-considerations">
 <a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-deployment-considerations" class="section-name selfRef">Deployment Considerations</a>
         </h3>
-<p id="section-3.4-1">This document does not make an assumption about how the various CATS functional elements are implemented. Whether a CATS deployment follows a fully distributed or collocate or combine many of the functional components is deployment specific. One possibility is a centralized implementation where the computing-related metrics from the C-SMAs are collected by a centralized controller/PCE that also collects the network metrics, and which acts on service requests to produce paths and service instance selections that it programs into the relevant C-TCs.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.4-1">This document does not make an assumption about how the various CATS functional elements are implemented. Whether a CATS deployment follows a fully distributed or collocate or combine many of the functional components is deployment specific. An implementation example is a centralized implementation where the computing-related metrics from the C-SMAs are collected by a centralized controller/PCE that also collects the network metrics, and which acts on service requests to produce paths and service instance selections that it programs into the relevant C-TCs.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1810,7 +1810,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dl class="references">
 <dt id="I-D.yao-cats-ps-usecases">[I-D.yao-cats-ps-usecases]</dt>
     <dd>
-<span class="refAuthor">Yao, K.</span>, <span class="refAuthor">Eardley, P.</span>, <span class="refAuthor">Trossen, D.</span>, <span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Li, C.</span>, <span class="refAuthor">Li, Y.</span>, and <span class="refAuthor">P. Liu</span>, <span class="refTitle">"Computing-Aware Traffic Steering (CATS) Problem Statement and Use Cases"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-yao-cats-ps-usecases-00</span>, <time datetime="2023-03-03" class="refDate">3 March 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/api/v1/doc/document/draft-yao-cats-ps-usecases/">https://datatracker.ietf.org/api/v1/doc/document/draft-yao-cats-ps-usecases/</a>&gt;</span>. </dd>
+<span class="refAuthor">Yao, K.</span>, <span class="refAuthor">Eardley, P.</span>, <span class="refAuthor">Trossen, D.</span>, <span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Li, C.</span>, <span class="refAuthor">Li, Y.</span>, and <span class="refAuthor">P. Liu</span>, <span class="refTitle">"Computing-Aware Traffic Steering (CATS) Problem Statement and Use Cases"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-yao-cats-ps-usecases-00</span>, <time datetime="2023-03-03" class="refDate">3 March 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-yao-cats-ps-usecases-00">https://datatracker.ietf.org/doc/html/draft-yao-cats-ps-usecases-00</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>

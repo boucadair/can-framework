@@ -5,7 +5,7 @@
 cats                                                          C. Li, Ed.
 Internet-Draft                                       Huawei Technologies
 Intended status: Informational                                     Z. Du
-Expires: 4 September 2023                                   China Mobile
+Expires: 7 September 2023                                   China Mobile
                                                        M. Boucadair, Ed.
                                                                   Orange
                                                          L. M. Contreras
@@ -22,7 +22,7 @@ Expires: 4 September 2023                                   China Mobile
                                                                     CICT
                                                                  X. Wang
                                                          Ruijie Networks
-                                                            3 March 2023
+                                                            6 March 2023
 
 
         A Framework for Computing-Aware Traffic Steering (CATS)
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 September 2023.
+   This Internet-Draft will expire on 7 September 2023.
 
 Copyright Notice
 
@@ -113,7 +113,8 @@ Table of Contents
    nodes, globally providing one single service.  A single edge may have
    limited computing resources (such as CPU or GPU) available, and
    different edges likely have different resources available.  A single
-   edge may host multiple instances of a service, or just one.
+   edge may host multiple instances of a service or just one service
+   instance.
 
    The CATS framework is an ingress-based overlay framework for the
    selection of the suitable service instance(s) from a set of instance
@@ -259,11 +260,11 @@ Table of Contents
    Edge sites (edges for short) are the sites that provide access to
    edge computing resources.  A compute service (e.g., a matrix
    computation for face recognition or a game server) is uniquely
-   identified by a CATS Service ID (CS-ID).
+   identified by a CATS Service IDentifier (CS-ID).
 
-   Service instances can be instantiated and access through different
-   edge sites so that a single service can have a significant number of
-   instances running at different places in the network.
+   Service instances can be instantiated and accessed through different
+   edge sites so that a single service can have a (significant) number
+   of instances running at different places in the network.
 
    Figure 1 shows two edge nodes (CATS-Router 1 and CATS-Router 3) that
    provide access to service instances.  These nodes behaves as Egress
@@ -336,12 +337,12 @@ Table of Contents
    This document does not make an assumption about how the various CATS
    functional elements are implemented.  Whether a CATS deployment
    follows a fully distributed or collocate or combine many of the
-   functional components is deployment specific.  One possibility is a
-   centralized implementation where the computing-related metrics from
-   the C-SMAs are collected by a centralized controller/PCE that also
-   collects the network metrics, and which acts on service requests to
-   produce paths and service instance selections that it programs into
-   the relevant C-TCs.
+   functional components is deployment specific.  An implementation
+   example is a centralized implementation where the computing-related
+   metrics from the C-SMAs are collected by a centralized controller/PCE
+   that also collects the network metrics, and which acts on service
+   requests to produce paths and service instance selections that it
+   programs into the relevant C-TCs.
 
 4.  CATS Framework Workflow
 
@@ -544,8 +545,8 @@ Table of Contents
               Aware Traffic Steering (CATS) Problem Statement and Use
               Cases", Work in Progress, Internet-Draft, draft-yao-cats-
               ps-usecases-00, 3 March 2023,
-              <https://datatracker.ietf.org/api/v1/doc/document/draft-
-              yao-cats-ps-usecases/>.
+              <https://datatracker.ietf.org/doc/html/draft-yao-cats-ps-
+              usecases-00>.
 
 Appendix A.  Acknowledgements
 
