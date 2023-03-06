@@ -33,7 +33,7 @@ Abstract
    This document describes a framework for Computing-Aware Traffic
    Steering (CATS).  Particularly, the document identifies a set of CATS
    components, describes their interactions, and exemplifies the
-   workflow of the control plane and data plane.
+   workflow of the control and data planes.
 
 Status of This Memo
 
@@ -595,6 +595,7 @@ Authors' Addresses
 
    Mohamed Boucadair (editor)
    Orange
+   France
    Email: mohamed.boucadair@orange.com
 
 
