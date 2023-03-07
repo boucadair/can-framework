@@ -76,9 +76,8 @@ Table of Contents
      4.4.  Instance Affinity
    5.  Security Considerations
    6.  Privacy Considerations
-   7.  Manageability Considerations
-   8.  IANA Considerations
-   9.  Informative References
+   7.  IANA Considerations
+   8.  Informative References
    Appendix A.  Acknowledgements
    Contributors
    Authors' Addresses
@@ -546,18 +545,11 @@ Table of Contents
 
    For more discussion about privacy, refer to [RFC6462] and [RFC6973].
 
-7.  Manageability Considerations
-
-   A network operator will want to be able to determine the causes of
-   "hot spots" within their network.  To do this, they will want OAM
-   mechanisms that allow them to trace traffic flows for services, and
-   to identify the esge sites responsible for particular flows.
-
-8.  IANA Considerations
+7.  IANA Considerations
 
    This document makes no requests for IANA action.
 
-9.  Informative References
+8.  Informative References
 
    [I-D.yao-cats-ps-usecases]
               Yao, K., Eardley, P., Trossen, D., Boucadair, M.,
