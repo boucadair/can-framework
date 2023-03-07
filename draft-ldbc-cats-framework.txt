@@ -5,7 +5,7 @@
 cats                                                          C. Li, Ed.
 Internet-Draft                                       Huawei Technologies
 Intended status: Informational                                     Z. Du
-Expires: 7 September 2023                                   China Mobile
+Expires: 8 September 2023                                   China Mobile
                                                        M. Boucadair, Ed.
                                                                   Orange
                                                          L. M. Contreras
@@ -16,13 +16,7 @@ Expires: 7 September 2023                                   China Mobile
                                                                      ZTE
                                                                G. Mishra
                                                             Verizon Inc.
-                                                                  C. Lin
-                                                    New H3C Technologies
-                                                                 X. Wang
-                                                                    CICT
-                                                                 X. Wang
-                                                         Ruijie Networks
-                                                            6 March 2023
+                                                            7 March 2023
 
 
         A Framework for Computing-Aware Traffic Steering (CATS)
@@ -50,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 September 2023.
+   This Internet-Draft will expire on 8 September 2023.
 
 Copyright Notice
 
@@ -574,9 +568,29 @@ Contributors
    Email: dirk.trossen@huawei.com
 
 
+   Luigi Iannone
+   Huawei Technologies
+   Email: luigi.iannone@huawei.com
+
+
    Hang Shi
    Huawei Technologies
    Email: shihang9@huawei.com
+
+
+   Changwang Lin
+   New H3C Technologies
+   Email: linchangwang.04414@h3c.com
+
+
+   Xueshun Wang
+   CICT
+   Email: xswang@fiberhome.com
+
+
+   Xuewei Wang
+   Ruijie Networks
+   Email: wangxuewei1@ruijie.com.cn
 
 
 Authors' Addresses
@@ -621,18 +635,3 @@ Authors' Addresses
    Verizon Inc.
    United States of America
    Email: hayabusagsm@gmail.com
-
-
-   Changwang Lin
-   New H3C Technologies
-   Email: linchangwang.04414@h3c.com
-
-
-   Xueshun Wang
-   CICT
-   Email: xswang@fiberhome.com
-
-
-   Xuewei Wang
-   Ruijie Networks
-   Email: wangxuewei1@ruijie.com.cn
