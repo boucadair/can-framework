@@ -182,20 +182,20 @@ Table of Contents
       collecting service capabilities and status, and for reporting them
       to a CATS Path Selector (C-PS).
 
-   CATS Network Metric Agent (C-NMA):  An agent that is responsible for
-      collecting network capabilities and status, and for reporting them
-      to a C-PS.
+   CATS Network Metric Agent (C-NMA):  A functional entity that is
+      responsible for collecting network capabilities and status, and
+      for reporting them to a C-PS.
 
    CATS Path Selector (C-PS):  A computation logic that calculates and
       selects paths towards service locations and instances and which
-      accommodate the requirements of service demands.  Such a path
+      accommodates the requirements of service demands.  Such a path
       computation engine takes into account the service and network
       status information.
 
    CATS Traffic Classifier (C-TC):  A functional entity that is
       responsible for determining which packets belong to a traffic flow
       for a particular service demand.  It is also responsible for
-      forwarding such packets along the C-PS-computed path that leads to
+      forwarding such packets along the C-PS computed path that leads to
       the relevant service instance.
 
 3.  Framework and Components
@@ -341,7 +341,7 @@ Table of Contents
    select the proper service instance.
 
    In Figure 1, the "underlay infrastructure" indicates an IP/MPLS
-   network that is not necessarily CATS-aware.  The P-CS-computed CATS
+   network that is not necessarily CATS-aware.  The P-CS computed CATS
    routes will be distributed among the overlay CATS-Routers, and will
    not affect the underlay nodes.  A CATS implementation may rely upon a
    control plane or a management plane to distribute service metrics and
@@ -590,7 +590,7 @@ Table of Contents
 
    Since the service will, in some cases, need to know about
    applications, clients, and even user identity, it is likely that the
-   C-PS-computed path information will need to be encrypted if the
+   C-PS computed path information will need to be encrypted if the
    client/service communication is not already encrypted.
 
    For more discussion about privacy, refer to [RFC6462] and [RFC6973].
