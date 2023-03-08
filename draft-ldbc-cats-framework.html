@@ -1293,12 +1293,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <dd class="break"></dd>
 <dt id="section-2-2.17">CATS-Router:</dt>
         <dd style="margin-left: 1.5em" id="section-2-2.18">
-          <p id="section-2-2.18.1">A network device (usually located at the edge of the network) that makes forwarding decisions based on CATS information to steer traffic specific to a  service demand towards a corresponding yet selected service instance. The selection of a service instance relies upon a multi-metric CATS-based path computation.<a href="#section-2-2.18.1" class="pilcrow">¶</a></p>
+          <p id="section-2-2.18.1">A network device (usually located at the edge of the network) that makes forwarding decisions based on CATS information to steer traffic specific to a  service demand towards a corresponding yet selected service instance. The selection of a service instance relies upon a multi-metric CATS-based path computation. A CATS router may behave as Ingress or Egress CATS-Router.<a href="#section-2-2.18.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-2.19">Ingress CATS-Router:</dt>
         <dd style="margin-left: 1.5em" id="section-2-2.20">
-          <p id="section-2-2.20.1">A  node that serves as a service access point for CATS clients. It steers service-specific traffic along a CATS-computed path that leads to an Egress CATS-Router that connects to the most suitable edge site that hots the service instance selected to satisfy the initial service demand.<a href="#section-2-2.20.1" class="pilcrow">¶</a></p>
+          <p id="section-2-2.20.1">A node that serves as a service access point for CATS clients. It steers service-specific traffic along a CATS-computed path that leads to an Egress CATS-Router that connects to the most suitable edge site that hots the service instance selected to satisfy the initial service demand.<a href="#section-2-2.20.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-2.21">Egress CATS-Router:</dt>
@@ -1367,20 +1367,20 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-cats-components">
 <a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-cats-components" class="section-name selfRef">CATS Components</a>
         </h3>
-<p id="section-3.3-1">The network nodes make forwarding decisions for a given service demand that has been received from a client according to both service instance and network status information. The main CATS functional elements and their interactions are shown in <a href="#fig-cats-fw" class="auto internal xref">Figure 1</a>.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.3-1">The network nodes make forwarding decisions for a given service demand that has been received from a client according to both service instances and network status information. The main CATS functional elements and their interactions are shown in <a href="#fig-cats-fw" class="auto internal xref">Figure 1</a>.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
 <span id="name-cats-functional-components"></span><div id="fig-cats-fw">
 <figure id="figure-1">
           <div id="section-3.3-2.1">
             <div class="alignLeft art-svg artwork" id="section-3.3-2.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="576" width="464" viewBox="0 0 464 576" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
                 <path d="M 8,48 L 8,80" fill="none" stroke="black"></path>
-                <path d="M 40,88 L 40,128" fill="none" stroke="black"></path>
+                <path d="M 40,80 L 40,128" fill="none" stroke="black"></path>
                 <path d="M 40,320 L 40,368" fill="none" stroke="black"></path>
                 <path d="M 64,48 L 64,80" fill="none" stroke="black"></path>
                 <path d="M 72,32 L 72,64" fill="none" stroke="black"></path>
                 <path d="M 72,112 L 72,208" fill="none" stroke="black"></path>
                 <path d="M 72,464 L 72,512" fill="none" stroke="black"></path>
-                <path d="M 104,376 L 104,440" fill="none" stroke="black"></path>
+                <path d="M 104,368 L 104,440" fill="none" stroke="black"></path>
                 <path d="M 120,152 L 120,176" fill="none" stroke="black"></path>
                 <path d="M 152,320 L 152,368" fill="none" stroke="black"></path>
                 <path d="M 176,48 L 176,80" fill="none" stroke="black"></path>
@@ -1389,7 +1389,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <path d="M 184,112 L 184,208" fill="none" stroke="black"></path>
                 <path d="M 184,376 L 184,440" fill="none" stroke="black"></path>
                 <path d="M 192,448 L 192,496" fill="none" stroke="black"></path>
-                <path d="M 208,88 L 208,120" fill="none" stroke="black"></path>
+                <path d="M 208,80 L 208,128" fill="none" stroke="black"></path>
                 <path d="M 232,48 L 232,80" fill="none" stroke="black"></path>
                 <path d="M 232,160 L 232,208" fill="none" stroke="black"></path>
                 <path d="M 240,336 L 240,368" fill="none" stroke="black"></path>
@@ -1398,16 +1398,17 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <path d="M 288,160 L 288,208" fill="none" stroke="black"></path>
                 <path d="M 296,320 L 296,400" fill="none" stroke="black"></path>
                 <path d="M 304,464 L 304,512" fill="none" stroke="black"></path>
-                <path d="M 320,120 L 320,208" fill="none" stroke="black"></path>
+                <path d="M 320,112 L 320,208" fill="none" stroke="black"></path>
                 <path d="M 336,48 L 336,80" fill="none" stroke="black"></path>
-                <path d="M 360,408 L 360,440" fill="none" stroke="black"></path>
+                <path d="M 360,400 L 360,440" fill="none" stroke="black"></path>
+                <path d="M 368,80 L 368,112" fill="none" stroke="black"></path>
                 <path d="M 368,240 L 368,272" fill="none" stroke="black"></path>
                 <path d="M 392,48 L 392,80" fill="none" stroke="black"></path>
                 <path d="M 408,32 L 408,64" fill="none" stroke="black"></path>
                 <path d="M 408,320 L 408,400" fill="none" stroke="black"></path>
                 <path d="M 408,464 L 408,512" fill="none" stroke="black"></path>
                 <path d="M 424,448 L 424,496" fill="none" stroke="black"></path>
-                <path d="M 432,128 L 432,208" fill="none" stroke="black"></path>
+                <path d="M 432,112 L 432,208" fill="none" stroke="black"></path>
                 <path d="M 432,240 L 432,272" fill="none" stroke="black"></path>
                 <path d="M 24,32 L 72,32" fill="none" stroke="black"></path>
                 <path d="M 192,32 L 248,32" fill="none" stroke="black"></path>
@@ -1419,10 +1420,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <path d="M 176,80 L 232,80" fill="none" stroke="black"></path>
                 <path d="M 336,80 L 392,80" fill="none" stroke="black"></path>
                 <path d="M 72,112 L 184,112" fill="none" stroke="black"></path>
-                <path d="M 312,112 L 416,112" fill="none" stroke="black"></path>
-                <path d="M 40,128 L 64,128" fill="none" stroke="black"></path>
-                <path d="M 192,128 L 216,128" fill="none" stroke="black"></path>
-                <path d="M 264,128 L 312,128" fill="none" stroke="black"></path>
+                <path d="M 320,112 L 432,112" fill="none" stroke="black"></path>
+                <path d="M 40,128 L 72,128" fill="none" stroke="black"></path>
+                <path d="M 184,128 L 208,128" fill="none" stroke="black"></path>
+                <path d="M 264,128 L 320,128" fill="none" stroke="black"></path>
                 <path d="M 80,144 L 176,144" fill="none" stroke="black"></path>
                 <path d="M 328,144 L 424,144" fill="none" stroke="black"></path>
                 <path d="M 232,160 L 288,160" fill="none" stroke="black"></path>
@@ -1448,14 +1449,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <path d="M 56,48 C 64.83064,48 72,55.16936 72,64" fill="none" stroke="black"></path>
                 <path d="M 56,48 C 64.83064,48 72,40.83064 72,32" fill="none" stroke="black"></path>
                 <path d="M 56,80 C 64.83064,80 72,72.83064 72,64" fill="none" stroke="black"></path>
-                <path d="M 416,112 C 424.83064,112 432,119.16936 432,128" fill="none" stroke="black"></path>
                 <g class="text">
                   <text x="36" y="68">client</text>
                   <text x="204" y="68">client</text>
                   <text x="240" y="68">-</text>
                   <text x="364" y="68">client</text>
                   <text x="400" y="68">-</text>
-                  <text x="368" y="100">|</text>
                   <text x="124" y="132">C-TC</text>
                   <text x="372" y="132">C-TC</text>
                   <text x="148" y="164">C-PS</text>
@@ -1522,17 +1521,22 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#name-cats-functional-components" class="selfRef">CATS Functional Components</a>
           </figcaption></figure>
 </div>
-<p id="section-3.3-3">Edge nodes (or edges for short) are the premises that provide access to edge computing resources. A compute service (e.g., for face recognition purposes or a game server) is uniquely identified by a CATS Service IDentifier (CS-ID).<a href="#section-3.3-3" class="pilcrow">¶</a></p>
+<p id="section-3.3-3">Edge nodes (or edges for short) are the premises that provide access to edge computing resources. As mentioned in <a href="#cats-ids" class="auto internal xref">Section 3.2</a>, a compute service (e.g., for face recognition purposes or a game server) is uniquely identified by a CATS Service IDentifier (CS-ID).<a href="#section-3.3-3" class="pilcrow">¶</a></p>
 <p id="section-3.3-4">Service instances can be instantiated and accessed through different edge sites so that a single service can be represented and accessed by several instances that run in different regions of the network.<a href="#section-3.3-4" class="pilcrow">¶</a></p>
-<p id="section-3.3-5"><a href="#fig-cats-fw" class="auto internal xref">Figure 1</a> shows two edge nodes (CATS-Router 1 and CATS-Router 3) that provide access to service instances. These nodes behave as Egress CATS-Routers.<a href="#section-3.3-5" class="pilcrow">¶</a></p>
-<p id="section-3.3-6">The CATS Service Metric Agent (C-SMA) is a functional component that gathers information about edge sites and server resources, as well as the status of the different service instances. The C-SMAs are located adjacent to the service instances and can be hosted by the Egress CATS-Routers or located next to them. <a href="#fig-cats-fw" class="auto internal xref">Figure 1</a> shows one C-SMA embedded in CATS-Router 3, and another C-SMA that is adjacent to CATS-Router 1.<a href="#section-3.3-6" class="pilcrow">¶</a></p>
-<p id="section-3.3-7">The CATS Network Metric Agent (C-NMA) is a functional component that gathers information about the state of the network. The C-NMAs may be implemented as standalone components or may be hosted by existing components such as CATS-Routers or CATS Path Selectors(C-PS). <a href="#fig-cats-fw" class="auto internal xref">Figure 1</a> shows a single, standalone C-NMA within the underlay network. There may be one or more C-NMAs for an underlay network.<a href="#section-3.3-7" class="pilcrow">¶</a></p>
-<p id="section-3.3-8">The C-SMAs and C-NMAs share the collected information with CATS Path Selectors (C-PSes) that use such information to select the Egress CATS-Routers (and potentially the service instances) where to forward traffic for a given service demand. They also determine the best paths (possibly using tunnels) to forward traffic, according to various criteria that include network state and traffic congestion conditions. The collected information is encoded into one or more metrics that feed the C-PS path computation logic. Such information also includes CS-ID and possibly CB-ID identifiers.<a href="#section-3.3-8" class="pilcrow">¶</a></p>
-<p id="section-3.3-9">There may be one or more C-PSes used to computae CATS paths. They can be integrated into CATS-Routers (like CATS-Router 2 in <a href="#fig-cats-fw" class="auto internal xref">Figure 1</a>) or they may be standalone components that communicate with CATS-Routers (like CATS-Router 4 in <a href="#fig-cats-fw" class="auto internal xref">Figure 1</a>).<a href="#section-3.3-9" class="pilcrow">¶</a></p>
-<p id="section-3.3-10">In addition, CATS Traffic Classifier (C-TC) is a functional component that is responsible for associating incoming packets with existing service demands. CATS classifiers also make sure that packets that are bound to a specific service instance are all forwarded along the same path that leads to the same service instance, as instructed by a C-PS component. CATS classifiers are typically hosted in CATS routers that are located at the edge/border of the network.<a href="#section-3.3-10" class="pilcrow">¶</a></p>
-<p id="section-3.3-11">The Egress CATS-Routers are the egress endpoints of overlay paths. An edge location that hosts service instances may be connected to one or more CATS routers (that is, multi-homing is of course a design option). If a C-PS has selected a specific service instance and the C-TC has marked the traffic with the CB-ID, the CATS-Router then forwards traffic to the relevant service instance. In some cases, the choice of service instance may be left open to the CATS-Router ( traffic is marked only with the CS-ID) and in this case the CATS-Router selects a service instance (using its knowledge of service and network capabilities as well as the current load as observed by the CATS router, among other considerations). In any case, a CATS router must make sure to forward all packets that pertain to a given service demand towards the same service instance.<a href="#section-3.3-11" class="pilcrow">¶</a></p>
-<p id="section-3.3-12">Note that, depending on design considerations and service requirements, per- service instance computing-related metrics or aggregated per-site computing-related metrics (and a combination thereof) can be used by a C-PS. Using aggregated per-site computing-related metrics appears as a privileged option scalability-wise, but relies on CATS-Routers that connect to various service instances to select the proper service instance.<a href="#section-3.3-12" class="pilcrow">¶</a></p>
-<p id="section-3.3-13">In <a href="#fig-cats-fw" class="auto internal xref">Figure 1</a>, the "underlay infrastructure" indicates an IP/MPLS network that is not necessarily CATS-aware. The P-CS computed CATS routes will be distributed among the overlay CATS-Routers, and will not affect the underlay nodes. A CATS implementation may rely upon a control plane or a management plane  to distribute service metrics and network metrics - this document does not define a specific solution.<a href="#section-3.3-13" class="pilcrow">¶</a></p>
+<p id="section-3.3-5"><a href="#fig-cats-fw" class="auto internal xref">Figure 1</a> shows two edge nodes ("CATS-Router 1" and "CATS-Router 3") that provide access to service instances. These nodes behave as Egress CATS-Routers.<a href="#section-3.3-5" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-3.3-6.1">
+            <p id="section-3.3-6.1.1">Note: "Egress" is used here in reference the direction of the service request placement. The directionalty is called to explicitly identify the exit node of the CATS infrastructure.<a href="#section-3.3-6.1.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-3.3-7">The CATS Service Metric Agent (C-SMA) is a functional component that gathers information about edge sites and server resources, as well as the status of the different service instances. The C-SMAs are located adjacent to the service instances and can be hosted by the Egress CATS-Routers or located next to them. <a href="#fig-cats-fw" class="auto internal xref">Figure 1</a> shows one C-SMA embedded in "CATS-Router 3", and another C-SMA that is adjacent to "CATS-Router 1".<a href="#section-3.3-7" class="pilcrow">¶</a></p>
+<p id="section-3.3-8">The CATS Network Metric Agent (C-NMA) is a functional component that gathers information about the state of the network. The C-NMAs may be implemented as standalone components or may be hosted by other components, such as CATS-Routers or CATS Path Selectors(C-PS). <a href="#fig-cats-fw" class="auto internal xref">Figure 1</a> shows a single, standalone C-NMA within the underlay network. There may be one or more C-NMAs for an underlay network.<a href="#section-3.3-8" class="pilcrow">¶</a></p>
+<p id="section-3.3-9">The C-SMAs and C-NMAs share the collected information with CATS Path Selectors (C-PSes) that use such information to select the Egress CATS-Routers (and potentially the service instances) where to forward traffic for a given service demand. They also determine the best paths (possibly using tunnels) to forward traffic, according to various criteria that include network state and traffic congestion conditions. The collected information is encoded into one or more metrics that feed the C-PS path computation logic. Such an information also includes CS-ID and possibly CB-ID identifiers.<a href="#section-3.3-9" class="pilcrow">¶</a></p>
+<p id="section-3.3-10">There may be one or more C-PSes used to compute CATS paths. They can be integrated into CATS-Routers (e.g., "CATS-Router 2" in <a href="#fig-cats-fw" class="auto internal xref">Figure 1</a>) or they may be standalone components that communicate with CATS-Routers (e.g., "CATS-Router 4" in <a href="#fig-cats-fw" class="auto internal xref">Figure 1</a>).<a href="#section-3.3-10" class="pilcrow">¶</a></p>
+<p id="section-3.3-11">In addition, CATS Traffic Classifier (C-TC) is a functional component that is responsible for associating incoming packets with existing service demands. CATS classifiers also ensure that packets that are bound to a specific service instance are all forwarded along the same path that leads to the same service instance, as instructed by a C-PS. CATS classifiers are typically hosted in CATS routers that are located at the edge of the network.<a href="#section-3.3-11" class="pilcrow">¶</a></p>
+<p id="section-3.3-12">The Egress CATS-Routers are the endpoints that behave as an overlay egress for service requests that are forwatded over a CATS infrastructure. An edge location that hosts service instances may be connected to one or more Egress CATS routers (that is, multi-homing is of course a design option). If a C-PS has selected a specific service instance and the C-TC has marked the traffic with the CB-ID, the Egress CATS-Router then forwards traffic to the relevant service instance. In some cases, the choice of the service instance may be left open to the Egress CATS-Router (i.e., traffic is marked only with the CS-ID). In such cases, the Egress CATS-Router selects a service instance using its knowledge of service and network capabilities as well as the current load as observed by the CATS router, among other considerations. In any case, an Egress CATS router must make sure to forward all packets that pertain to a given service demand towards the same service instance.<a href="#section-3.3-12" class="pilcrow">¶</a></p>
+<p id="section-3.3-13">Note that, depending on design considerations and service requirements, per-service instance computing-related metrics or aggregated per-site computing related metrics (and a combination thereof) can be used by a C-PS. Using aggregated per-site computing related metrics appears as a privileged option scalability-wise, but relies on Egress CATS-Routers that connect to various service instances to select the proper service instance.<a href="#section-3.3-13" class="pilcrow">¶</a></p>
+<p id="section-3.3-14">In <a href="#fig-cats-fw" class="auto internal xref">Figure 1</a>, the "underlay infrastructure" indicates an IP/MPLS network that is not necessarily CATS-aware. The CATS routes that are computed by a P-CS will be distributed among the overlay CATS-Routers, and will not affect the underlay nodes. A CATS implementation may rely upon a control or management plane to distribute service metrics and network metrics - this document does not define a specific solution.<a href="#section-3.3-14" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="deployment-considerations">
@@ -1540,7 +1544,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-deployment-considerations">
 <a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-deployment-considerations" class="section-name selfRef">Deployment Considerations</a>
         </h3>
-<p id="section-3.4-1">This document does not make any assumption about how the various CATS functional elements are implemented and deployed. Whether a CATS deployment follows a fully distributed design or relies upon a mix of centralized (e.g., a C-PS) and distributed CATS functions (e.g., CATS traffic classifiers) is deployment-specific and may reflect the savoir-faire of the (CATS) service provider. Centralized designs where the computing-related metrics from the C-SMAs are collected by a (logically) centralized path computation logic (like a Path Computation Element (PCE) <span>[<a href="#RFC4655" class="cite xref">RFC4655</a>]</span>) that also collects network metrics may, thus, be adopted. In the latter case, the (logically) centralized CATS computation logic may process incoming service requests to compute and select paths let alone service instances. The outcomes of such a computation may then be communicated to CATS traffic classifiers (C-TCs).<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.4-1">This document does not make any assumption about how the various CATS functional elements are implemented and deployed. Concretely, whether a CATS deployment follows a fully distributed design or relies upon a mix of centralized (e.g., a C-PS) and distributed CATS functions (e.g., CATS traffic classifiers) is deployment-specific and may reflect the savoir-faire of the (CATS) service provider.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.4-2">Centralized designs where the computing related metrics from the C-SMAs are collected by a (logically) centralized path computation logic (e.g., a Path Computation Element (PCE) <span>[<a href="#RFC4655" class="cite xref">RFC4655</a>]</span>) that also collects network metrics may be adopted. In the latter case, the CATS computation logic may process incoming service requests to compute and select paths and, therefore, service instances. The outcomes of such a computation process may then be communicated to CATS traffic classifiers (C-TCs).<a href="#section-3.4-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1568,9 +1573,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-4.2-2">Computing metrics may change very frequently (see <span>[<a href="#I-D.yao-cats-ps-usecases" class="cite xref">I-D.yao-cats-ps-usecases</a>]</span> for a discussion). How frequently such information is distributed is to be determined as part of the specification of any communication protocol (including routing protocols) that may be used to distribute the information. Various options can be considered, such as interval-based updates, threshold-triggered updates, policy-based updates, etc.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
 <p id="section-4.2-3">Additionally, the C-NMA collects network-related capabilities and metrics. These may be collected and distributed by existing routing protocols, although extensions to such protocols may be required to carry additional information such as link latency. The C-NMA distributes the network metrics to the C-PSes so that they can use the combination of service metrics and network metrics to determine the best CATS-Router to provide access to a service instance and invoke the compute function required by a service demand.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
 <p id="section-4.2-4">Network metrics may also change over time. Dynamic routing protocols may take advantage of some information or capabilities (e.g., Partial Route Computation (PRC) of OSPFv3 <span>[<a href="#RFC5340" class="cite xref">RFC5340</a>]</span>) to prevent the network from being flooded with state change information. C-NMA agents should also be configured or instructed like C-SMA agents to determine when and how often updates should be notified to the C-PSes.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
-<p id="section-4.2-5"><a href="#fig-cats-example-overlay" class="auto internal xref">Figure 2</a> shows an example of how CATS metrics can be distributed. There is a client attached to the netowrk via CATS-Router 1. There are three instances of the service with CS-ID 1: two are located at Edge Site 2 attached via CATS-Router 2 and have CB-IDs 1 and 2; the third is located at Edge Site 3 attached via CATS-Router 3 and with CB-ID 3. There is also a second service with CS-ID 2 with only one instance located at Edge Site 2.<a href="#section-4.2-5" class="pilcrow">¶</a></p>
-<p id="section-4.2-6">In this example, the C-SMA collocated with CATS-Router 2 distributes the service metrics for both service instances. Note that this information could be aggregated into a single advertisement, but in this case, the metrics for each instance are advertised separately. Similarly, the C-SMA agent located at Edge Site 2 advertises the service metrics for the two services hosted by Edge Site 2.<a href="#section-4.2-6" class="pilcrow">¶</a></p>
-<p id="section-4.2-7">The service metric advertisements are processed by the C-PS hosted by CATS-Router 1. The C-PS also processes network metric advertisements sent by the C-NMA agent. All metrics are used by the C-PS to compute and select the most relevant path that leads to the Egress CATS-Router according to the initial  client's service demand, the service that is requested (CS-ID 1 or CS-ID 2), the state of the service instances as reported by the metrics, and the state of the network.<a href="#section-4.2-7" class="pilcrow">¶</a></p>
+<p id="section-4.2-5"><a href="#fig-cats-example-overlay" class="auto internal xref">Figure 2</a> shows an example of how CATS metrics can be distributed. There is a client attached to the netowrk via "CATS-Router 1". There are three instances of the service with CS-ID 1: two are located at edge site 2 attached via "CATS-Router 2 "and have CB-IDs 1 and 2; the third is located at Edge Site 3 attached via "CATS-Router 3" and with CB-ID 3. There is also a second service with CS-ID 2 with only one instance located at Edge Site 2.<a href="#section-4.2-5" class="pilcrow">¶</a></p>
+<p id="section-4.2-6">In <a href="#fig-cats-example-overlay" class="auto internal xref">Figure 2</a>, the C-SMA collocated with "CATS-Router 2" distributes the service metrics for both service instances. Note that this information could be aggregated into a single advertisement, but in this case, the metrics for each instance are advertised separately. Similarly, the C-SMA agent located at Edge Site 2 advertises the service metrics for the two services hosted by Edge Site 2.<a href="#section-4.2-6" class="pilcrow">¶</a></p>
+<p id="section-4.2-7">The service metric advertisements are processed by the C-PS hosted by "CATS-Router 1". The C-PS also processes network metric advertisements sent by the C-NMA agent. All metrics are used by the C-PS to compute and select the most relevant path that leads to the Egress CATS-Router according to the initial  client's service demand, the service that is requested (CS-ID 1 or CS-ID 2), the state of the service instances as reported by the metrics, and the state of the network.<a href="#section-4.2-7" class="pilcrow">¶</a></p>
 <span id="name-example-cats-metric-distrib"></span><div id="fig-cats-example-overlay">
 <figure id="figure-2">
           <div id="section-4.2-8.1">
@@ -1755,8 +1760,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
         </h3>
 <p id="section-4.3-1">The C-PS computes and selects paths that lead to Egress CATS-Routers according to the service and network metrics that have been advertised. The C-PS may be collocated with a Ingress CATS-Router (as shown in <a href="#fig-cats-example-overlay" class="auto internal xref">Figure 2</a>) or logically centralized.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
 <p id="section-4.3-2">This document does not specify any algorithm for path computation and selection purposes, but it is expected that a service demand or local policy may feed the C-PS computation logic with Objective Functions that provide some information about the path characteristics (e.g., in terms of maximum latency) and the selected service instance.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
-<p id="section-4.3-3">In the example of <a href="#fig-cats-example-overlay" class="auto internal xref">Figure 2</a>, when the client sends a service demand to CATS-Router 1, the router solicits
-the C-PS to select a service instance hosted by an edge site that can be accessed through a particular CATS-Router. The C-PS also determines a path to the Egress CATS-Router. This information is provided to Ingress CATS-Router (CATS-Router 1) so that it can forward packets to their proper destination, as computed by the C-PS.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
+<p id="section-4.3-3">In the example of <a href="#fig-cats-example-overlay" class="auto internal xref">Figure 2</a>, when the client sends a service demand to "CATS-Router 1", the router solicits
+the C-PS to select a service instance hosted by an edge site that can be accessed through a particular CATS-Router. The C-PS also determines a path to the Egress CATS-Router. This information is provided to Ingress CATS-Router ("CATS-Router 1") so that it can forward packets to their proper destination, as computed by the C-PS.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
 <p id="section-4.3-4">A service transaction consists of one or more service packets sent by the client to an Ingress CATS-Router it is connected to. The Ingress CATS-Router classifies incoming packets by soliciting the C-TC classifier, encapsulates, and then forwards them to the C-PS-selected  Egress CATS-Router. When these packets reach the Egress CATS-Router, the outer header of the possible overlay encapsulation is removed and resulting packets are sent to the relevant service instance.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
