@@ -1339,7 +1339,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-assumptions">
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-assumptions" class="section-name selfRef">Assumptions</a>
         </h3>
-<p id="section-3.1-1">CATS assumes that there are multiple service instances running on different edge nodes, and which provide a given service that is represented by a service identifier (see <a href="#cats-ids" class="auto internal xref">Section 3.2</a>).<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-1">CATS assumes that there are multiple service instances running on different edge nodes, and which provide a given service that is represented by the same service identifier (see <a href="#cats-ids" class="auto internal xref">Section 3.2</a>).<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="cats-ids">
@@ -1351,7 +1351,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <span class="break"></span><dl class="dlParallel" id="section-3.2-2">
           <dt id="section-3.2-2.1">CATS Service ID (CS-ID):</dt>
           <dd style="margin-left: 1.5em" id="section-3.2-2.2">
-            <p id="section-3.2-2.2.1">An identifier representing a service, which the clients use to access it. Such an ID identifies all the instances of a given service, rgardless of the location of such instances. The CS-ID is independent of which service instance serves the service demand. Service demands are spread over the service instances that can accommodate them, considering the location of the initiator of the service demand and the availability (in terms of resource/traffic load, for example) of the service instances resource-wise among other considerations like traffic congestion conditions.<a href="#section-3.2-2.2.1" class="pilcrow">¶</a></p>
+            <p id="section-3.2-2.2.1">An identifier representing a service, which the clients use to access it. Such an ID identifies all the instances of a given service, rgardless of their location. The CS-ID is independent of which service instance serves the service demand. Service demands are spread over the service instances that can accommodate them, considering the location of the initiator of the service demand and the availability (in terms of resource/traffic load, for example) of the service instances resource-wise among other considerations like traffic congestion conditions.<a href="#section-3.2-2.2.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-3.2-2.3">CATS Binding ID (CB-ID):</dt>
