@@ -90,11 +90,12 @@ Table of Contents
    network resource usage).
 
    The underlying networking infrastructures that include edge computing
-   resources usually provide relatively static service dispatching.  In
-   such infrastructures, service-specific traffic is often directed to
-   the closest edge resource from a routing perspective without
-   considering the actual network state (e.g., traffic congestion
-   conditions).
+   resources usually provide relatively static service dispatching (that
+   is, the selection of the sevice instances that will be invoked for a
+   request).  In such infrastructures, service-specific traffic is often
+   directed to the closest edge resource from a routing perspective
+   without considering the actual network state (e.g., traffic
+   congestion conditions).
 
    As described in [I-D.yao-cats-ps-usecases], traffic steering that
    takes into account computing resource metrics would benefit several
