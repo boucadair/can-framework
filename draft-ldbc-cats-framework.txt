@@ -685,6 +685,11 @@ Contributors
    Email: wangxuewei1@ruijie.com.cn
 
 
+   Christian Jacquenet
+   Orange
+   Email: christian.jacquenet@orange.com
+
+
 Authors' Addresses
 
    Cheng Li (editor)
