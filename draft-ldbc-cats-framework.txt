@@ -75,8 +75,9 @@ Table of Contents
      4.3.  Service Demand Handling
      4.4.  Instance Affinity
    5.  Security Considerations
-   6.  IANA Considerations
-   7.  Informative References
+   6.  Privacy Considerations
+   7.  IANA Considerations
+   8.  Informative References
    Appendix A.  Acknowledgements
    Contributors
    Authors' Addresses
@@ -547,11 +548,28 @@ Table of Contents
    Ingress CAN-Routers.  Also, C-SMAs need to support a mechanism to
    authenticate the services provided at the edge sites that they serve.
 
-6.  IANA Considerations
+6.  Privacy Considerations
+
+   Means to prevent that on-path nodes in the underlay infrastructure to
+   fingerprint and tracl clients (e.g., determine which client is
+   accessing which service) must be supported by CATS solutions.  More
+   generally, personal data must not be exposed to external parties by
+   CATS beyond what is exposed in the packet that was originally issued
+   by the client.
+
+   Since the service will, in some cases, need to know about
+   application, client, and even user identities, it is likely that the
+   overlay path from Ingress CAN-Router to Egress CAN-Router will need
+   to be encrypted if the client/service communication is not already
+   encrypted.
+
+   For more discussion about privacy, refer to [RFC6462] and [RFC6973].
+
+7.  IANA Considerations
 
    This document makes no requests for IANA action.
 
-7.  Informative References
+8.  Informative References
 
    [I-D.yao-cats-ps-usecases]
               Yao, K., Eardley, P., Trossen, D., Boucadair, M.,
@@ -561,6 +579,16 @@ Table of Contents
               ps-usecases-00, 3 March 2023,
               <https://datatracker.ietf.org/doc/html/draft-yao-cats-ps-
               usecases-00>.
+
+   [RFC6462]  Cooper, A., "Report from the Internet Privacy Workshop",
+              RFC 6462, DOI 10.17487/RFC6462, January 2012,
+              <https://www.rfc-editor.org/rfc/rfc6462>.
+
+   [RFC6973]  Cooper, A., Tschofenig, H., Aboba, B., Peterson, J.,
+              Morris, J., Hansen, M., and R. Smith, "Privacy
+              Considerations for Internet Protocols", RFC 6973,
+              DOI 10.17487/RFC6973, July 2013,
+              <https://www.rfc-editor.org/rfc/rfc6973>.
 
 Appendix A.  Acknowledgements
 
