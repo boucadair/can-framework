@@ -149,9 +149,8 @@ Table of Contents
    CATS Binding ID (CB-ID):  An identifier of a single service instance
       or location of a given service instance (CS-ID).
 
-   Service:  A monolithic function that is provided by a network
-      operator according to a specification.  A composite service can be
-      built by orchestrating multiple monolithic services.
+   Service:  An offering provided by a service provider and which is
+      delivered using one or more service functions [RFC7665].
 
    Service instance:  A run-time environment (e.g., a server or a
       process on a server) that makes a service instance available
@@ -629,6 +628,11 @@ Table of Contents
               Considerations for Internet Protocols", RFC 6973,
               DOI 10.17487/RFC6973, July 2013,
               <https://www.rfc-editor.org/rfc/rfc6973>.
+
+   [RFC7665]  Halpern, J., Ed. and C. Pignataro, Ed., "Service Function
+              Chaining (SFC) Architecture", RFC 7665,
+              DOI 10.17487/RFC7665, October 2015,
+              <https://www.rfc-editor.org/rfc/rfc7665>.
 
 Appendix A.  Acknowledgements
 
