@@ -5,7 +5,7 @@
 cats                                                          C. Li, Ed.
 Internet-Draft                                       Huawei Technologies
 Intended status: Informational                                     Z. Du
-Expires: 9 September 2023                                   China Mobile
+Expires: 10 September 2023                                  China Mobile
                                                        M. Boucadair, Ed.
                                                                   Orange
                                                          L. M. Contreras
@@ -16,7 +16,7 @@ Expires: 9 September 2023                                   China Mobile
                                                                      ZTE
                                                                G. Mishra
                                                             Verizon Inc.
-                                                            8 March 2023
+                                                            9 March 2023
 
 
         A Framework for Computing-Aware Traffic Steering (CATS)
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 September 2023.
+   This Internet-Draft will expire on 10 September 2023.
 
 Copyright Notice
 
@@ -281,7 +281,7 @@ Table of Contents
    that provide access to service instances.  These nodes behave as
    Egress CATS-Routers.
 
-      Note: "Egress" is used here in reference the direction of the
+      Note: "Egress" is used here in reference to the direction of the
       service request placement.  The directionalty is called to
       explicitly identify the exit node of the CATS infrastructure.
 
