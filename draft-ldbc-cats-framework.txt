@@ -269,7 +269,7 @@ Table of Contents
 
                     Figure 1: CATS Functional Components
 
-   Edge nodes (or edges for short) are the premises that provide access
+   Edge sites (or edges for short) are the premises that provide access
    to edge computing resources.  As mentioned in Section 3.2, a compute
    service (e.g., for face recognition purposes or a game server) is
    uniquely identified by a CATS Service IDentifier (CS-ID).
@@ -297,14 +297,14 @@ Table of Contents
    The CATS Network Metric Agent (C-NMA) is a functional component that
    gathers information about the state of the network.  The C-NMAs may
    be implemented as standalone components or may be hosted by other
-   components, such as CATS-Routers or CATS Path Selectors(C-PS).
+   components, such as CATS-Routers or CATS Path Selectors (C-PS).
    Figure 1 shows a single, standalone C-NMA within the underlay
    network.  There may be one or more C-NMAs for an underlay network.
 
    The C-SMAs and C-NMAs share the collected information with CATS Path
    Selectors (C-PSes) that use such information to select the Egress
    CATS-Routers (and potentially the service instances) where to forward
-   traffic for a given service demand.  They also determine the best
+   traffic for a given service demand.  C-PSes also determine the best
    paths (possibly using tunnels) to forward traffic, according to
    various criteria that include network state and traffic congestion
    conditions.  The collected information is encoded into one or more
@@ -316,12 +316,12 @@ Table of Contents
    or they may be standalone components that communicate with CATS-
    Routers (e.g., "CATS-Router 4" in Figure 1).
 
-   In addition, CATS Traffic Classifier (C-TC) is a functional component
-   that is responsible for associating incoming packets with existing
-   service demands.  CATS classifiers also ensure that packets that are
-   bound to a specific service instance are all forwarded along the same
-   path that leads to the same service instance, as instructed by a
-   C-PS.  CATS classifiers are typically hosted in CATS routers that are
+   CATS Traffic Classifier (C-TC) is a functional component that is
+   responsible for associating incoming packets with existing service
+   demands.  CATS classifiers also ensure that packets that are bound to
+   a specific service instance are all forwarded along the same path
+   that leads to the same service instance, as instructed by a C-PS.
+   CATS classifiers are typically hosted in CATS routers that are
    located at the edge of the network.
 
    The Egress CATS-Routers are the endpoints that behave as an overlay
@@ -340,7 +340,7 @@ Table of Contents
    router must make sure to forward all packets that pertain to a given
    service demand towards the same service instance.
 
-   Note that, depending on design considerations and service
+   Note that, depending on the design considerations and service
    requirements, per-service instance computing-related metrics or
    aggregated per-site computing related metrics (and a combination
    thereof) can be used by a C-PS.  Using aggregated per-site computing
