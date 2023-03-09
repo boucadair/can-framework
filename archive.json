@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-03-05T01:25:23.341029+00:00",
+  "timestamp": "2023-03-09T01:19:16.067107+00:00",
   "repo": "boucadair/can-framework",
   "labels": [
     {
@@ -47,6 +47,21 @@
       "name": "wontfix",
       "description": "This will not be worked on",
       "color": "ffffff"
+    },
+    {
+      "name": "editorial",
+      "description": "",
+      "color": "c5def5"
+    },
+    {
+      "name": "terminology",
+      "description": "",
+      "color": "f9d0c4"
+    },
+    {
+      "name": "revive-stable-version",
+      "description": "",
+      "color": "d4c5f9"
     }
   ],
   "issues": [
@@ -78,7 +93,276 @@
       "labels": [],
       "body": "--Discuss more threats: integrity-protection of advertized information, origin authentication, prevent ddos, ...",
       "createdAt": "2023-03-03T09:00:42Z",
-      "updatedAt": "2023-03-03T09:00:42Z",
+      "updatedAt": "2023-03-08T17:17:09Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "From Christian\r\n\r\n> `> too many updates may affect network stability.\r\n> \r\n> Not a security issue per se. This rather enoucrages a dedicated \"discussion\" section for all the issues that may arise from the deployment of a CATS environment - scalability, coexistence of multiple C-PS functions, traffic load balancing implications, etc. Route flap dampening is not a security consideration per se.`",
+          "createdAt": "2023-03-08T17:17:09Z",
+          "updatedAt": "2023-03-08T17:17:09Z"
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "id": "I_kwDOJBcdGs5gQqar",
+      "title": "About the notion of \"static service dispatching\"",
+      "url": "https://github.com/boucadair/can-framework/issues/12",
+      "state": "CLOSED",
+      "author": "Deguello1",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "> usually provide relatively static service dispatching\r\n\r\nI don't get what is meant here. Does this mean \"service design remains relatively static in a sense that the resources that participate in the delivery (and the operation) of a service remain the same over time, regardless of various, yet possibly affecting criteria like the number of end-users, their location and whether they are in motion or not\"? If so, I would rephrase.",
+      "createdAt": "2023-03-08T09:55:48Z",
+      "updatedAt": "2023-03-08T13:59:55Z",
+      "closedAt": "2023-03-08T13:59:54Z",
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "@Deguello1, you got the intent.  An edit proposal can be seen at: https://github.com/boucadair/can-framework/commit/2101fe4e5ee022775f7ca2209ee5fba96417d5ac ",
+          "createdAt": "2023-03-08T10:17:02Z",
+          "updatedAt": "2023-03-08T10:17:02Z"
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "id": "I_kwDOJBcdGs5gQt28",
+      "title": "About \"ingress-based overlay\"",
+      "url": "https://github.com/boucadair/can-framework/issues/13",
+      "state": "OPEN",
+      "author": "Deguello1",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "> ingress-based overlay\r\n\r\nThis should be elaborated as it suggests some directionality that is debatable.",
+      "createdAt": "2023-03-08T10:02:22Z",
+      "updatedAt": "2023-03-08T17:26:58Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "I'm not sure there is a value in maintaining that wording, either. \r\n\r\nThe directionality is relevant as the placement decision is made when first receiving an incoming request but that's obvious and does not need to be called out. ",
+          "createdAt": "2023-03-08T10:38:53Z",
+          "updatedAt": "2023-03-08T10:38:53Z"
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "id": "I_kwDOJBcdGs5gQx0P",
+      "title": "About the definition of \"service\"",
+      "url": "https://github.com/boucadair/can-framework/issues/14",
+      "state": "CLOSED",
+      "author": "Deguello1",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "> A monolithic function that is provided by a network operator according to a specification. A composite service can be built by orchestrating multiple monolithic services.\r\n\r\nThis reads strange as the woring mixes function with service. I would encourage some consisitency, e.g., based upon the terminology used by RFC7665 (Service Function). Also, since earlier text mentions service provider, I would suggest s/network operator/service provider.",
+      "createdAt": "2023-03-08T10:10:22Z",
+      "updatedAt": "2023-03-08T14:01:08Z",
+      "closedAt": "2023-03-08T14:01:08Z",
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "Fair point. A proposal can be seen at https://github.com/boucadair/can-framework/pull/16/commits/f669192f74c07bc4a3dd40fb95032cdcb2fde2af",
+          "createdAt": "2023-03-08T10:32:55Z",
+          "updatedAt": "2023-03-08T10:32:55Z"
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "id": "I_kwDOJBcdGs5gQ77C",
+      "title": "About the role of C-PS",
+      "url": "https://github.com/boucadair/can-framework/issues/17",
+      "state": "OPEN",
+      "author": "Deguello1",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "> The C-SMAs and C-NMAs share the collected information with CATS Path Selectors (C-PSes) that use such information to select the Egress CATS-Routers (and potentially the service instances) where to forward traffic for a given service demand\r\n\r\nThis wording suggests a somewhat limited role of C-PS (seemingly restricted to the selection of egress CATS-Routers), whereas the initial definition of a C-PS rather suggests path computation capabilities. I would therefore rephrase the above wording (by introducing the notion of path computation and selection besides the selection of egress CATS routers).",
+      "createdAt": "2023-03-08T10:40:17Z",
+      "updatedAt": "2023-03-08T11:32:08Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 18,
+      "id": "I_kwDOJBcdGs5gRNju",
+      "title": "About the forwarding role of CATS classifiers",
+      "url": "https://github.com/boucadair/can-framework/issues/18",
+      "state": "OPEN",
+      "author": "Deguello1",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "> forwarded along the same path\r\n\r\nThe current wording implicitly suggests there's no room for traffic load balancing. I would relax (or clarify) this a bit as the outcomes of C-PS ccomputation may very well encourage traffic load distribution as a function of the traffic ocngestion conditions, possibly leading to multi-path forwarding policies towards a given service instance.",
+      "createdAt": "2023-03-08T11:35:53Z",
+      "updatedAt": "2023-03-08T12:31:39Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 19,
+      "id": "I_kwDOJBcdGs5gRONN",
+      "title": "About egress/ingress taxonomy",
+      "url": "https://github.com/boucadair/can-framework/issues/19",
+      "state": "OPEN",
+      "author": "Deguello1",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "> The Egress CATS-Routers are the egress endpoints of overlay paths\r\n\r\nI fail to see the need for this. Again, this suggests (unnecessary) distinction between two types of CATS routers at the risk of obliterating the very likely heuristic.",
+      "createdAt": "2023-03-08T11:38:15Z",
+      "updatedAt": "2023-03-08T12:23:45Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 20,
+      "id": "I_kwDOJBcdGs5gRRdh",
+      "title": "About the underlay/overlay taxonomy",
+      "url": "https://github.com/boucadair/can-framework/issues/20",
+      "state": "OPEN",
+      "author": "Deguello1",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "> the \"underlay infrastructure\" indicates an IP/MPLS network that is not necessarily CATS-aware. The P-CS-computed CATS routes will be distributed among the overlay CATS-Routers, and will not affect the underlay nodes.\r\n\r\nThis reads like a pretty strong statement. It not only assumes that CATS routers are distinct from IP/MPLS routers of the underlay (which is highly debatable). It also asssumes that CATS routers will not affect (whatever that means) undermlay nodes: it seems to me that LIBs and FIBs maintaintes by PE routers (for example) may very well be populated by P-CS-computed routes (at least I fail to understand why not). So, I thi\u00e7nk this should deserve some elaboration. In addition, the IP/MPLSunderlay could contribute to the improvement of C-PS-computed routes (e.g., by means of Segment Routing). So, I don't think the underlay/overlay is that black and white.",
+      "createdAt": "2023-03-08T11:49:48Z",
+      "updatedAt": "2023-03-08T12:22:52Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 21,
+      "id": "I_kwDOJBcdGs5gRS02",
+      "title": "About CATS (C-PS) implementation",
+      "url": "https://github.com/boucadair/can-framework/issues/21",
+      "state": "OPEN",
+      "author": "Deguello1",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "> A CATS implementation may rely upon a control plane or a management plane  to distribute service metrics and network metrics - this document does not define a specific solution.\r\n\r\nI'm not sure I would keep this unless further elaboration is provided. In addition, the initial text mentions underlay nodes (as far as metric distribution is concerned), which somewhat contradicts the previous statement about the underlay/overlay taxonomy: if CATS routers are not supposed to be involved in the IP/MPLS control and forwarding planes of the so-called underlay, then what's the point of feeding underlay nodes with CATS metrics?",
+      "createdAt": "2023-03-08T11:54:47Z",
+      "updatedAt": "2023-03-08T12:32:11Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 22,
+      "id": "I_kwDOJBcdGs5gRVY8",
+      "title": "About several C-PS computation logics in the network",
+      "url": "https://github.com/boucadair/can-framework/issues/22",
+      "state": "OPEN",
+      "author": "Deguello1",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "> The C-SMA then advertises the CS-IDs along with the metrics to be received by all C-PSs in the network\r\n\r\nThis encourages some clarification about the respective roles and responsibilities of all the C-PSes deployed in the network. let alone the security and consistency issues that may arise because of such design. This should deserve an editor's note at least.",
+      "createdAt": "2023-03-08T12:03:16Z",
+      "updatedAt": "2023-03-08T12:21:34Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 23,
+      "id": "I_kwDOJBcdGs5gRaX6",
+      "title": "On advertising CB-ID",
+      "url": "https://github.com/boucadair/can-framework/issues/23",
+      "state": "OPEN",
+      "author": "Deguello1",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "> if the edge site can support consistently service instance selection\r\n\r\nI don't understand what that means.",
+      "createdAt": "2023-03-08T12:19:52Z",
+      "updatedAt": "2023-03-08T12:21:21Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 24,
+      "id": "I_kwDOJBcdGs5gReY_",
+      "title": "On the definition of service transaction",
+      "url": "https://github.com/boucadair/can-framework/issues/24",
+      "state": "OPEN",
+      "author": "Deguello1",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "terminology",
+        "revive-stable-version"
+      ],
+      "body": "> A service transaction consists of one or more service packets sent by the client to the CATS-Router it is connected to\r\n\r\nShouldn't this be part of the Definitions section of the draft?",
+      "createdAt": "2023-03-08T12:32:27Z",
+      "updatedAt": "2023-03-08T12:54:22Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "This is currently used once in the document. Will revive this issue when the text is more stable",
+          "createdAt": "2023-03-08T12:54:22Z",
+          "updatedAt": "2023-03-08T12:54:22Z"
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "id": "I_kwDOJBcdGs5gRhQ5",
+      "title": "About the Security Considerations section",
+      "url": "https://github.com/boucadair/can-framework/issues/25",
+      "state": "CLOSED",
+      "author": "Deguello1",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "duplicate"
+      ],
+      "body": "> too many updates may affect network stability.\r\n\r\nNot a security issue per se. This rather enoucrages a dedicated \"discussion\" section for all the issues that may arise from the deployment of a CATS environment - scalability, coexistence of multiple C-PS functions, traffic load balancing implications, etc. Route flap dampening is not a security consideration per se.",
+      "createdAt": "2023-03-08T12:42:14Z",
+      "updatedAt": "2023-03-08T17:17:40Z",
+      "closedAt": "2023-03-08T17:17:40Z",
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "This will be discussed as part of #8 ",
+          "createdAt": "2023-03-08T17:17:39Z",
+          "updatedAt": "2023-03-08T17:17:39Z"
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "id": "I_kwDOJBcdGs5gTL2h",
+      "title": "Uniqueness scope of the CS-ID ",
+      "url": "https://github.com/boucadair/can-framework/issues/27",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "The ID is likely to be globally unique, but is that required? ",
+      "createdAt": "2023-03-08T17:26:37Z",
+      "updatedAt": "2023-03-08T17:26:37Z",
       "closedAt": null,
       "comments": []
     }
@@ -275,6 +559,547 @@
       },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 10,
+      "id": "PR_kwDOJBcdGs5LeayE",
+      "title": "Security Section",
+      "url": "https://github.com/boucadair/can-framework/pull/10",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-03-07T13:23:34Z",
+      "updatedAt": "2023-03-08T07:54:12Z",
+      "baseRepository": "boucadair/can-framework",
+      "baseRefName": "main",
+      "baseRefOid": "b2e397dbbce7a3a5c509a64cb5edd222fa4550a8",
+      "headRepository": "boucadair/can-framework",
+      "headRefName": "security-section",
+      "headRefOid": "b428f02350e837b6fbcc3cdd4915f21b72225cdf",
+      "closedAt": "2023-03-08T07:54:11Z",
+      "mergedAt": "2023-03-08T07:54:11Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "066303734d7c140b1986a846d8348ea83075f726"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 11,
+      "id": "PR_kwDOJBcdGs5LekBO",
+      "title": "Privacy cons",
+      "url": "https://github.com/boucadair/can-framework/pull/11",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-03-07T13:41:45Z",
+      "updatedAt": "2023-03-08T07:54:23Z",
+      "baseRepository": "boucadair/can-framework",
+      "baseRefName": "main",
+      "baseRefOid": "da920e1bb17629a1d507a580c609739ae72dbf21",
+      "headRepository": "boucadair/can-framework",
+      "headRefName": "privacy-cons",
+      "headRefOid": "b5fca35a9a82aa434f8f804585eab000f74e293a",
+      "closedAt": "2023-03-08T07:54:22Z",
+      "mergedAt": "2023-03-08T07:54:22Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "35233904f01b4e6cd3fd720a54fc46f7e19ead32"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 15,
+      "id": "PR_kwDOJBcdGs5LjuFW",
+      "title": "service dispatching",
+      "url": "https://github.com/boucadair/can-framework/pull/15",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "#12",
+      "createdAt": "2023-03-08T10:15:32Z",
+      "updatedAt": "2023-03-08T13:59:55Z",
+      "baseRepository": "boucadair/can-framework",
+      "baseRefName": "main",
+      "baseRefOid": "e4e49d3d5ebf6b34447e8d0f9bee0219105bebd1",
+      "headRepository": "boucadair/can-framework",
+      "headRefName": "service-dispatch",
+      "headRefOid": "e191462b146c9a61c1a324048518ad1e9dfe7b11",
+      "closedAt": "2023-03-08T13:59:53Z",
+      "mergedAt": "2023-03-08T13:59:53Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "db7bdabf9a19c4ae0a44b4cd81866d45f253de5b"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 16,
+      "id": "PR_kwDOJBcdGs5Ljyjs",
+      "title": "service definition",
+      "url": "https://github.com/boucadair/can-framework/pull/16",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "#14",
+      "createdAt": "2023-03-08T10:31:59Z",
+      "updatedAt": "2023-03-08T14:01:09Z",
+      "baseRepository": "boucadair/can-framework",
+      "baseRefName": "main",
+      "baseRefOid": "db7bdabf9a19c4ae0a44b4cd81866d45f253de5b",
+      "headRepository": "boucadair/can-framework",
+      "headRefName": "service-def",
+      "headRefOid": "0af11b6e10498f57d81811a63df238074054041a",
+      "closedAt": "2023-03-08T14:01:07Z",
+      "mergedAt": "2023-03-08T14:01:07Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "a177170de0e458035daa5420a1e66c953c5b6136"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 26,
+      "id": "PR_kwDOJBcdGs5LkZOX",
+      "title": "Update draft-ldbc-cats-framework.md",
+      "url": "https://github.com/boucadair/can-framework/pull/26",
+      "state": "MERGED",
+      "author": "Deguello1",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-03-08T12:55:40Z",
+      "updatedAt": "2023-03-08T13:57:50Z",
+      "baseRepository": "boucadair/can-framework",
+      "baseRefName": "main",
+      "baseRefOid": "35233904f01b4e6cd3fd720a54fc46f7e19ead32",
+      "headRepository": "Deguello1/can-framework",
+      "headRefName": "patch-1",
+      "headRefOid": "50396b8426a0cd3c3c6174bb9f030b44fe1be0de",
+      "closedAt": "2023-03-08T13:57:50Z",
+      "mergedAt": "2023-03-08T13:57:50Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "e4e49d3d5ebf6b34447e8d0f9bee0219105bebd1"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJBcdGs5PUDZ8",
+          "commit": {
+            "abbreviatedOid": "36f6998"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-08T13:19:46Z",
+          "updatedAt": "2023-03-08T13:19:47Z",
+          "comments": [
+            {
+              "originalPosition": 55,
+              "body": "```suggestion\r\n : A network device (usually located at the edge of the network) that makes forwarding decisions based on CATS information to steer traffic specific to a  service demand towards a corresponding yet selected service instance. The selection of a service instance relies upon a multi-metric CATS-based path computation.\r\n```",
+              "createdAt": "2023-03-08T13:19:46Z",
+              "updatedAt": "2023-03-08T13:19:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJBcdGs5PUDn9",
+          "commit": {
+            "abbreviatedOid": "36f6998"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-08T13:20:26Z",
+          "updatedAt": "2023-03-08T13:20:26Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nEdge computing architectures have been expanding from single edge nodes to multiple, sometimes collaborative, edge nodes to address various issues (e.g., long response times or suboptimal service and network resource usage).\r\n```",
+              "createdAt": "2023-03-08T13:20:26Z",
+              "updatedAt": "2023-03-08T13:20:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJBcdGs5PUEGR",
+          "commit": {
+            "abbreviatedOid": "36f6998"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-08T13:21:46Z",
+          "updatedAt": "2023-03-08T13:21:46Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "```suggestion\r\nThe Computing-Aware Traffic Steering (CATS) framework assumes that there may be multiple service instances running on different edge nodes, globally providing one given service. A single edge node may have limited computing resources available at a given time, whereas the various edge nodes may experience different resource availability issues over time. A single edge node may also host multiple instances of a service or just one service instance.\r\n```",
+              "createdAt": "2023-03-08T13:21:46Z",
+              "updatedAt": "2023-03-08T13:21:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJBcdGs5PUFlP",
+          "commit": {
+            "abbreviatedOid": "36f6998"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-08T13:25:43Z",
+          "updatedAt": "2023-03-08T13:25:44Z",
+          "comments": [
+            {
+              "originalPosition": 59,
+              "body": "```suggestion\r\n : A  node that serves as a service access point for CATS clients. It steers service-specific traffic along a CATS-computed path that leads to an Egress CATS-Router that connects to the most suitable edge site that hots the service instance selected to satisfy the initial service demand.\r\n```",
+              "createdAt": "2023-03-08T13:25:44Z",
+              "updatedAt": "2023-03-08T13:25:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJBcdGs5PUFsi",
+          "commit": {
+            "abbreviatedOid": "36f6998"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-08T13:26:02Z",
+          "updatedAt": "2023-03-08T13:26:03Z",
+          "comments": [
+            {
+              "originalPosition": 63,
+              "body": "```suggestion\r\n: A node that is located at the end of a CATS-computed path and which connects to a CATS-serviced site.\r\n```",
+              "createdAt": "2023-03-08T13:26:02Z",
+              "updatedAt": "2023-03-08T13:26:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJBcdGs5PUF1z",
+          "commit": {
+            "abbreviatedOid": "36f6998"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-08T13:26:26Z",
+          "updatedAt": "2023-03-08T13:26:27Z",
+          "comments": [
+            {
+              "originalPosition": 67,
+              "body": "```suggestion\r\n : An agent that is responsible for collecting service capabilities and status, and for reporting them to a CATS Path Selector (C-PS).",
+              "createdAt": "2023-03-08T13:26:26Z",
+              "updatedAt": "2023-03-08T13:26:49Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJBcdGs5PUGGS",
+          "commit": {
+            "abbreviatedOid": "36f6998"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-08T13:27:06Z",
+          "updatedAt": "2023-03-08T13:27:07Z",
+          "comments": [
+            {
+              "originalPosition": 71,
+              "body": "```suggestion\r\n  : An agent that is responsible for collecting network capabilities and status, and for reporting them to a C-PS.",
+              "createdAt": "2023-03-08T13:27:06Z",
+              "updatedAt": "2023-03-08T13:27:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJBcdGs5PUGQ0",
+          "commit": {
+            "abbreviatedOid": "36f6998"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-08T13:27:34Z",
+          "updatedAt": "2023-03-08T13:27:35Z",
+          "comments": [
+            {
+              "originalPosition": 75,
+              "body": "```suggestion\r\n : A computation logic that calculates and selects paths towards service locations and  instances and which accommodate the requirements of service demands. Such a path computation engine takes into account the service and network status information.\r\n```",
+              "createdAt": "2023-03-08T13:27:34Z",
+              "updatedAt": "2023-03-08T13:27:35Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJBcdGs5PUGgk",
+          "commit": {
+            "abbreviatedOid": "36f6998"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-08T13:28:14Z",
+          "updatedAt": "2023-03-08T13:28:15Z",
+          "comments": [
+            {
+              "originalPosition": 79,
+              "body": "```suggestion\r\n : A functional entity that is responsible for determining which packets belong to a traffic flow for a particular service demand. It is also responsible for forwarding such packets along the C-PS-computed  path that leads to the relevant service instance.\r\n```",
+              "createdAt": "2023-03-08T13:28:14Z",
+              "updatedAt": "2023-03-08T13:28:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJBcdGs5PUGsX",
+          "commit": {
+            "abbreviatedOid": "36f6998"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-08T13:28:46Z",
+          "updatedAt": "2023-03-08T13:28:46Z",
+          "comments": [
+            {
+              "originalPosition": 86,
+              "body": "```suggestion\r\nCATS assumes that there are multiple service instances running on different edge nodes, and which provide a given service that is represented by a service identifier (see {{cats-ids}}). \r\n```",
+              "createdAt": "2023-03-08T13:28:46Z",
+              "updatedAt": "2023-03-08T13:29:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJBcdGs5PUINW",
+          "commit": {
+            "abbreviatedOid": "36f6998"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-08T13:32:58Z",
+          "updatedAt": "2023-03-08T13:32:59Z",
+          "comments": [
+            {
+              "originalPosition": 147,
+              "body": "```suggestion\r\nThis document does not make any assumption about how the various CATS functional elements are implemented and deployed. Whether a CATS deployment follows a fully distributed design or relies upon a mix of centralized (e.g., a C-PS) and distributed CATS functions (e.g., CATS traffic classifiers) is deployment-specific and may reflect the savoir-faire of the (CATS) service provider. Centralized designs where the computing-related metrics from the C-SMAs are collected by a (logically) centralized path computation logic (like a Path Computation Element (PCE) {{?RFC4655}}) that also collects network metrics may, thus, be adopted. In the latter case, the (logically) centralized CATS computation logic may process incoming service requests to compute and select paths let alone service instances. The outcomes of such a computation may then be communicated to CATS traffic classifiers (C-TCs).\r\n```",
+              "createdAt": "2023-03-08T13:32:58Z",
+              "updatedAt": "2023-03-08T13:33:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJBcdGs5PUImr",
+          "commit": {
+            "abbreviatedOid": "36f6998"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-08T13:34:04Z",
+          "updatedAt": "2023-03-08T13:34:04Z",
+          "comments": [
+            {
+              "originalPosition": 165,
+              "body": "```suggestion\r\nComputing metrics may change very frequently (see {{?I-D.yao-cats-ps-usecases}} for a discussion). How frequently such information is distributed is to be determined as part of the specification of any communication protocol (including routing protocols) that may be used to distribute the information. Various options can be considered, such as interval-based updates, threshold-triggered updates, policy-based updates, etc.\r\n```",
+              "createdAt": "2023-03-08T13:34:04Z",
+              "updatedAt": "2023-03-08T13:34:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJBcdGs5PULSX",
+          "commit": {
+            "abbreviatedOid": "36f6998"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-08T13:40:58Z",
+          "updatedAt": "2023-03-08T13:40:58Z",
+          "comments": [
+            {
+              "originalPosition": 171,
+              "body": "```suggestion\r\nNetwork metrics may also change over time. Dynamic routing protocols may take advantage of some information or capabilities (e.g., Partial Route Computation (PRC) of OSPFv3 {{?RFC5340}}) to prevent the network from being flooded with state change information. C-NMA agents should also be configured or instructed like C-SMA agents to determine when and how often updates should be notified to the C-PSes.\r\n```",
+              "createdAt": "2023-03-08T13:40:58Z",
+              "updatedAt": "2023-03-08T13:40:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJBcdGs5PULhF",
+          "commit": {
+            "abbreviatedOid": "36f6998"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-08T13:41:36Z",
+          "updatedAt": "2023-03-08T13:41:37Z",
+          "comments": [
+            {
+              "originalPosition": 180,
+              "body": "```suggestion\r\nThe service metric advertisements are processed by the C-PS hosted by CATS-Router 1. The C-PS also processes network metric advertisements sent by the C-NMA agent. All metrics are used by the C-PS to compute and select the most relevant path that leads to the Egress CATS-Router according to the initial  client's service demand, the service that is requested (CS-ID 1 or CS-ID 2), the state of the service instances as reported by the metrics, and the state of the network.\r\n```",
+              "createdAt": "2023-03-08T13:41:36Z",
+              "updatedAt": "2023-03-08T13:41:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJBcdGs5PUMGX",
+          "commit": {
+            "abbreviatedOid": "36f6998"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-08T13:43:07Z",
+          "updatedAt": "2023-03-08T13:43:08Z",
+          "comments": [
+            {
+              "originalPosition": 189,
+              "body": "```suggestion\r\nThe above example mainly describes a per-instance computing-related metric distribution. In the case of distributing aggregated per-site computing-related metrics, the per-instance CB-ID information will not be included in the advertisement. Instead, a per-site CB-ID may be used in case multiple sites are connected to the Egress CATS router to explicitly indicate the site the aggregated metrics come from.\r\n```",
+              "createdAt": "2023-03-08T13:43:07Z",
+              "updatedAt": "2023-03-08T13:43:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJBcdGs5PUMau",
+          "commit": {
+            "abbreviatedOid": "36f6998"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-08T13:43:56Z",
+          "updatedAt": "2023-03-08T13:43:57Z",
+          "comments": [
+            {
+              "originalPosition": 198,
+              "body": "```suggestion\r\nThe C-PS computes and selects paths that lead to Egress CATS-Routers according to the service and network metrics that have been advertised. The C-PS may be collocated with a Ingress CATS-Router (as shown in {{fig-cats-example-overlay}}) or logically centralized.\r\n```",
+              "createdAt": "2023-03-08T13:43:56Z",
+              "updatedAt": "2023-03-08T13:43:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJBcdGs5PUM4n",
+          "commit": {
+            "abbreviatedOid": "36f6998"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-08T13:45:09Z",
+          "updatedAt": "2023-03-08T13:45:10Z",
+          "comments": [
+            {
+              "originalPosition": 205,
+              "body": "```suggestion\r\nthe C-PS to select a service instance hosted by an edge site that can be accessed through a particular CATS-Router. The C-PS also determines a path to the Egress CATS-Router. This information is provided to Ingress CATS-Router (CATS-Router 1) so that it can forward packets to their proper destination, as computed by the C-PS.\r\n```",
+              "createdAt": "2023-03-08T13:45:09Z",
+              "updatedAt": "2023-03-08T13:45:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJBcdGs5PUOR3",
+          "commit": {
+            "abbreviatedOid": "36f6998"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-08T13:48:04Z",
+          "updatedAt": "2023-03-08T13:48:05Z",
+          "comments": [
+            {
+              "originalPosition": 208,
+              "body": "```suggestion\r\nA service transaction consists of one or more service packets sent by the client to an Ingress CATS-Router it is connected to. The Ingress CATS-Router classifies incoming packets by soliciting the C-TC classifier, encapsulates, and then forwards them to the C-PS-selected  Egress CATS-Router. When these packets reach the Egress CATS-Router, the outer header of the possible overlay encapsulation is removed and resulting packets are sent to the relevant service instance.\r\n```",
+              "createdAt": "2023-03-08T13:48:04Z",
+              "updatedAt": "2023-03-08T13:48:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJBcdGs5PUOpb",
+          "commit": {
+            "abbreviatedOid": "36f6998"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-08T13:48:42Z",
+          "updatedAt": "2023-03-08T13:48:42Z",
+          "comments": [
+            {
+              "originalPosition": 213,
+              "body": "```suggestion\r\nInstance affinity is a key feature of CATS. It means that packets that belong to a given flow associated with a given service should always be sent to the same Egress CATS-Router which will forward them the same service instance. Furthermore, packets of a given flow should be forwarded along the same path to minimize the risk of jeopardizing the integrity of the communication established between thee client and the service instance.\r\n```",
+              "createdAt": "2023-03-08T13:48:42Z",
+              "updatedAt": "2023-03-08T13:48:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJBcdGs5PUPG4",
+          "commit": {
+            "abbreviatedOid": "36f6998"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-08T13:49:35Z",
+          "updatedAt": "2023-03-08T13:49:35Z",
+          "comments": [
+            {
+              "originalPosition": 238,
+              "body": "```suggestion\r\nThe information distributed by the C-SMA and C-NMA agents may be sensitive. Such information could indeed disclose intel about the network and the location of compute resources hosted in edge sites. This information may be used by an attacker to identify weak spots in an operator's network. Furthermore, such information may be modified by an attacker resulting in disrupted service delivery for the clients, up to and including misdirection of traffic to an attacker's service implementation. CATS solutions must support authentication and integrity-protection mechanisms between C-SMAs/C-NMAs and C-PSes, and between C-PSes and Ingress CATS-Routers. Also, C-SMA agents need to support a mechanism to authenticate the services for which they provide information to C-PS computation logics, among other CATS functions.\r\n```",
+              "createdAt": "2023-03-08T13:49:35Z",
+              "updatedAt": "2023-03-08T13:49:35Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
