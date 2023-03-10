@@ -1334,22 +1334,22 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <dd class="break"></dd>
 <dt id="section-2-2.23">CATS Service Metric Agent (C-SMA):</dt>
         <dd style="margin-left: 1.5em" id="section-2-2.24">
-          <p id="section-2-2.24.1">An agent that is responsible for collecting service capabilities and status, and for reporting them to a CATS Path Selector (C-PS).<a href="#section-2-2.24.1" class="pilcrow">¶</a></p>
+          <p id="section-2-2.24.1">An agent that is responsible for collecting service capabilities and status, and for reporting them to a CATS Path Selector (C-PS). See <a href="#sec-csma" class="auto internal xref">Section 3.3.2</a>.<a href="#section-2-2.24.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-2.25">CATS Network Metric Agent (C-NMA):</dt>
         <dd style="margin-left: 1.5em" id="section-2-2.26">
-          <p id="section-2-2.26.1">A functional entity that is responsible for collecting network capabilities and status, and for reporting them to a C-PS.<a href="#section-2-2.26.1" class="pilcrow">¶</a></p>
+          <p id="section-2-2.26.1">A functional entity that is responsible for collecting network capabilities and status, and for reporting them to a C-PS. See <a href="#sec-cnma" class="auto internal xref">Section 3.3.3</a>.<a href="#section-2-2.26.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-2.27">CATS Path Selector (C-PS):</dt>
         <dd style="margin-left: 1.5em" id="section-2-2.28">
-          <p id="section-2-2.28.1">A computation logic that calculates and selects paths towards service locations and instances and which accommodates the requirements of service demands. Such a path computation engine takes into account the service and network status information.<a href="#section-2-2.28.1" class="pilcrow">¶</a></p>
+          <p id="section-2-2.28.1">A computation logic that calculates and selects paths towards service locations and instances and which accommodates the requirements of service demands. Such a path computation engine takes into account the service and network status information. See <a href="#sec-cps" class="auto internal xref">Section 3.3.4</a>.<a href="#section-2-2.28.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-2.29">CATS Traffic Classifier (C-TC):</dt>
         <dd style="margin-left: 1.5em" id="section-2-2.30">
-          <p id="section-2-2.30.1">A functional entity that is responsible for determining which packets belong to a traffic flow for a particular service demand. It is also responsible for forwarding such packets along the C-PS computed path that leads to the relevant service instance.<a href="#section-2-2.30.1" class="pilcrow">¶</a></p>
+          <p id="section-2-2.30.1">A functional entity that is responsible for determining which packets belong to a traffic flow for a particular service demand. It is also responsible for forwarding such packets along the C-PS computed path that leads to the relevant service instance. See <a href="#sec-ctc" class="auto internal xref">Section 3.3.5</a>.<a href="#section-2-2.30.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
@@ -1554,6 +1554,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
           </h4>
 <p id="section-3.3.1-1">Edge sites (or edges for short) are the premises that provide access to edge computing resources. As mentioned in <a href="#cats-ids" class="auto internal xref">Section 3.2</a>, a compute service (e.g., for face recognition purposes or a game server) is uniquely identified by a CATS Service IDentifier (CS-ID).<a href="#section-3.3.1-1" class="pilcrow">¶</a></p>
 <p id="section-3.3.1-2">Service instances can be instantiated and accessed through different edge sites so that a single service can be represented and accessed by several instances that run in different regions of the network.<a href="#section-3.3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.3.1-3"><a href="#fig-cats-fw" class="auto internal xref">Figure 1</a> shows two edge nodes ("CATS-Router 1" and "CATS-Router 3") that provide access to service instances. These nodes behave as Egress CATS-Routers (<a href="#sec-ocr" class="auto internal xref">Section 3.3.6</a>).<a href="#section-3.3.1-3" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-3.3.1-4.1">
+              <p id="section-3.3.1-4.1.1">Note: "Egress" is used here in reference to the direction of the service request placement. The directionality is called to explicitly identify the exit node of the CATS infrastructure.<a href="#section-3.3.1-4.1.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
 </section>
 </div>
 <div id="sec-csma">
@@ -1597,14 +1603,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
           <h4 id="name-overlay-cats-routers">
 <a href="#section-3.3.6" class="section-number selfRef">3.3.6. </a><a href="#name-overlay-cats-routers" class="section-name selfRef">Overlay CATS-Routers</a>
           </h4>
-<p id="section-3.3.6-1"><a href="#fig-cats-fw" class="auto internal xref">Figure 1</a> shows two edge nodes ("CATS-Router 1" and "CATS-Router 3") that provide access to service instances. These nodes behave as Egress CATS-Routers.<a href="#section-3.3.6-1" class="pilcrow">¶</a></p>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-3.3.6-2.1">
-              <p id="section-3.3.6-2.1.1">Note: "Egress" is used here in reference to the direction of the service request placement. The directionality is called to explicitly identify the exit node of the CATS infrastructure.<a href="#section-3.3.6-2.1.1" class="pilcrow">¶</a></p>
-</li>
-          </ul>
-<p id="section-3.3.6-3">The Egress CATS-Routers are the endpoints that behave as an overlay egress for service requests that are forwatded over a CATS infrastructure. An edge location that hosts service instances may be connected to one or more Egress CATS routers (that is, multi-homing is of course a design option). If a C-PS has selected a specific service instance and the C-TC has marked the traffic with the CB-ID, the Egress CATS-Router then forwards traffic to the relevant service instance. In some cases, the choice of the service instance may be left open to the Egress CATS-Router (i.e., traffic is marked only with the CS-ID). In such cases, the Egress CATS-Router selects a service instance using its knowledge of service and network capabilities as well as the current load as observed by the CATS router, among other considerations. In any case, an Egress CATS router must make sure to forward all packets that pertain to a given service demand towards the same service instance.<a href="#section-3.3.6-3" class="pilcrow">¶</a></p>
-<p id="section-3.3.6-4">Note that, depending on the design considerations and service requirements, per-service instance computing-related metrics or aggregated per-site computing related metrics (and a combination thereof) can be used by a C-PS. Using aggregated per-site computing related metrics appears as a privileged option scalability-wise, but relies on Egress CATS-Routers that connect to various service instances to select the proper service instance.<a href="#section-3.3.6-4" class="pilcrow">¶</a></p>
+<p id="section-3.3.6-1">The Egress CATS-Routers are the endpoints that behave as an overlay egress for service requests that are forwatded over a CATS infrastructure. An edge location that hosts service instances may be connected to one or more Egress CATS routers (that is, multi-homing is of course a design option). If a C-PS has selected a specific service instance and the C-TC has marked the traffic with the CB-ID, the Egress CATS-Router then forwards traffic to the relevant service instance. In some cases, the choice of the service instance may be left open to the Egress CATS-Router (i.e., traffic is marked only with the CS-ID). In such cases, the Egress CATS-Router selects a service instance using its knowledge of service and network capabilities as well as the current load as observed by the CATS router, among other considerations. Absent explicit policy, an Egress CATS-Router must make sure to forward all packets that pertain to a given service demand towards the same service instance.<a href="#section-3.3.6-1" class="pilcrow">¶</a></p>
+<p id="section-3.3.6-2">Note that, depending on the design considerations and service requirements, per-service instance computing-related metrics or aggregated per-site computing related metrics (and a combination thereof) can be used by a C-PS. Using aggregated per-site computing related metrics appears as a privileged option scalability-wise, but relies on Egress CATS-Routers that connect to various service instances to select the proper service instance.<a href="#section-3.3.6-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="underlay-infrastructure">
