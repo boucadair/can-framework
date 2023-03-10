@@ -5,7 +5,7 @@
 cats                                                          C. Li, Ed.
 Internet-Draft                                       Huawei Technologies
 Intended status: Informational                                     Z. Du
-Expires: 10 September 2023                                  China Mobile
+Expires: 11 September 2023                                  China Mobile
                                                        M. Boucadair, Ed.
                                                                   Orange
                                                          L. M. Contreras
@@ -16,7 +16,7 @@ Expires: 10 September 2023                                  China Mobile
                                                                      ZTE
                                                                G. Mishra
                                                             Verizon Inc.
-                                                            9 March 2023
+                                                           10 March 2023
 
 
         A Framework for Computing-Aware Traffic Steering (CATS)
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 September 2023.
+   This Internet-Draft will expire on 11 September 2023.
 
 Copyright Notice
 
@@ -68,6 +68,13 @@ Table of Contents
      3.1.  Assumptions
      3.2.  CATS Identifiers
      3.3.  CATS Components
+       3.3.1.  Edge Sites and Services Instances
+       3.3.2.  CATS Service Metric Agent (C-SMA)
+       3.3.3.  The CATS Network Metric Agent (C-NMA)
+       3.3.4.  CATS Path Selector (C-PS)
+       3.3.5.  CATS Traffic Classifier (C-TC)
+       3.3.6.  Overlay CATS-Routers
+       3.3.7.  Underlay Infrastructure
      3.4.  Deployment Considerations
    4.  CATS Framework Workflow
      4.1.  Provisioning of CATS Components
@@ -122,9 +129,9 @@ Table of Contents
    that aim, the CATS framework assumes that edge nodes collaborate with
    each other under a single administrative domain to achieve a global
    objective of dispatching service demands (and thereby optimizing
-   their processing by the most relevant (edge computing) resources)
-   over the various and available edge computing resources, by taking
-   into account both service instance status and network state (e.g.,
+   their processing by the most relevant edge computing resources) over
+   the various and available edge computing resources, by taking into
+   account both service instance status and network state (e.g.,
    reachability considerations, path cost, and traffic congestion
    conditions).
 
@@ -269,6 +276,8 @@ Table of Contents
 
                     Figure 1: CATS Functional Components
 
+3.3.1.  Edge Sites and Services Instances
+
    Edge sites (or edges for short) are the premises that provide access
    to edge computing resources.  As mentioned in Section 3.2, a compute
    service (e.g., for face recognition purposes or a game server) is
@@ -278,28 +287,29 @@ Table of Contents
    edge sites so that a single service can be represented and accessed
    by several instances that run in different regions of the network.
 
-   Figure 1 shows two edge nodes ("CATS-Router 1" and "CATS-Router 3")
-   that provide access to service instances.  These nodes behave as
-   Egress CATS-Routers.
-
-      Note: "Egress" is used here in reference to the direction of the
-      service request placement.  The directionality is called to
-      explicitly identify the exit node of the CATS infrastructure.
+3.3.2.  CATS Service Metric Agent (C-SMA)
 
    The CATS Service Metric Agent (C-SMA) is a functional component that
    gathers information about edge sites and server resources, as well as
    the status of the different service instances.  The C-SMAs are
    located adjacent to the service instances and can be hosted by the
-   Egress CATS-Routers or located next to them.  Figure 1 shows one
-   C-SMA embedded in "CATS-Router 3", and another C-SMA that is adjacent
-   to "CATS-Router 1".
+   Egress CATS-Routers (Section 3.3.6) or located next to them.
+
+   Figure 1 shows one C-SMA embedded in "CATS-Router 3", and another
+   C-SMA that is adjacent to "CATS-Router 1".
+
+3.3.3.  The CATS Network Metric Agent (C-NMA)
 
    The CATS Network Metric Agent (C-NMA) is a functional component that
    gathers information about the state of the network.  The C-NMAs may
    be implemented as standalone components or may be hosted by other
-   components, such as CATS-Routers or CATS Path Selectors (C-PS).
+   components, such as CATS-Routers or CATS Path Selectors (C-PS)
+   (Section 3.3.4).
+
    Figure 1 shows a single, standalone C-NMA within the underlay
    network.  There may be one or more C-NMAs for an underlay network.
+
+3.3.4.  CATS Path Selector (C-PS)
 
    The C-SMAs and C-NMAs share the collected information with CATS Path
    Selectors (C-PSes) that use such information to select the Egress
@@ -316,13 +326,26 @@ Table of Contents
    or they may be standalone components that communicate with CATS-
    Routers (e.g., "CATS-Router 4" in Figure 1).
 
+3.3.5.  CATS Traffic Classifier (C-TC)
+
    CATS Traffic Classifier (C-TC) is a functional component that is
    responsible for associating incoming packets with existing service
    demands.  CATS classifiers also ensure that packets that are bound to
    a specific service instance are all forwarded along the same path
    that leads to the same service instance, as instructed by a C-PS.
+
    CATS classifiers are typically hosted in CATS routers that are
    located at the edge of the network.
+
+3.3.6.  Overlay CATS-Routers
+
+   Figure 1 shows two edge nodes ("CATS-Router 1" and "CATS-Router 3")
+   that provide access to service instances.  These nodes behave as
+   Egress CATS-Routers.
+
+      Note: "Egress" is used here in reference to the direction of the
+      service request placement.  The directionality is called to
+      explicitly identify the exit node of the CATS infrastructure.
 
    The Egress CATS-Routers are the endpoints that behave as an overlay
    egress for service requests that are forwatded over a CATS
@@ -348,11 +371,14 @@ Table of Contents
    relies on Egress CATS-Routers that connect to various service
    instances to select the proper service instance.
 
-   In Figure 1, the "underlay infrastructure" indicates an IP/MPLS
-   network that is not necessarily CATS-aware.  The CATS routes that are
-   computed by a P-CS will be distributed among the overlay CATS-
-   Routers, and will not affect the underlay nodes.  A CATS
-   implementation may rely upon a control or management plane to
+3.3.7.  Underlay Infrastructure
+
+   The "underlay infrastructure" in Figure 1 indicates an IP/MPLS
+   network that is not necessarily CATS-aware.  The CATS paths that are
+   computed by a P-CS will be distributed among the overlay CATS-Routers
+   (Section 3.3.6), and will not affect the underlay nodes.
+
+   A CATS implementation may rely upon a control or management plane to
    distribute service metrics and network metrics - this document does
    not define a specific solution.
 
