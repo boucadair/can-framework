@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-03-09T01:19:16.067107+00:00",
+  "timestamp": "2023-03-12T01:17:38.615427+00:00",
   "repo": "boucadair/can-framework",
   "labels": [
     {
@@ -223,13 +223,26 @@
       "state": "OPEN",
       "author": "Deguello1",
       "authorAssociation": "CONTRIBUTOR",
-      "assignees": [],
-      "labels": [],
+      "assignees": [
+        "boucadair"
+      ],
+      "labels": [
+        "terminology",
+        "revive-stable-version"
+      ],
       "body": "> The Egress CATS-Routers are the egress endpoints of overlay paths\r\n\r\nI fail to see the need for this. Again, this suggests (unnecessary) distinction between two types of CATS routers at the risk of obliterating the very likely heuristic.",
       "createdAt": "2023-03-08T11:38:15Z",
-      "updatedAt": "2023-03-08T12:23:45Z",
+      "updatedAt": "2023-03-09T06:23:59Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "Reasoning about directionality (in reference to service placement requests) has the merit to easily identify the nodes and whether they need to perform specific features. The ingress/egress thing if you will is similar to the ITR/ETR in LISP.\r\n\r\nAdded this note to -01:\r\n\r\n> Note: \"Egress\" is used here in reference the direction of the  service request placement.  The directionality is called to\r\n>            explicitly identify the exit node of the CATS infrastructure.\r\n\r\nI prefer to leave this terminology now but reassess the point (simplify the terminology) when we will have a more stable text. Thanks @Deguello1.\r\n\r\n",
+          "createdAt": "2023-03-09T06:23:59Z",
+          "updatedAt": "2023-03-09T06:23:59Z"
+        }
+      ]
     },
     {
       "number": 20,
@@ -305,14 +318,16 @@
       "state": "OPEN",
       "author": "Deguello1",
       "authorAssociation": "CONTRIBUTOR",
-      "assignees": [],
+      "assignees": [
+        "boucadair"
+      ],
       "labels": [
         "terminology",
         "revive-stable-version"
       ],
       "body": "> A service transaction consists of one or more service packets sent by the client to the CATS-Router it is connected to\r\n\r\nShouldn't this be part of the Definitions section of the draft?",
       "createdAt": "2023-03-08T12:32:27Z",
-      "updatedAt": "2023-03-08T12:54:22Z",
+      "updatedAt": "2023-03-09T06:29:10Z",
       "closedAt": null,
       "comments": [
         {
@@ -363,6 +378,26 @@
       "body": "The ID is likely to be globally unique, but is that required? ",
       "createdAt": "2023-03-08T17:26:37Z",
       "updatedAt": "2023-03-08T17:26:37Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 28,
+      "id": "I_kwDOJBcdGs5gW-H9",
+      "title": "Is C-NMA expected to use existing solutions?",
+      "url": "https://github.com/boucadair/can-framework/issues/28",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "luismcontreras"
+      ],
+      "labels": [
+        "question"
+      ],
+      "body": "(From Luis) \r\n\r\n> I see we mention several times about \u201cnetwork state\u201d, with the idea that the C-NMA will handle such information. I guess network state can be define using existing solutions/metrics. The question is, do we expect in CATS to define something in this respect on how to feed the C-NMA or what kind of existing information/metrics the C-NMA will lever on, or not? If not, probably we can state that C-NMA is expected to use existing solutions/metrics, maybe providing some reference as well, and concentrate on C-SMA. ",
+      "createdAt": "2023-03-09T07:57:19Z",
+      "updatedAt": "2023-03-09T07:57:19Z",
       "closedAt": null,
       "comments": []
     }
