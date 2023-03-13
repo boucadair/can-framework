@@ -5,7 +5,7 @@
 cats                                                          C. Li, Ed.
 Internet-Draft                                       Huawei Technologies
 Intended status: Informational                                     Z. Du
-Expires: 11 September 2023                                  China Mobile
+Expires: 14 September 2023                                  China Mobile
                                                        M. Boucadair, Ed.
                                                                   Orange
                                                          L. M. Contreras
@@ -16,7 +16,7 @@ Expires: 11 September 2023                                  China Mobile
                                                                      ZTE
                                                                G. Mishra
                                                             Verizon Inc.
-                                                           10 March 2023
+                                                           13 March 2023
 
 
         A Framework for Computing-Aware Traffic Steering (CATS)
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 September 2023.
+   This Internet-Draft will expire on 14 September 2023.
 
 Copyright Notice
 
@@ -187,6 +187,12 @@ Table of Contents
    Egress CATS-Router:  A node that is located at the end of a CATS-
       computed path and which connects to a CATS-serviced site.
 
+   CATS Path Selector (C-PS):  A computation logic that calculates and
+      selects paths towards service locations and instances and which
+      accommodates the requirements of service demands.  Such a path
+      computation engine takes into account the service and network
+      status information.  See Section 3.3.4.
+
    CATS Service Metric Agent (C-SMA):  An agent that is responsible for
       collecting service capabilities and status, and for reporting them
       to a CATS Path Selector (C-PS).  See Section 3.3.2.
@@ -194,12 +200,6 @@ Table of Contents
    CATS Network Metric Agent (C-NMA):  A functional entity that is
       responsible for collecting network capabilities and status, and
       for reporting them to a C-PS.  See Section 3.3.3.
-
-   CATS Path Selector (C-PS):  A computation logic that calculates and
-      selects paths towards service locations and instances and which
-      accommodates the requirements of service demands.  Such a path
-      computation engine takes into account the service and network
-      status information.  See Section 3.3.4.
 
    CATS Traffic Classifier (C-TC):  A functional entity that is
       responsible for determining which packets belong to a traffic flow
